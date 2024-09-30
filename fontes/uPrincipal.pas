@@ -23,7 +23,6 @@ type
     Panel1: TPanel;
     btnRobos: TcxButton;
     btnPrograma: TcxButton;
-    cxButton1: TcxButton;
     Shape1: TShape;
     Panel2: TPanel;
     Calendar: TCalendar;
@@ -36,17 +35,24 @@ type
     Restaurar1: TMenuItem;
     N2: TMenuItem;
     Fechar1: TMenuItem;
+    btnUsuarios: TcxButton;
+    btnEmpresas: TcxButton;
     procedure FormShow(Sender: TObject);
-    procedure Robes1Click(Sender: TObject);
     procedure TimerTimer(Sender: TObject);
     procedure ApplicationEventsMinimize(Sender: TObject);
     procedure Restaurar1Click(Sender: TObject);
     procedure Fechar1Click(Sender: TObject);
     procedure Empresa1Click(Sender: TObject);
+    procedure Empresas1Click(Sender: TObject);
+    procedure btnUsuariosClick(Sender: TObject);
+    procedure btnEmpresasClick(Sender: TObject);
+    procedure btnRobosClick(Sender: TObject);
   private
     { Private declarations }
 
     procedure AbrirCadastroUsuario;
+    procedure AbrirCadastroEmpresas;
+    procedure AbrirCadatroRobos;
   public
     { Public declarations }
   end;
@@ -58,12 +64,27 @@ implementation
 
 {$R *.dfm}
 
-uses uCadUsuarios;
+uses uCadUsuarios, uCadastroEmpresas, uCadastroRobos;
+
+procedure TfrmPrincipal.AbrirCadastroEmpresas;
+begin
+  //verifica se usuario é administador ou desenvolvedor
+  if not(ValidaPermissaoUsuario(CodUsuario, 'frmCadastroEmpresas'))then
+  begin
+    Application.MessageBox('Usuário sem permissão para acesso a essa aplicação.','Aviso!',MB_OK+MB_ICONWARNING);
+    ABORT;
+  end;
+
+  Application.CreateForm(tfrmCadastroEmpresas,frmCadastroEmpresas);
+  frmCadastroEmpresas.ShowModal;
+  frmCadastroEmpresas.Release;
+  frmCadastroEmpresas.Free;
+end;
 
 procedure TfrmPrincipal.AbrirCadastroUsuario;
 begin
   //verifica se usuario é administador ou desenvolvedor
-  if not(ValidaPermissaoUsuario(CodUsuario))then
+  if not(ValidaPermissaoUsuario(CodUsuario, 'frmCadastroUsuarios'))then
   begin
     Application.MessageBox('Usuário sem permissão para acesso a essa aplicação.','Aviso!',MB_OK+MB_ICONWARNING);
     ABORT;
@@ -73,6 +94,20 @@ begin
   frmCadastroUsuarios.ShowModal;
   frmCadastroUsuarios.Release;
   frmCadastroUsuarios.Free;
+end;
+
+procedure TfrmPrincipal.AbrirCadatroRobos;
+begin
+  if not(ValidaPermissaoUsuario(CodUsuario, 'frmCadastroRobos'))then
+  begin
+    Application.MessageBox('Usuário sem permissão para acesso a essa aplicação.','Aviso!',MB_OK+MB_ICONWARNING);
+    ABORT;
+  end;
+
+  Application.CreateForm(TfrmCadastroRobos,frmCadastroRobos);
+  frmCadastroRobos.ShowModal;
+  frmCadastroRobos.Release;
+  frmCadastroRobos.Free;
 end;
 
 procedure TfrmPrincipal.ApplicationEventsMinimize(Sender: TObject);
@@ -87,9 +122,29 @@ begin
   TrayIcon.ShowBalloonHint;
 end;
 
+procedure TfrmPrincipal.btnEmpresasClick(Sender: TObject);
+begin
+  AbrirCadastroEmpresas;
+end;
+
+procedure TfrmPrincipal.btnRobosClick(Sender: TObject);
+begin
+  AbrirCadatroRobos;
+end;
+
+procedure TfrmPrincipal.btnUsuariosClick(Sender: TObject);
+begin
+  AbrirCadastroUsuario;
+end;
+
 procedure TfrmPrincipal.Empresa1Click(Sender: TObject);
 begin
   AbrirCadastroUsuario;
+end;
+
+procedure TfrmPrincipal.Empresas1Click(Sender: TObject);
+begin
+  AbrirCadastroEmpresas;
 end;
 
 procedure TfrmPrincipal.Fechar1Click(Sender: TObject);
@@ -108,15 +163,6 @@ begin
   Show();
   WindowState := wsMaximized;
   Application.BringToFront();
-end;
-
-procedure TfrmPrincipal.Robes1Click(Sender: TObject);
-begin
-  if not(ValidaPermissaoUsuario(CodUsuario))then
-  begin
-    Application.MessageBox('Usuário sem permissão para acesso a essa aplicação.','Aviso!',MB_OK+MB_ICONWARNING);
-    ABORT;
-  end;
 end;
 
 procedure TfrmPrincipal.TimerTimer(Sender: TObject);

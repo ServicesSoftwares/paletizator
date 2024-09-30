@@ -1,11 +1,12 @@
-object frmPadrao: TfrmPadrao
+object frmConsultarRegistros: TfrmConsultarRegistros
   Left = 0
   Top = 0
+  ActiveControl = edtTextoBuscar
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
-  Caption = 'Padrao'
-  ClientHeight = 498
-  ClientWidth = 799
+  Caption = 'Consulta Registros de'
+  ClientHeight = 551
+  ClientWidth = 864
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,104 +16,194 @@ object frmPadrao: TfrmPadrao
   Menu = MENU
   OldCreateOrder = False
   Position = poScreenCenter
+  OnActivate = FormActivate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object StatusBar: TStatusBar
-    Left = 0
-    Top = 479
-    Width = 799
-    Height = 19
-    Panels = <
-      item
-        Alignment = taRightJustify
-        Text = 'Data/Hora:'
-        Width = 65
-      end
-      item
-        Text = '00/00/0000 00:00:00'
-        Width = 110
-      end
-      item
-        Text = 'Usu'#225'rio:'
-        Width = 50
-      end
-      item
-        Text = '1 - ADMINISTRADOR'
-        Width = 50
-      end>
-  end
-  object pnBase: TPanel
-    Left = 0
-    Top = 55
-    Width = 799
-    Height = 424
-    Align = alClient
-    TabOrder = 1
-  end
-  object ToolBar: TToolBar
+  object pnFiltros: TPanel
     Left = 0
     Top = 0
-    Width = 799
-    Height = 55
-    ButtonHeight = 55
-    ButtonWidth = 55
-    Caption = 'ToolBar'
-    Images = ImageList
-    TabOrder = 2
-    ExplicitTop = 8
-    object btnSalvar: TToolButton
-      Left = 0
-      Top = 0
-      Hint = 'F5 - Salvar'
-      Caption = 'F5 - Salvar'
-      ImageIndex = 0
-    end
-    object btnCancelar: TToolButton
-      Left = 55
-      Top = 0
-      Caption = 'F6 - Cancelar'
-      ImageIndex = 2
-      OnClick = btnCancelarClick
-    end
-    object ToolButton1: TToolButton
-      Left = 110
-      Top = 0
-      Width = 5
-      Caption = 'ToolButton1'
-      ImageIndex = 1
-      Style = tbsSeparator
-    end
-    object btnPesquisar: TToolButton
-      Left = 115
-      Top = 0
-      Caption = 'F12 - Pesquisar'
-      ImageIndex = 3
-    end
-    object ToolButton3: TToolButton
-      Left = 170
-      Top = 0
-      Width = 5
-      Caption = 'ToolButton3'
-      ImageIndex = 2
-      Style = tbsSeparator
-    end
-    object btnVoltar: TToolButton
-      Left = 175
-      Top = 0
-      Hint = 'Esc - Sair/Voltar'
-      Caption = 'Esc - Sair/Voltar'
-      ImageIndex = 1
-      OnClick = btnVoltarClick
+    Width = 864
+    Height = 52
+    Align = alTop
+    TabOrder = 0
+    object GroupBox1: TGroupBox
+      Left = 1
+      Top = 1
+      Width = 862
+      Height = 50
+      Align = alClient
+      Caption = 'Filtros'
+      TabOrder = 0
+      object Label1: TLabel
+        Left = 22
+        Top = 18
+        Width = 55
+        Height = 13
+        Alignment = taRightJustify
+        Caption = 'Buscar por:'
+      end
+      object cbCampoBuscar: TComboBox
+        Left = 83
+        Top = 15
+        Width = 164
+        Height = 21
+        Style = csDropDownList
+        CharCase = ecUpperCase
+        TabOrder = 0
+      end
+      object edtTextoBuscar: TEdit
+        Left = 249
+        Top = 15
+        Width = 590
+        Height = 21
+        CharCase = ecUpperCase
+        TabOrder = 1
+        OnChange = edtTextoBuscarChange
+      end
+      object cbLabelCampoBuscar: TComboBox
+        Left = 83
+        Top = 15
+        Width = 164
+        Height = 21
+        Style = csDropDownList
+        CharCase = ecUpperCase
+        TabOrder = 2
+        OnChange = cbLabelCampoBuscarChange
+      end
     end
   end
-  object Timer: TTimer
-    OnTimer = TimerTimer
-    Left = 677
-    Top = 8
+  object pnAcoes: TPanel
+    Left = 0
+    Top = 498
+    Width = 864
+    Height = 53
+    Align = alBottom
+    TabOrder = 1
+    object Gradient: TJvGradient
+      Left = 1
+      Top = 1
+      Width = 862
+      Height = 51
+      Style = grVertical
+      StartColor = clBtnFace
+      EndColor = clGray
+      ExplicitLeft = 736
+      ExplicitTop = 32
+      ExplicitWidth = 100
+      ExplicitHeight = 41
+    end
+    object btnSelecionar: TcxButton
+      Left = 162
+      Top = 5
+      Width = 265
+      Height = 43
+      Caption = '&Selecionar'
+      Default = True
+      OptionsImage.Glyph.SourceDPI = 96
+      OptionsImage.Glyph.Data = {
+        3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D225554
+        462D38223F3E0D0A3C7376672076657273696F6E3D22312E31222069643D224C
+        617965725F312220786D6C6E733D22687474703A2F2F7777772E77332E6F7267
+        2F323030302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F77
+        77772E77332E6F72672F313939392F786C696E6B2220783D223070782220793D
+        22307078222076696577426F783D2230203020333220333222207374796C653D
+        22656E61626C652D6261636B67726F756E643A6E657720302030203332203332
+        3B2220786D6C3A73706163653D227072657365727665223E262331333B262331
+        303B3C7374796C6520747970653D22746578742F6373732220786D6C3A737061
+        63653D227072657365727665223E2E426C75657B66696C6C3A23313137374437
+        3B7D262331333B262331303B2623393B2E59656C6C6F777B66696C6C3A234646
+        423131353B7D262331333B262331303B2623393B2E5265647B66696C6C3A2344
+        31314331433B7D262331333B262331303B2623393B2E477265656E7B66696C6C
+        3A233033394332333B7D262331333B262331303B2623393B2E426C61636B7B66
+        696C6C3A233732373237323B7D262331333B262331303B2623393B2E57686974
+        657B66696C6C3A234646464646463B7D262331333B262331303B2623393B2E73
+        74307B6F7061636974793A302E353B7D262331333B262331303B2623393B2E73
+        74317B6F7061636974793A302E37353B7D262331333B262331303B2623393B2E
+        7374327B646973706C61793A6E6F6E653B7D262331333B262331303B2623393B
+        2E7374337B646973706C61793A696E6C696E653B66696C6C3A23464642313135
+        3B7D262331333B262331303B2623393B2E7374347B646973706C61793A696E6C
+        696E653B7D262331333B262331303B2623393B2E7374357B646973706C61793A
+        696E6C696E653B6F7061636974793A302E37353B7D262331333B262331303B26
+        23393B2E7374367B646973706C61793A696E6C696E653B6F7061636974793A30
+        2E353B7D262331333B262331303B2623393B2E7374377B646973706C61793A69
+        6E6C696E653B66696C6C3A233033394332333B7D262331333B262331303B2623
+        393B2E7374387B646973706C61793A696E6C696E653B66696C6C3A2344313143
+        31433B7D262331333B262331303B2623393B2E7374397B646973706C61793A69
+        6E6C696E653B66696C6C3A233131373744373B7D262331333B262331303B2623
+        393B2E737431307B646973706C61793A696E6C696E653B66696C6C3A23464646
+        4646463B7D3C2F7374796C653E0D0A3C672069643D2256616C69646174696F6E
+        223E0D0A09093C673E0D0A0909093C706F6C79676F6E20636C6173733D224772
+        65656E2220706F696E74733D2232372C342031312C323020352C313420322C31
+        372031312C32362033302C37202623393B2623393B222F3E0D0A09093C2F673E
+        0D0A093C2F673E0D0A3C2F7376673E0D0A}
+      TabOrder = 0
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      OnClick = btnSelecionarClick
+    end
+    object cxButton2: TcxButton
+      Left = 426
+      Top = 5
+      Width = 265
+      Height = 43
+      Caption = '&Voltar'
+      OptionsImage.Glyph.SourceDPI = 96
+      OptionsImage.Glyph.Data = {
+        3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D225554
+        462D38223F3E0D0A3C7376672076657273696F6E3D22312E31222069643D224C
+        617965725F312220786D6C6E733D22687474703A2F2F7777772E77332E6F7267
+        2F323030302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F77
+        77772E77332E6F72672F313939392F786C696E6B2220783D223070782220793D
+        22307078222076696577426F783D223020302033322033322220656E61626C65
+        2D6261636B67726F756E643D226E6577203020302033322033322220786D6C3A
+        73706163653D227072657365727665223E262331333B262331303B3C70617468
+        2066696C6C3D22233337374142352220643D224D31382E392C33632D382E322C
+        302D31322C372D31322C374C342C374C322C32316C31322E392D356C2D332E31
+        2D322E3863302C302C362E332D382E332C31322E322D322E3263352E342C352E
+        352D312C31382D312C3138683120202623393B4333372E312C31332E372C3235
+        2E382C332C31382E392C337A222F3E0D0A3C2F7376673E0D0A}
+      TabOrder = 1
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      OnClick = cxButton2Click
+    end
+  end
+  object pnDados: TPanel
+    Left = 0
+    Top = 52
+    Width = 864
+    Height = 446
+    Align = alClient
+    TabOrder = 2
+    object DBGrid: TDBGrid
+      Left = 1
+      Top = 1
+      Width = 862
+      Height = 444
+      Align = alClient
+      DataSource = DS
+      DrawingStyle = gdsGradient
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = []
+      OnDrawColumnCell = DBGridDrawColumnCell
+    end
   end
   object MENU: TMainMenu
-    Left = 712
-    Top = 8
+    Left = 743
     object Ajuda1: TMenuItem
       Caption = 'F1 - Ajuda'
       ShortCut = 112
@@ -124,12 +215,15 @@ object frmPadrao: TfrmPadrao
       OnClick = Sair1Click
     end
   end
+  object Timer: TTimer
+    Left = 775
+  end
   object ImageList: TcxImageList
     SourceDPI = 96
     Height = 48
     Width = 48
     FormatVersion = 1
-    DesignInfo = 524928
+    DesignInfo = 807
     ImageInfo = <
       item
         Image.Data = {
@@ -1307,5 +1401,15 @@ object frmPadrao: TfrmPadrao
           0000000000000000000000000000000000000000000000000000}
         FileName = 'C:\Projetos\paletizator\imagens\search-icon.png'
       end>
+  end
+  object DS: TDataSource
+    DataSet = QRY
+    Left = 760
+    Top = 60
+  end
+  object QRY: TFDQuery
+    Connection = DM.FDCONN
+    Left = 728
+    Top = 60
   end
 end

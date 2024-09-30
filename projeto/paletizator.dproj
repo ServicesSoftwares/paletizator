@@ -132,6 +132,18 @@
             <Form>frmCadastroUsuarios</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\fontes\uPesquisarRegistros.pas">
+            <Form>frmConsultarRegistros</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\fontes\parametros\uCadastroEmpresas.pas">
+            <Form>frmCadastroEmpresas</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\fontes\parametros\uCadastroRobos.pas">
+            <Form>frmCadastroRobos</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
