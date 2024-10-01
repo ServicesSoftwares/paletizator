@@ -72,6 +72,7 @@ procedure TfrmPadrao.TimerTimer(Sender: TObject);
 begin
   StatusBar.Panels.Items[1].Text := FormatDateTime('DD/MM/YYYY HH:MM:SS', NOW);
   StatusBar.Panels.Items[3].Text := IntToStr(CodUsuario) + ' - ' + NomeUsuario;
+  StatusBar.Panels.Items[5].Text := IntToStr(CodEmpresa) + ' - ' + NomeEmpresa;
 end;
 
 end.

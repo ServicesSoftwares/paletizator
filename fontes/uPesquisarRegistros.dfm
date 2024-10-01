@@ -13,10 +13,11 @@ object frmConsultarRegistros: TfrmConsultarRegistros
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  KeyPreview = True
   Menu = MENU
   OldCreateOrder = False
   Position = poScreenCenter
-  OnActivate = FormActivate
+  OnKeyUp = FormKeyUp
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -98,7 +99,7 @@ object frmConsultarRegistros: TfrmConsultarRegistros
       Top = 5
       Width = 265
       Height = 43
-      Caption = '&Selecionar'
+      Caption = 'F5 - &Selecionar'
       Default = True
       OptionsImage.Glyph.SourceDPI = 96
       OptionsImage.Glyph.Data = {
@@ -151,7 +152,7 @@ object frmConsultarRegistros: TfrmConsultarRegistros
       Top = 5
       Width = 265
       Height = 43
-      Caption = '&Voltar'
+      Caption = 'Esc - &Voltar'
       OptionsImage.Glyph.SourceDPI = 96
       OptionsImage.Glyph.Data = {
         3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D225554
@@ -200,6 +201,7 @@ object frmConsultarRegistros: TfrmConsultarRegistros
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = []
       OnDrawColumnCell = DBGridDrawColumnCell
+      OnDblClick = DBGridDblClick
     end
   end
   object MENU: TMainMenu

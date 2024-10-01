@@ -8,7 +8,11 @@ uses
   Vcl.ActnMan, Vcl.ActnCtrls, Vcl.ActnMenus, uFuncoesGerais, Vcl.ComCtrls,
   Vcl.ExtCtrls, cxGraphics, cxLookAndFeels, cxLookAndFeelPainters,
   Vcl.StdCtrls, cxButtons, Vcl.Grids, Vcl.Samples.Calendar, JvExExtCtrls,
-  JvExtComponent, JvClock, Vcl.AppEvnts, System.ImageList, Vcl.ImgList, cxImageList;
+  JvExtComponent, JvClock, Vcl.AppEvnts, System.ImageList, Vcl.ImgList, cxImageList,
+  Vcl.Imaging.jpeg, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client;
 
 type
   TfrmPrincipal = class(TForm)
@@ -37,6 +41,19 @@ type
     Fechar1: TMenuItem;
     btnUsuarios: TcxButton;
     btnEmpresas: TcxButton;
+    ImagePlanoFundo: TImage;
+    Programao1: TMenuItem;
+    AjudaSobre1: TMenuItem;
+    EncerrarSistema1: TMenuItem;
+    Novoprograma1: TMenuItem;
+    N3: TMenuItem;
+    ControlarRob1: TMenuItem;
+    N4: TMenuItem;
+    N5: TMenuItem;
+    Shape2: TShape;
+    btnControlarRobo: TcxButton;
+    QRYAUX: TFDQuery;
+    cxButton1: TcxButton;
     procedure FormShow(Sender: TObject);
     procedure TimerTimer(Sender: TObject);
     procedure ApplicationEventsMinimize(Sender: TObject);
@@ -47,6 +64,8 @@ type
     procedure btnUsuariosClick(Sender: TObject);
     procedure btnEmpresasClick(Sender: TObject);
     procedure btnRobosClick(Sender: TObject);
+    procedure Robes1Click(Sender: TObject);
+    procedure cxButton1Click(Sender: TObject);
   private
     { Private declarations }
 
@@ -64,7 +83,7 @@ implementation
 
 {$R *.dfm}
 
-uses uCadUsuarios, uCadastroEmpresas, uCadastroRobos;
+uses uCadUsuarios, uCadastroEmpresas, uCadastroRobos, uDM;
 
 procedure TfrmPrincipal.AbrirCadastroEmpresas;
 begin
@@ -137,6 +156,22 @@ begin
   AbrirCadastroUsuario;
 end;
 
+procedure TfrmPrincipal.cxButton1Click(Sender: TObject);
+var
+  IdUser : integer;
+  sNomeUser : String;
+begin
+  idUser    := CodUsuario;
+  sNomeUser := NomeUsuario;
+  if not(Autenticar(0))then
+  begin
+    Application.MessageBox('Usuário não autenticado!','Aviso!',MB_OK+MB_ICONWARNING);
+    CodUsuario  := idUser;
+    NomeUsuario := sNomeUser;
+    ABORT;
+  end;
+end;
+
 procedure TfrmPrincipal.Empresa1Click(Sender: TObject);
 begin
   AbrirCadastroUsuario;
@@ -153,8 +188,43 @@ begin
 end;
 
 procedure TfrmPrincipal.FormShow(Sender: TObject);
+var
+  R : STRING;
 begin
   //
+
+  QRYAUX.Close;
+  QRYAUX.SQL.Clear;
+  QRYAUX.SQL.Add('SELECT A.ID, A.RAZAO_SOCIAL FROM TBEMPRESAS A WHERE A.SITUACAO = 1');
+  QRYAUX.Open;
+  IF(QRYAUX.RecordCount = 1)THEN
+  BEGIN
+    CodEmpresa  := QRYAUX.FieldByName('ID').AsInteger;
+    NomeEmpresa := QRYAUX.FieldByName('RAZAO_SOCIAL').AsString;
+  END
+  ELSE
+  BEGIN
+    R := Consultar('Cadastro de Empresas',
+                   'SELECT A.ID AS "ID", A.CNPJ AS "CNPJ", A.RAZAO_SOCIAL AS "Razão Social", A.NOME_FANTASIA AS "Nome Fantasia" FROM TBEMPRESAS A', //SELECT
+                   '', //WHERE
+                   'A.RAZAO_SOCIAL', //ORDER BY
+                   'A.RAZAO_SOCIAL;A.NOME_FANTASIA;A.ID', //CAMPOS FILTROS
+                   'Razão Social;Nome Fantasia;ID', //LABEL CAMPOS FILTROS
+                   'ID');
+
+    IF(LENGTH(TRIM(R)) > 0)THEN
+    BEGIN
+      QRYAUX.Close;
+      QRYAUX.SQL.Clear;
+      QRYAUX.SQL.Add('SELECT A.ID, A.RAZAO_SOCIAL FROM TBEMPRESAS A WHERE A.ID = ' + R);
+      QRYAUX.Open;
+      IF NOT(QRYAUX.IsEmpty)THEN
+      BEGIN
+        CodEmpresa  := QRYAUX.FieldByName('ID').AsInteger;
+        NomeEmpresa := QRYAUX.FieldByName('RAZAO_SOCIAL').AsString;
+      END;
+    END;
+  END;
 end;
 
 procedure TfrmPrincipal.Restaurar1Click(Sender: TObject);
@@ -165,10 +235,16 @@ begin
   Application.BringToFront();
 end;
 
+procedure TfrmPrincipal.Robes1Click(Sender: TObject);
+begin
+  AbrirCadatroRobos;
+end;
+
 procedure TfrmPrincipal.TimerTimer(Sender: TObject);
 begin
   StatusBar.Panels.Items[1].Text := FormatDateTime('DD/MM/YYYY HH:MM:SS', NOW);
   StatusBar.Panels.Items[3].Text := IntToStr(CodUsuario) + ' - ' + NomeUsuario;
+  StatusBar.Panels.Items[5].Text := IntToStr(CodEmpresa) + ' - ' + NomeEmpresa;
 
   Calendar.CalendarDate := Now;
 end;

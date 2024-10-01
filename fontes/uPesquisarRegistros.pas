@@ -40,9 +40,11 @@ type
     procedure edtTextoBuscarChange(Sender: TObject);
     procedure DBGridDrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
-    procedure FormActivate(Sender: TObject);
     procedure cxButton2Click(Sender: TObject);
     procedure btnSelecionarClick(Sender: TObject);
+    procedure DBGridDblClick(Sender: TObject);
+    procedure FormKeyUp(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
     procedure MontaSQL(PSELECT, PWHERE, PORDERBY, PFILTRO, PTEXTOBUSCAR : STRING);
@@ -86,6 +88,12 @@ begin
   Sair1Click(self);
 end;
 
+procedure TfrmConsultarRegistros.DBGridDblClick(Sender: TObject);
+begin
+  IF(btnSelecionar.Enabled)THEN
+    btnSelecionarClick(SELF);
+end;
+
 procedure TfrmConsultarRegistros.DBGridDrawColumnCell(Sender: TObject;
   const Rect: TRect; DataCol: Integer; Column: TColumn;
   State: TGridDrawState);
@@ -103,22 +111,26 @@ begin
   MontaSQL(PSELECT, PWHERE, PORDERBY, cbCampoBuscar.Text, edtTextoBuscar.Text);
 end;
 
-procedure TfrmConsultarRegistros.FormActivate(Sender: TObject);
-Var
-  i : Integer;
-
+procedure TfrmConsultarRegistros.FormKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
 begin
-  // Initialize width
-  for I := 0 to DBGrid.Columns.Count - 1 do
-    DBGrid.Columns[i].Width := 5 + DBGrid.Canvas.TextWidth(DBGrid.Columns[i].title.caption)
+  IF(KEY = VK_F5)THEN
+    IF(btnSelecionar.Enabled)THEN
+      btnSelecionarClick(SELF);
 end;
 
 procedure TfrmConsultarRegistros.FormShow(Sender: TObject);
+var
+  i : integer;
 begin
   MontaFRM(PCAMPOSFILTROS, PLABELCAMPOSFILTRO);
   MontaSQL(PSELECT, PWHERE, PORDERBY, cbCampoBuscar.Text, edtTextoBuscar.Text);
 
   frmConsultarRegistros.Caption := frmConsultarRegistros.Caption + ' ' + PTITULO;
+
+  // Initialize width
+  for I := 0 to DBGrid.Columns.Count - 1 do
+    DBGrid.Columns[i].Width := 5 + DBGrid.Canvas.TextWidth(DBGrid.Columns[i].title.caption)
 end;
 
 procedure TfrmConsultarRegistros.MontaFRM(PCAMPOSFILTROS, PLABELCAMPOSFILTRO : STRING);
@@ -138,7 +150,7 @@ begin
     cbCampoBuscar.Items.Add(FILTROS[I]);
 
   for j := Low(LABELS) to High(LABELS) do
-    cbLabelCampoBuscar.Items.Add(LABELS[I]);
+    cbLabelCampoBuscar.Items.Add(LABELS[J]);
 
   cbLabelCampoBuscar.ItemIndex := 0;
   cbLabelCampoBuscarChange(self);

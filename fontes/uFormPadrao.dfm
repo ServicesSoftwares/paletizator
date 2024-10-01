@@ -38,6 +38,13 @@ object frmPadrao: TfrmPadrao
       end
       item
         Text = '1 - ADMINISTRADOR'
+        Width = 250
+      end
+      item
+        Text = 'Empresa:'
+        Width = 55
+      end
+      item
         Width = 50
       end>
   end
@@ -59,7 +66,6 @@ object frmPadrao: TfrmPadrao
     Caption = 'ToolBar'
     Images = ImageList
     TabOrder = 2
-    ExplicitTop = 8
     object btnSalvar: TToolButton
       Left = 0
       Top = 0

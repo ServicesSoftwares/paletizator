@@ -156,7 +156,6 @@ end;
 procedure TfrmCadastroEmpresas.qryEmpresasAfterEdit(DataSet: TDataSet);
 begin
   inherited;
-  qryEmpresasSITUACAO.AsInteger                := 1;
   qryEmpresasDATA_ULT_ALTERACAO.AsDateTime     := now;
   qryEmpresasIDUSUARIO_ULT_ALTERACAO.AsInteger := CodUsuario;
 end;
@@ -164,8 +163,9 @@ end;
 procedure TfrmCadastroEmpresas.qryEmpresasAfterInsert(DataSet: TDataSet);
 begin
   inherited;
-  qryEmpresasDATA_INCLUSAO.AsDateTime     := now;
-  qryEmpresasIDUSUARIO_INCLUSAO.AsInteger := CodUsuario;
+  qryEmpresasSITUACAO.AsInteger                := 1;
+  qryEmpresasDATA_INCLUSAO.AsDateTime          := now;
+  qryEmpresasIDUSUARIO_INCLUSAO.AsInteger      := CodUsuario;
 end;
 
 end.
