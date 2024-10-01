@@ -144,6 +144,26 @@
             <Form>frmCadastroRobos</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\fontes\programacao\uGeraProgramaPalete.pas">
+            <Form>frmGeraProgramaPalete</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\fontes\programacao\uGeraProgramaPalete_DesenharCaixas.pas">
+            <Form>frmDesenharPalete</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\fontes\programacao\uGeraProgramaPalete_Caixas.pas">
+            <Form>frmCaixas</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\fontes\programacao\uGeraProgramaPalete_Caixas2.pas">
+            <Form>frmDesenharCamada2</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\fontes\programacao\uFormGerador.pas">
+            <Form>frmFormGerador</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

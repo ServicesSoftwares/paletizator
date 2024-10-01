@@ -30,7 +30,7 @@ type
     Shape1: TShape;
     Panel2: TPanel;
     Calendar: TCalendar;
-    JvClock1: TJvClock;
+    Clock: TJvClock;
     JvClock2: TJvClock;
     ApplicationEvents: TApplicationEvents;
     TrayIcon: TTrayIcon;
@@ -66,12 +66,17 @@ type
     procedure btnRobosClick(Sender: TObject);
     procedure Robes1Click(Sender: TObject);
     procedure cxButton1Click(Sender: TObject);
+    procedure AjudaSobre1Click(Sender: TObject);
+    procedure EncerrarSistema1Click(Sender: TObject);
+    procedure btnProgramaClick(Sender: TObject);
+    procedure Novoprograma1Click(Sender: TObject);
   private
     { Private declarations }
 
     procedure AbrirCadastroUsuario;
     procedure AbrirCadastroEmpresas;
     procedure AbrirCadatroRobos;
+    procedure AbrirProgramacao;
   public
     { Public declarations }
   end;
@@ -83,7 +88,8 @@ implementation
 
 {$R *.dfm}
 
-uses uCadUsuarios, uCadastroEmpresas, uCadastroRobos, uDM;
+uses uCadUsuarios, uCadastroEmpresas, uCadastroRobos, uDM, uAjuda,
+  uGeraProgramaPalete;
 
 procedure TfrmPrincipal.AbrirCadastroEmpresas;
 begin
@@ -129,6 +135,22 @@ begin
   frmCadastroRobos.Free;
 end;
 
+procedure TfrmPrincipal.AbrirProgramacao;
+begin
+  Application.CreateForm(TfrmGeraProgramaPalete, frmGeraProgramaPalete);
+  frmGeraProgramaPalete.ShowModal;
+  frmGeraProgramaPalete.Release;
+  frmGeraProgramaPalete.Free;
+end;
+
+procedure TfrmPrincipal.AjudaSobre1Click(Sender: TObject);
+begin
+  Application.CreateForm(TfrmAjuda, frmAjuda);
+  frmAjuda.ShowModal;
+  frmAjuda.Release;
+  frmAjuda.Free;
+end;
+
 procedure TfrmPrincipal.ApplicationEventsMinimize(Sender: TObject);
 begin
   Self.Hide();
@@ -144,6 +166,11 @@ end;
 procedure TfrmPrincipal.btnEmpresasClick(Sender: TObject);
 begin
   AbrirCadastroEmpresas;
+end;
+
+procedure TfrmPrincipal.btnProgramaClick(Sender: TObject);
+begin
+  AbrirProgramacao;
 end;
 
 procedure TfrmPrincipal.btnRobosClick(Sender: TObject);
@@ -180,6 +207,11 @@ end;
 procedure TfrmPrincipal.Empresas1Click(Sender: TObject);
 begin
   AbrirCadastroEmpresas;
+end;
+
+procedure TfrmPrincipal.EncerrarSistema1Click(Sender: TObject);
+begin
+  Application.Terminate;
 end;
 
 procedure TfrmPrincipal.Fechar1Click(Sender: TObject);
@@ -225,6 +257,11 @@ begin
       END;
     END;
   END;
+end;
+
+procedure TfrmPrincipal.Novoprograma1Click(Sender: TObject);
+begin
+  AbrirProgramacao;
 end;
 
 procedure TfrmPrincipal.Restaurar1Click(Sender: TObject);

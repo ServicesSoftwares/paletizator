@@ -2,8 +2,8 @@ object frmPrincipal: TfrmPrincipal
   Left = 0
   Top = 0
   Caption = 'Menu'
-  ClientHeight = 579
-  ClientWidth = 1126
+  ClientHeight = 774
+  ClientWidth = 1255
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,8 +20,8 @@ object frmPrincipal: TfrmPrincipal
   object ImagePlanoFundo: TImage
     Left = 0
     Top = 95
-    Width = 848
-    Height = 465
+    Width = 977
+    Height = 660
     Align = alClient
     Center = True
     Picture.Data = {
@@ -2270,8 +2270,8 @@ object frmPrincipal: TfrmPrincipal
   end
   object StatusBar: TStatusBar
     Left = 0
-    Top = 560
-    Width = 1126
+    Top = 755
+    Width = 1255
     Height = 19
     Panels = <
       item
@@ -2302,12 +2302,12 @@ object frmPrincipal: TfrmPrincipal
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 1126
+    Width = 1255
     Height = 95
     Align = alTop
     TabOrder = 1
     DesignSize = (
-      1126
+      1255
       95)
     object Shape1: TShape
       Left = 483
@@ -2503,6 +2503,7 @@ object frmPrincipal: TfrmPrincipal
         3810F7FF0020F63679FBF7F68FDB2F0B7AD5AAFFE7BF967F01EA6AB30B7ED03B
         630000000049454E44AE426082}
       TabOrder = 3
+      OnClick = btnProgramaClick
     end
     object btnUsuarios: TcxButton
       Left = 0
@@ -2750,6 +2751,7 @@ object frmPrincipal: TfrmPrincipal
       Width = 161
       Height = 89
       Caption = '&Controlar '#13#10'Rob'#244
+      Enabled = False
       OptionsImage.Glyph.SourceDPI = 96
       OptionsImage.Glyph.Data = {
         89504E470D0A1A0A0000000D4948445200000048000000480803000000623343
@@ -2875,7 +2877,7 @@ object frmPrincipal: TfrmPrincipal
       TabOrder = 4
     end
     object cxButton1: TcxButton
-      Left = 963
+      Left = 1120
       Top = 4
       Width = 161
       Height = 89
@@ -2988,10 +2990,10 @@ object frmPrincipal: TfrmPrincipal
     end
   end
   object Panel2: TPanel
-    Left = 848
+    Left = 977
     Top = 95
     Width = 278
-    Height = 465
+    Height = 660
     Align = alRight
     TabOrder = 2
     object Calendar: TCalendar
@@ -3003,7 +3005,7 @@ object frmPrincipal: TfrmPrincipal
       StartOfWeek = 0
       TabOrder = 0
     end
-    object JvClock1: TJvClock
+    object Clock: TJvClock
       Left = 1
       Top = 1
       Width = 276
@@ -3046,12 +3048,14 @@ object frmPrincipal: TfrmPrincipal
       Caption = 'Programa'#231#227'o'
       object Novoprograma1: TMenuItem
         Caption = 'Novo programa'
+        OnClick = Novoprograma1Click
       end
       object N3: TMenuItem
         Caption = '-'
       end
       object ControlarRob1: TMenuItem
         Caption = 'Controlar Rob'#244
+        Enabled = False
       end
     end
     object N4: TMenuItem
@@ -3059,6 +3063,7 @@ object frmPrincipal: TfrmPrincipal
     end
     object AjudaSobre1: TMenuItem
       Caption = 'F1 - &Ajuda/Sobre'
+      OnClick = AjudaSobre1Click
     end
     object N5: TMenuItem
       Caption = '|'
@@ -3066,6 +3071,7 @@ object frmPrincipal: TfrmPrincipal
     object EncerrarSistema1: TMenuItem
       Caption = 'Alt+F4 - E&ncerrar Sistema'
       ShortCut = 32883
+      OnClick = EncerrarSistema1Click
     end
   end
   object Timer: TTimer
@@ -3323,7 +3329,7 @@ object frmPrincipal: TfrmPrincipal
   end
   object QRYAUX: TFDQuery
     Connection = DM.FDCONN
-    Left = 928
-    Top = 64
+    Left = 896
+    Top = 8
   end
 end
