@@ -28,7 +28,5 @@ begin
   Application.CreateForm(TDM, DM);
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
   Application.CreateForm(TfrmFormGerador, frmFormGerador);
-  Application.CreateForm(TfrmControlarRobo, frmControlarRobo);
-  Application.CreateForm(TfrmVisualizaLogs, frmVisualizaLogs);
   Application.Run;
 end.
