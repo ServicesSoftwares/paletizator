@@ -10,7 +10,6 @@ object DM: TDM
       'Password=Ed180324.'
       'CharacterSet=WIN1252'
       'DriverID=FB')
-    Connected = True
     LoginPrompt = False
     Transaction = FDTRS
     Left = 32
