@@ -16,7 +16,9 @@ uses
   uGeraProgramaPalete_DesenharCaixas in '..\fontes\programacao\uGeraProgramaPalete_DesenharCaixas.pas' {frmDesenharPalete},
   uGeraProgramaPalete_Caixas in '..\fontes\programacao\uGeraProgramaPalete_Caixas.pas' {frmCaixas},
   uGeraProgramaPalete_Caixas2 in '..\fontes\programacao\uGeraProgramaPalete_Caixas2.pas' {frmDesenharCamada2},
-  uFormGerador in '..\fontes\programacao\uFormGerador.pas' {frmFormGerador};
+  uFormGerador in '..\fontes\programacao\uFormGerador.pas' {frmFormGerador},
+  uControlarRobo in '..\fontes\programacao\uControlarRobo.pas' {frmControlarRobo},
+  uVisualizacaoLog in '..\fontes\admin\uVisualizacaoLog.pas' {frmVisualizaLogs};
 
 {$R *.res}
 
@@ -25,10 +27,8 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDM, DM);
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
-  Application.CreateForm(TfrmGeraProgramaPalete, frmGeraProgramaPalete);
-  Application.CreateForm(TfrmDesenharPalete, frmDesenharPalete);
-  Application.CreateForm(TfrmCaixas, frmCaixas);
-  Application.CreateForm(TfrmDesenharCamada2, frmDesenharCamada2);
   Application.CreateForm(TfrmFormGerador, frmFormGerador);
+  Application.CreateForm(TfrmControlarRobo, frmControlarRobo);
+  Application.CreateForm(TfrmVisualizaLogs, frmVisualizaLogs);
   Application.Run;
 end.

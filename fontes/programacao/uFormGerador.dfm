@@ -58,9 +58,6 @@ object frmFormGerador: TfrmFormGerador
         'Memo1')
       ScrollBars = ssVertical
       TabOrder = 0
-      ExplicitLeft = 12
-      ExplicitWidth = 221
-      ExplicitHeight = 581
     end
   end
   object ScrollBox1: TScrollBox
@@ -80,7 +77,6 @@ object frmFormGerador: TfrmFormGerador
       Align = alTop
       Caption = ' Posi'#231#227'o de Retorno '
       TabOrder = 0
-      ExplicitWidth = 255
       object Memo3: TMemo
         Left = 2
         Top = 15
@@ -90,10 +86,6 @@ object frmFormGerador: TfrmFormGerador
         Lines.Strings = (
           'Memo3')
         TabOrder = 0
-        ExplicitLeft = 7
-        ExplicitTop = 28
-        ExplicitWidth = 206
-        ExplicitHeight = 98
       end
     end
     object GroupBox5: TGroupBox
@@ -104,7 +96,6 @@ object frmFormGerador: TfrmFormGerador
       Align = alTop
       Caption = 'Posi'#231#227'o Pre Entrada'
       TabOrder = 1
-      ExplicitWidth = 255
       object Memo4: TMemo
         Left = 2
         Top = 15
@@ -114,10 +105,6 @@ object frmFormGerador: TfrmFormGerador
         Lines.Strings = (
           'Memo3')
         TabOrder = 0
-        ExplicitLeft = 5
-        ExplicitTop = 24
-        ExplicitWidth = 206
-        ExplicitHeight = 98
       end
     end
     object GroupBox6: TGroupBox
@@ -128,7 +115,6 @@ object frmFormGerador: TfrmFormGerador
       Align = alTop
       Caption = ' Posi'#231#227'o de Espera '
       TabOrder = 2
-      ExplicitWidth = 255
       object Memo5: TMemo
         Left = 2
         Top = 15
@@ -138,10 +124,6 @@ object frmFormGerador: TfrmFormGerador
         Lines.Strings = (
           'Memo3')
         TabOrder = 0
-        ExplicitLeft = 5
-        ExplicitTop = 24
-        ExplicitWidth = 206
-        ExplicitHeight = 98
       end
     end
     object GroupBox7: TGroupBox
@@ -152,7 +134,6 @@ object frmFormGerador: TfrmFormGerador
       Align = alTop
       Caption = ' Posi'#231#227'o de Alinhamento'
       TabOrder = 3
-      ExplicitWidth = 255
       object Memo6: TMemo
         Left = 2
         Top = 15
@@ -162,10 +143,6 @@ object frmFormGerador: TfrmFormGerador
         Lines.Strings = (
           'Memo3')
         TabOrder = 0
-        ExplicitLeft = 5
-        ExplicitTop = 24
-        ExplicitWidth = 206
-        ExplicitHeight = 98
       end
     end
     object GroupBox8: TGroupBox
@@ -176,7 +153,6 @@ object frmFormGerador: TfrmFormGerador
       Align = alTop
       Caption = ' Posi'#231#227'o de Subida '
       TabOrder = 4
-      ExplicitWidth = 255
       object Memo7: TMemo
         Left = 2
         Top = 15
@@ -186,10 +162,6 @@ object frmFormGerador: TfrmFormGerador
         Lines.Strings = (
           'Memo3')
         TabOrder = 0
-        ExplicitLeft = 5
-        ExplicitTop = 24
-        ExplicitWidth = 206
-        ExplicitHeight = 98
       end
     end
   end
@@ -210,10 +182,6 @@ object frmFormGerador: TfrmFormGerador
         'Memo1')
       ScrollBars = ssVertical
       TabOrder = 0
-      ExplicitLeft = 9
-      ExplicitTop = 22
-      ExplicitWidth = 470
-      ExplicitHeight = 571
     end
   end
 end

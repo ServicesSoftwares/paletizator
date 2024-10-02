@@ -13,27 +13,13 @@ uses
   JvExMask, JvSpin, JvDBSpinEdit, cxControls, cxLookAndFeels,
   cxLookAndFeelPainters, cxContainer, cxEdit, cxTextEdit, cxMaskEdit,
   cxDropDownEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox,
-  cxButtons, JvToolEdit, JvDBControls, Vcl.Imaging.pngimage;
+  cxButtons, JvToolEdit, JvDBControls, Vcl.Imaging.pngimage, JvBaseDlg,
+  JvSelectDirectory;
 
 type
   TfrmGeraProgramaPalete = class(TfrmPadrao)
     qryPrograma: TFDQuery;
     qryProgramaID: TIntegerField;
-    qryProgramaIDEMPRESA: TIntegerField;
-    qryProgramaIDROBO: TIntegerField;
-    qryProgramaDATA_PROG: TDateField;
-    qryProgramaPALETE_COMPRIMENTO: TIntegerField;
-    qryProgramaPALETE_LARGURA: TIntegerField;
-    qryProgramaPALETE_CAMADAS: TIntegerField;
-    qryProgramaCAIXA_COMPRIMENTO: TIntegerField;
-    qryProgramaCAIXA_LARGURA: TIntegerField;
-    qryProgramaCAIXA_ALTURA: TIntegerField;
-    qryProgramaPROGRAMA: TStringField;
-    qryProgramaSITUACAO: TIntegerField;
-    qryProgramaDATA_INCLUSAO: TSQLTimeStampField;
-    qryProgramaIDUSUARIO_INCLUSAO: TIntegerField;
-    qryProgramaDATA_ULT_ALTERACAO: TSQLTimeStampField;
-    qryProgramaIDUSUARIO_ULT_ALTERACAO: TIntegerField;
     DS: TDataSource;
     GroupBox1: TGroupBox;
     Label1: TLabel;
@@ -128,6 +114,22 @@ type
     qryRoboDATA_ULT_ALTERACAO: TSQLTimeStampField;
     qryRoboIDUSUARIO_ULT_ALTERACAO: TIntegerField;
     qryRoboCENTRO_ESTEIRA_Y: TIntegerField;
+    SelectDirectory: TJvSelectDirectory;
+    qryProgramaIDEMPRESA: TIntegerField;
+    qryProgramaIDROBO: TIntegerField;
+    qryProgramaDATA_PROG: TDateField;
+    qryProgramaPALETE_COMPRIMENTO: TIntegerField;
+    qryProgramaPALETE_LARGURA: TIntegerField;
+    qryProgramaPALETE_CAMADAS: TIntegerField;
+    qryProgramaCAIXA_COMPRIMENTO: TIntegerField;
+    qryProgramaCAIXA_LARGURA: TIntegerField;
+    qryProgramaCAIXA_ALTURA: TIntegerField;
+    qryProgramaPROGRAMA: TBlobField;
+    qryProgramaSITUACAO: TIntegerField;
+    qryProgramaDATA_INCLUSAO: TSQLTimeStampField;
+    qryProgramaIDUSUARIO_INCLUSAO: TIntegerField;
+    qryProgramaDATA_ULT_ALTERACAO: TSQLTimeStampField;
+    qryProgramaIDUSUARIO_ULT_ALTERACAO: TIntegerField;
     procedure btnCancelarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
@@ -148,7 +150,7 @@ implementation
 
 {$R *.dfm}
 
-uses uDM, uFuncoesGerais, uGeraProgramaPalete_DesenharCaixas;
+uses uDM, uFuncoesGerais, uGeraProgramaPalete_DesenharCaixas, uFormGerador;
 
 procedure TfrmGeraProgramaPalete.btnCancelarClick(Sender: TObject);
 begin
@@ -205,33 +207,73 @@ begin
 end;
 
 procedure TfrmGeraProgramaPalete.btnSalvarClick(Sender: TObject);
+var
+  SDIRETORIO, SNOMEARQ : STRING;
 begin
   inherited;
-  Application.CreateForm(TfrmDesenharPalete, frmDesenharPalete);
-  frmDesenharPalete.PIDROBO := qryProgramaIDROBO.AsInteger;
-  frmDesenharPalete.PLARGURACXA := qryProgramaCAIXA_LARGURA.AsInteger;
-  frmDesenharPalete.PCOMPRIMENTOCXA := qryProgramaCAIXA_COMPRIMENTO.AsInteger;
-  frmDesenharPalete.PCOMPRIMENTOPLT := qryProgramaPALETE_COMPRIMENTO.AsInteger;
-  frmDesenharPalete.PLARGURAPLT     := qryProgramaPALETE_LARGURA.AsInteger;
-  frmDesenharPalete.PCAMADAS        := qryProgramaPALETE_CAMADAS.AsInteger;
-  frmDesenharPalete.PALTURACXA      := qryProgramaCAIXA_ALTURA.AsInteger;
-  frmDesenharPalete.ShowModal;
-  if(frmDesenharPalete.ModalResult = mrok)then
+  if(ds.State in [dsInsert])then
   begin
+    Application.CreateForm(TfrmDesenharPalete, frmDesenharPalete);
+    frmDesenharPalete.PIDROBO := qryProgramaIDROBO.AsInteger;
+    frmDesenharPalete.PLARGURACXA := qryProgramaCAIXA_LARGURA.AsInteger;
+    frmDesenharPalete.PCOMPRIMENTOCXA := qryProgramaCAIXA_COMPRIMENTO.AsInteger;
+    frmDesenharPalete.PCOMPRIMENTOPLT := qryProgramaPALETE_COMPRIMENTO.AsInteger;
+    frmDesenharPalete.PLARGURAPLT     := qryProgramaPALETE_LARGURA.AsInteger;
+    frmDesenharPalete.PCAMADAS        := qryProgramaPALETE_CAMADAS.AsInteger;
+    frmDesenharPalete.PALTURACXA      := qryProgramaCAIXA_ALTURA.AsInteger;
+    frmDesenharPalete.ShowModal;
+    if(frmDesenharPalete.ModalResult = mrok)then
+    begin
+      qryProgramaPROGRAMA.AsString := frmFormGerador.Memo2.Lines.Text;
 
+      //SALVA O PROGRAMA
+      qryPrograma.Post;
 
+      //salvar arquivo em um local determinado pelo usuario
+      SNOMEARQ := qryProgramaID.AsString + FormatDateTime('DDMMYYYY-HHMMSS',qryProgramaDATA_PROG.AsDateTime) + qryProgramaIDROBO.AsString + '.PRL';
 
+      SelectDirectory.InitialDir := ExtractFileName(Application.ExeName);
+      IF(SelectDirectory.Execute)THEN
+      BEGIN
+        SDIRETORIO := SelectDirectory.Directory + '\';
+
+        frmFormGerador.Memo2.Lines.SaveToFile(SDIRETORIO + SNOMEARQ);
+
+        Application.MessageBox('Arquivo ".PRL" gerado com sucesso.','Informação',MB_OK+MB_ICONINFORMATION);
+      END;
+
+    end;
+
+    frmDesenharPalete.Release;
+    frmDesenharPalete.Free;
+  end
+  else
+  begin
     //SALVA O PROGRAMA
-    //qryPrograma.Post;
+    qryPrograma.Post;
+
+
+    //salvar arquivo em um local determinado pelo usuario
+    SNOMEARQ := qryProgramaID.AsString + FormatDateTime('DDMMYYYY-HHMMSS',qryProgramaDATA_PROG.AsDateTime) + qryProgramaIDROBO.AsString + '.PRL';
+
+    SelectDirectory.InitialDir := ExtractFileName(Application.ExeName);
+    IF(SelectDirectory.Execute)THEN
+    BEGIN
+      SDIRETORIO := SelectDirectory.Directory + '\';
+
+      frmFormGerador.Memo1.Lines.Clear;
+      frmFormGerador.Memo1.Lines.Text := qryProgramaPROGRAMA.AsString;
+      frmFormGerador.Memo1.Lines.SaveToFile(SDIRETORIO + SNOMEARQ);
+
+      Application.MessageBox('Arquivo ".PRL" gerado com sucesso.','Informação',MB_OK+MB_ICONINFORMATION);
+    END;
   end;
 
-  frmDesenharPalete.Release;
-  frmDesenharPalete.Free;
 
-  {qryPrograma.Close;
+  qryPrograma.Close;
   qryPrograma.Params[0].AsInteger := 0;
   qryPrograma.Open;
-  qryPrograma.Append;  }
+  qryPrograma.Append;
 end;
 
 procedure TfrmGeraProgramaPalete.dblkpRoboEnter(Sender: TObject);
@@ -269,6 +311,7 @@ begin
   qryProgramaPALETE_CAMADAS.AsInteger     := 1;
   qryProgramaDATA_INCLUSAO.AsDateTime     := now;
   qryProgramaIDUSUARIO_INCLUSAO.AsInteger := CodUsuario;
+  qryProgramaSITUACAO.AsInteger := 1;
 end;
 
 end.

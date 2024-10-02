@@ -662,6 +662,11 @@ object frmAutenticacao: TfrmAutenticacao
       FieldName = 'DATA_ULT_ALTERACAO'
       Origin = 'DATA_ULT_ALTERACAO'
     end
+    object qryUsuariosTIPO: TIntegerField
+      FieldName = 'TIPO'
+      Origin = 'TIPO'
+      Required = True
+    end
   end
   object dsUsuarios: TDataSource
     DataSet = qryUsuarios

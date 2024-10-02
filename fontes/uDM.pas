@@ -16,6 +16,13 @@ type
     FDCONN: TFDConnection;
     FDTRS: TFDTransaction;
     qryAux: TFDQuery;
+    QRYLOG: TFDQuery;
+    QRYLOGID: TIntegerField;
+    QRYLOGIDUSUARIO: TIntegerField;
+    QRYLOGDATA: TDateField;
+    QRYLOGHORA: TTimeField;
+    QRYLOGFORMULARIO: TStringField;
+    QRYLOGACAO: TStringField;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }

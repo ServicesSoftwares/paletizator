@@ -97,9 +97,9 @@ begin
     Parent := frmDesenharPalete.Panel2;
   end;
 
-  //frmDesenharPalete.Label8.Caption := IntToStr(NUM_CAIXA);
-  //frmDesenharPalete.Label10.Caption := IntToStr(0);
-  //frmDesenharPalete.ContaCaixas;
+  frmDesenharPalete.Label8.Caption := IntToStr(NUM_CAIXA);
+  frmDesenharPalete.Label10.Caption := IntToStr(0);
+  frmDesenharPalete.ContaCaixas;
   CX_CM1 := NUM_CAIXA;
   frmCaixas.Close;
 end;
@@ -165,8 +165,8 @@ begin
 
   frmDesenharPalete.Label8.Caption := IntToStr(NUM_CAIXA);
   frmDesenharPalete.Label10.Caption := IntToStr(0);
-  frmDesenharPalete.ContaCaixas;
   CX_CM1 := NUM_CAIXA;
+  frmDesenharPalete.ContaCaixas;
   frmCaixas.Close;
 end;
 
@@ -232,8 +232,8 @@ begin
 
   frmDesenharPalete.Label8.Caption := IntToStr(NUM_CAIXA);
   frmDesenharPalete.Label10.Caption := IntToStr(0);
-  frmDesenharPalete.ContaCaixas;
   CX_CM1 := NUM_CAIXA;
+  frmDesenharPalete.ContaCaixas;
   frmCaixas.Close;
 end;
 
@@ -301,8 +301,8 @@ begin
 
   frmDesenharPalete.Label8.Caption := IntToStr(NUM_CAIXA);
   frmDesenharPalete.Label10.Caption := IntToStr(0);
-  frmDesenharPalete.ContaCaixas;
   CX_CM1 := NUM_CAIXA;
+  frmDesenharPalete.ContaCaixas;
   frmCaixas.Close;
 end;
 

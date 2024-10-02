@@ -97,7 +97,7 @@ var
   R : STRING;
 begin
   inherited;
-
+  InsereLog(CodUsuario, 'frmCadastroEmpresas', 'TELA DE CADASTRO DE EMPRESAS - PESQUISANDO REGISTRO');
   R := Consultar('Cadastro de Empresas',
                  'SELECT A.ID AS "ID", A.CNPJ AS "CNPJ", A.RAZAO_SOCIAL AS "Razão Social", A.NOME_FANTASIA AS "Nome Fantasia" FROM TBEMPRESAS A', //SELECT
                  '', //WHERE
@@ -108,6 +108,7 @@ begin
 
   IF(LENGTH(TRIM(R)) > 0)THEN
   BEGIN
+    InsereLog(CodUsuario, 'frmCadastroEmpresas', 'TELA DE CADASTRO DE EMPRESAS - REGISTRO ENCONTRADO, ABRINDO EM MODO DE EDICAO');
     qryEmpresas.Cancel;
     qryEmpresas.Close;
     qryEmpresas.Params[0].AsString := R;
@@ -134,8 +135,15 @@ begin
   ValidaCampos(dbedtCidade, 'Cidade');
   ValidaCampos(dbcbSituacao, 'Situação');
 
+
+  IF(DS.State IN [dsInsert])THEN
+    InsereLog(CodUsuario, 'frmCadastroEmpresas', 'TELA DE CADASTRO DE EMPRESAS - INSERINDO NOVO REGISTRO')
+  ELSE
+    InsereLog(CodUsuario, 'frmCadastroEmpresas', pchar('TELA DE CADASTRO DE EMPRESAS - EDIÇÃO DE REGISTRO #ID=' + qryEmpresasID.AsString));
+
   //SALVANDO
   qryEmpresas.Post;
+  InsereLog(CodUsuario, 'frmCadastroEmpresas', 'TELA DE CADASTRO DE EMPRESAS - REGISTRO SALVO');
   qryEmpresas.Close;
   qryEmpresas.Params[0].AsInteger := 0;
   qryEmpresas.Open;

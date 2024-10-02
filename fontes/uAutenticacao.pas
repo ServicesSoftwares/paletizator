@@ -37,6 +37,7 @@ type
     qryUsuariosIDUSUARIO_ULT_ALTERACAO: TIntegerField;
     qryUsuariosDATA_ULT_ALTERACAO: TSQLTimeStampField;
     EnterAsTab: TJvEnterAsTab;
+    qryUsuariosTIPO: TIntegerField;
     procedure TimerTimer(Sender: TObject);
     procedure lkpUsuarioEnter(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word;
@@ -59,7 +60,7 @@ implementation
 
 {$R *.dfm}
 
-uses uDM;
+uses uDM, uFuncoesGerais;
 
 procedure TfrmAutenticacao.btnEntrarClick(Sender: TObject);
 begin
@@ -73,6 +74,7 @@ begin
   IF(LENGTH(trim(edtSenha.Text)) = 0)THEN
   BEGIN
     Application.MessageBox('Senha não foi informada','Aviso!',MB_OK+MB_ICONWARNING);
+    InsereLog(qryUsuariosID.AsInteger, 'frmAutenticacao', 'TENTATIVA DE LOGIN - SENHA NÃO INFORMADA');
     edtSenha.SetFocus;
     ABORT;
   END;
@@ -80,6 +82,7 @@ begin
   IF(edtSenha.Text <> qryUsuariosSENHA.AsString)THEN
   BEGIN
     Application.MessageBox('Senha digitada não confere com a senha cadastrada para o usuário','Aviso!',MB_OK+MB_ICONWARNING);
+    InsereLog(qryUsuariosID.AsInteger, 'frmAutenticacao', 'TENTATIVA DE LOGIN - SENHA INCORRETA');
     edtSenha.SetFocus;
     ABORT;
   END;
@@ -87,9 +90,12 @@ begin
   if(qryUsuariosSITUACAO.AsInteger <> 1)then
   BEGIN
     Application.MessageBox('Usuário encontra-se desativado. Não é possivel acessar ao sistema.','Aviso!',MB_OK+MB_ICONWARNING);
+    InsereLog(qryUsuariosID.AsInteger, 'frmAutenticacao', 'TENTATIVA DE LOGIN - USUARIO DESATIVADO');
     lkpUsuario.SetFocus;
     ABORT;
   END;
+
+  InsereLog(qryUsuariosID.AsInteger, 'frmAutenticacao', 'TENTATIVA DE LOGIN - SUCESSO NO LOGIN');
 
   ModalResult := MROK;
 end;

@@ -80,6 +80,7 @@ var
   R, PSELECT : STRING;
 begin
   inherited;
+  InsereLog(CodUsuario, 'frmCadastroUsuarios', 'TELA DE CADASTRO DE ROBÔS - PESQUISA DE REGISTRO');
   PSELECT := 'SELECT A.ID AS ID, ' +
              '  CASE(A.TIPO)     ' +
              '    WHEN 0 THEN ''DESENVOLVEDOR''' +
@@ -106,6 +107,7 @@ begin
 
   IF(LENGTH(TRIM(R)) > 0)THEN
   BEGIN
+    InsereLog(CodUsuario, 'frmCadastroUsuarios', 'TELA DE CADASTRO DE ROBÔS - REGISTRO LOCALIZAO, ALTERANDO REGISTRO');
     qryUsuarios.Cancel;
     qryUsuarios.Close;
     qryUsuarios.Params[0].AsString := R;
@@ -127,8 +129,16 @@ begin
   ValidaCampos(dbedtSenha, 'Senha');
   ValidaCampos(dbcbSituacao, 'Situação');
 
+  IF(DS.State IN [dsInsert])THEN
+    InsereLog(CodUsuario, 'frmCadastroUsuarios', 'TELA DE CADASTRO DE ROBÔS - INSERINDO NOVO REGISTRO')
+  ELSE
+    InsereLog(CodUsuario, 'frmCadastroUsuarios', pchar('TELA DE CADASTRO DE ROBÔS - EDIÇÃO DE REGISTRO #ID=' + qryUsuariosID.AsString));
+
+
+
   //SALVANDO
   qryUsuarios.Post;
+  InsereLog(CodUsuario, 'frmCadastroUsuarios', 'TELA DE CADASTRO DE ROBÔS - REGISTRO SALVO');
   qryUsuarios.Close;
   qryUsuarios.Params[0].AsInteger := 0;
   qryUsuarios.Open;

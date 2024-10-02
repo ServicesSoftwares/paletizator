@@ -53,7 +53,8 @@ type
     Shape2: TShape;
     btnControlarRobo: TcxButton;
     QRYAUX: TFDQuery;
-    cxButton1: TcxButton;
+    btnTrocarUsuario: TcxButton;
+    btnLog: TcxButton;
     procedure FormShow(Sender: TObject);
     procedure TimerTimer(Sender: TObject);
     procedure ApplicationEventsMinimize(Sender: TObject);
@@ -65,11 +66,14 @@ type
     procedure btnEmpresasClick(Sender: TObject);
     procedure btnRobosClick(Sender: TObject);
     procedure Robes1Click(Sender: TObject);
-    procedure cxButton1Click(Sender: TObject);
+    procedure btnTrocarUsuarioClick(Sender: TObject);
     procedure AjudaSobre1Click(Sender: TObject);
     procedure EncerrarSistema1Click(Sender: TObject);
     procedure btnProgramaClick(Sender: TObject);
     procedure Novoprograma1Click(Sender: TObject);
+    procedure btnControlarRoboClick(Sender: TObject);
+    procedure ControlarRob1Click(Sender: TObject);
+    procedure btnLogClick(Sender: TObject);
   private
     { Private declarations }
 
@@ -77,6 +81,7 @@ type
     procedure AbrirCadastroEmpresas;
     procedure AbrirCadatroRobos;
     procedure AbrirProgramacao;
+    procedure AbrirControlarRobo;
   public
     { Public declarations }
   end;
@@ -89,56 +94,92 @@ implementation
 {$R *.dfm}
 
 uses uCadUsuarios, uCadastroEmpresas, uCadastroRobos, uDM, uAjuda,
-  uGeraProgramaPalete;
+  uGeraProgramaPalete, uControlarRobo, uPesquisarRegistros,
+  uVisualizacaoLog;
 
 procedure TfrmPrincipal.AbrirCadastroEmpresas;
 begin
+  InsereLog(CodUsuario, 'frmCadastroEmpresas', 'ABRIR TELA DE CADASTRO DE EMPRESAS');
   //verifica se usuario é administador ou desenvolvedor
   if not(ValidaPermissaoUsuario(CodUsuario, 'frmCadastroEmpresas'))then
   begin
     Application.MessageBox('Usuário sem permissão para acesso a essa aplicação.','Aviso!',MB_OK+MB_ICONWARNING);
+    InsereLog(CodUsuario, 'frmCadastroEmpresas', 'ABRIR TELA DE CADASTRO DE EMPRESAS - USUARIO SEM PERMISSÃO');
     ABORT;
   end;
 
   Application.CreateForm(tfrmCadastroEmpresas,frmCadastroEmpresas);
   frmCadastroEmpresas.ShowModal;
+  InsereLog(CodUsuario, 'frmCadastroEmpresas', 'FECHOU TELA DE CADASTRO DE EMPRESAS');
   frmCadastroEmpresas.Release;
   frmCadastroEmpresas.Free;
 end;
 
 procedure TfrmPrincipal.AbrirCadastroUsuario;
 begin
+  InsereLog(CodUsuario, 'frmCadastroUsuarios', 'ABRIR TELA DE CADASTRO DE USUARIOS');
   //verifica se usuario é administador ou desenvolvedor
   if not(ValidaPermissaoUsuario(CodUsuario, 'frmCadastroUsuarios'))then
   begin
     Application.MessageBox('Usuário sem permissão para acesso a essa aplicação.','Aviso!',MB_OK+MB_ICONWARNING);
+    InsereLog(CodUsuario, 'frmCadastroUsuarios', 'ABRIR TELA DE CADASTRO DE USUÁRIOS - USUÁRIO SEM PERMISSÃO');
     ABORT;
   end;
 
   Application.CreateForm(tfrmCadastroUsuarios,frmCadastroUsuarios);
   frmCadastroUsuarios.ShowModal;
+  InsereLog(CodUsuario, 'frmCadastroUsuarios', 'FECHOU TELA DE CADASTRO DE ROBOS');
   frmCadastroUsuarios.Release;
   frmCadastroUsuarios.Free;
 end;
 
 procedure TfrmPrincipal.AbrirCadatroRobos;
 begin
+  InsereLog(CodUsuario, 'frmCadastroRobos', 'ABRIR TELA DE CADASTRO DE ROBOS');
   if not(ValidaPermissaoUsuario(CodUsuario, 'frmCadastroRobos'))then
   begin
     Application.MessageBox('Usuário sem permissão para acesso a essa aplicação.','Aviso!',MB_OK+MB_ICONWARNING);
+    InsereLog(CodUsuario, 'frmCadastroRobos', 'ABRIR TELA DE CADASTRO DE ROBOS - USUARIO SEM PERMISSÃO');
     ABORT;
   end;
 
   Application.CreateForm(TfrmCadastroRobos,frmCadastroRobos);
   frmCadastroRobos.ShowModal;
+  InsereLog(CodUsuario, 'frmCadastroRobos', 'FECHOU TELA DE CADASTRO DE ROBOS');
   frmCadastroRobos.Release;
   frmCadastroRobos.Free;
 end;
 
+procedure TfrmPrincipal.AbrirControlarRobo;
+begin
+  InsereLog(CodUsuario, 'frmControlarRobo', 'ABRIR TELA CONTROLAR ROBÔ');
+  if not(ValidaPermissaoUsuario(CodUsuario, 'frmControlarRobo'))then
+  begin
+    Application.MessageBox('Usuário sem permissão para acesso a essa aplicação.','Aviso!',MB_OK+MB_ICONWARNING);
+    InsereLog(CodUsuario, 'frmControlarRobo', 'ABRIR TELA CONTROLAR ROBÔ - USUARIO SEM PERMISSÃO');
+    ABORT;
+  end;
+
+  Application.CreateForm(TfrmControlarRobo, frmControlarRobo);
+  frmControlarRobo.ShowModal;
+  InsereLog(CodUsuario, 'frmControlarRobo', 'FECHOU TELA CONTROLAR ROBÔ');
+  frmControlarRobo.Release;
+  frmControlarRobo.Free;
+end;
+
 procedure TfrmPrincipal.AbrirProgramacao;
 begin
+  InsereLog(CodUsuario, 'frmGeraProgramaPalete', 'ABRIR TELA GERAÇÃO DE PROGRAMAÇÃO DE PALETE');
+  if not(ValidaPermissaoUsuario(CodUsuario, 'frmGeraProgramaPalete'))then
+  begin
+    Application.MessageBox('Usuário sem permissão para acesso a essa aplicação.','Aviso!',MB_OK+MB_ICONWARNING);
+    InsereLog(CodUsuario, 'frmGeraProgramaPalete', 'ABRIR TELA GERAÇÃO DE PROGRAMAÇÃO DE PALETE - USUARIO SEM PERMISSAO');
+    ABORT;
+  end;
+
   Application.CreateForm(TfrmGeraProgramaPalete, frmGeraProgramaPalete);
   frmGeraProgramaPalete.ShowModal;
+  InsereLog(CodUsuario, 'frmGeraProgramaPalete', 'FECHOU TELA GERAÇÃO DE PROGRAMAÇÃO DE PALETE');
   frmGeraProgramaPalete.Release;
   frmGeraProgramaPalete.Free;
 end;
@@ -146,7 +187,9 @@ end;
 procedure TfrmPrincipal.AjudaSobre1Click(Sender: TObject);
 begin
   Application.CreateForm(TfrmAjuda, frmAjuda);
+  InsereLog(CodUsuario, 'frmAjuda', 'ABRIU TELA DE AJUDA');
   frmAjuda.ShowModal;
+  InsereLog(CodUsuario, 'frmAjuda', 'FECHOU TELA DE AJUDA');
   frmAjuda.Release;
   frmAjuda.Free;
 end;
@@ -163,9 +206,24 @@ begin
   TrayIcon.ShowBalloonHint;
 end;
 
+procedure TfrmPrincipal.btnControlarRoboClick(Sender: TObject);
+begin
+  AbrirControlarRobo;
+end;
+
 procedure TfrmPrincipal.btnEmpresasClick(Sender: TObject);
 begin
   AbrirCadastroEmpresas;
+end;
+
+procedure TfrmPrincipal.btnLogClick(Sender: TObject);
+begin
+  InsereLog(CodUsuario, 'frmVisualizaLogs', 'ABRIU TELA DE VISUALIZAÇÃO DE REGISTRO DE LOGS DE USUÁRIO');
+  Application.CreateForm(tfrmVisualizaLogs, frmVisualizaLogs);
+  InsereLog(CodUsuario, 'frmVisualizaLogs', 'FECHOU TELA DE VISUALIZAÇÃO DE REGISTRO DE LOGS DE USUÁRIO');
+  frmVisualizaLogs.ShowModal;
+  frmVisualizaLogs.Release;
+  frmVisualizaLogs.Free;
 end;
 
 procedure TfrmPrincipal.btnProgramaClick(Sender: TObject);
@@ -183,7 +241,12 @@ begin
   AbrirCadastroUsuario;
 end;
 
-procedure TfrmPrincipal.cxButton1Click(Sender: TObject);
+procedure TfrmPrincipal.ControlarRob1Click(Sender: TObject);
+begin
+  AbrirControlarRobo;
+end;
+
+procedure TfrmPrincipal.btnTrocarUsuarioClick(Sender: TObject);
 var
   IdUser : integer;
   sNomeUser : String;
@@ -197,6 +260,9 @@ begin
     NomeUsuario := sNomeUser;
     ABORT;
   end;
+
+  //habilitar botao ver log
+  btnLog.Visible := (TipoUsuario in [0,1]);
 end;
 
 procedure TfrmPrincipal.Empresa1Click(Sender: TObject);
@@ -224,39 +290,82 @@ var
   R : STRING;
 begin
   //
-
   QRYAUX.Close;
   QRYAUX.SQL.Clear;
   QRYAUX.SQL.Add('SELECT A.ID, A.RAZAO_SOCIAL FROM TBEMPRESAS A WHERE A.SITUACAO = 1');
   QRYAUX.Open;
-  IF(QRYAUX.RecordCount = 1)THEN
+  IF NOT(QRYAUX.IsEmpty)THEN
   BEGIN
-    CodEmpresa  := QRYAUX.FieldByName('ID').AsInteger;
-    NomeEmpresa := QRYAUX.FieldByName('RAZAO_SOCIAL').AsString;
+    IF(QRYAUX.RecordCount = 1)THEN
+    BEGIN
+      CodEmpresa  := QRYAUX.FieldByName('ID').AsInteger;
+      NomeEmpresa := QRYAUX.FieldByName('RAZAO_SOCIAL').AsString;
+    END
+    ELSE
+    BEGIN
+      R := Consultar('Cadastro de Empresas',
+                     'SELECT A.ID AS "ID", A.CNPJ AS "CNPJ", A.RAZAO_SOCIAL AS "Razão Social", A.NOME_FANTASIA AS "Nome Fantasia" FROM TBEMPRESAS A', //SELECT
+                     '', //WHERE
+                     'A.RAZAO_SOCIAL', //ORDER BY
+                     'A.RAZAO_SOCIAL;A.NOME_FANTASIA;A.ID', //CAMPOS FILTROS
+                     'Razão Social;Nome Fantasia;ID', //LABEL CAMPOS FILTROS
+                     'ID');
+
+      IF(LENGTH(TRIM(R)) > 0)THEN
+      BEGIN
+        QRYAUX.Close;
+        QRYAUX.SQL.Clear;
+        QRYAUX.SQL.Add('SELECT A.ID, A.RAZAO_SOCIAL FROM TBEMPRESAS A WHERE A.ID = ' + R);
+        QRYAUX.Open;
+        IF NOT(QRYAUX.IsEmpty)THEN
+        BEGIN
+          CodEmpresa  := QRYAUX.FieldByName('ID').AsInteger;
+          NomeEmpresa := QRYAUX.FieldByName('RAZAO_SOCIAL').AsString;
+        END;
+      END;
+    END;
   END
   ELSE
   BEGIN
-    R := Consultar('Cadastro de Empresas',
-                   'SELECT A.ID AS "ID", A.CNPJ AS "CNPJ", A.RAZAO_SOCIAL AS "Razão Social", A.NOME_FANTASIA AS "Nome Fantasia" FROM TBEMPRESAS A', //SELECT
-                   '', //WHERE
-                   'A.RAZAO_SOCIAL', //ORDER BY
-                   'A.RAZAO_SOCIAL;A.NOME_FANTASIA;A.ID', //CAMPOS FILTROS
-                   'Razão Social;Nome Fantasia;ID', //LABEL CAMPOS FILTROS
-                   'ID');
+    AbrirCadastroEmpresas;
 
-    IF(LENGTH(TRIM(R)) > 0)THEN
+    QRYAUX.Close;
+    QRYAUX.SQL.Clear;
+    QRYAUX.SQL.Add('SELECT A.ID, A.RAZAO_SOCIAL FROM TBEMPRESAS A WHERE A.SITUACAO = 1');
+    QRYAUX.Open;
+
+    IF(QRYAUX.RecordCount = 1)THEN
     BEGIN
-      QRYAUX.Close;
-      QRYAUX.SQL.Clear;
-      QRYAUX.SQL.Add('SELECT A.ID, A.RAZAO_SOCIAL FROM TBEMPRESAS A WHERE A.ID = ' + R);
-      QRYAUX.Open;
-      IF NOT(QRYAUX.IsEmpty)THEN
+      CodEmpresa  := QRYAUX.FieldByName('ID').AsInteger;
+      NomeEmpresa := QRYAUX.FieldByName('RAZAO_SOCIAL').AsString;
+    END
+    ELSE
+    BEGIN
+      R := Consultar('Cadastro de Empresas',
+                     'SELECT A.ID AS "ID", A.CNPJ AS "CNPJ", A.RAZAO_SOCIAL AS "Razão Social", A.NOME_FANTASIA AS "Nome Fantasia" FROM TBEMPRESAS A', //SELECT
+                     '', //WHERE
+                     'A.RAZAO_SOCIAL', //ORDER BY
+                     'A.RAZAO_SOCIAL;A.NOME_FANTASIA;A.ID', //CAMPOS FILTROS
+                     'Razão Social;Nome Fantasia;ID', //LABEL CAMPOS FILTROS
+                     'ID');
+
+      IF(LENGTH(TRIM(R)) > 0)THEN
       BEGIN
-        CodEmpresa  := QRYAUX.FieldByName('ID').AsInteger;
-        NomeEmpresa := QRYAUX.FieldByName('RAZAO_SOCIAL').AsString;
+        QRYAUX.Close;
+        QRYAUX.SQL.Clear;
+        QRYAUX.SQL.Add('SELECT A.ID, A.RAZAO_SOCIAL FROM TBEMPRESAS A WHERE A.ID = ' + R);
+        QRYAUX.Open;
+        IF NOT(QRYAUX.IsEmpty)THEN
+        BEGIN
+          CodEmpresa  := QRYAUX.FieldByName('ID').AsInteger;
+          NomeEmpresa := QRYAUX.FieldByName('RAZAO_SOCIAL').AsString;
+        END;
       END;
     END;
   END;
+
+  //habilitar botao ver log
+  btnLog.Visible := (TipoUsuario in [0,1]);
 end;
 
 procedure TfrmPrincipal.Novoprograma1Click(Sender: TObject);

@@ -438,6 +438,7 @@ inherited frmGeraProgramaPalete: TfrmGeraProgramaPalete
     FormatVersion = 1
   end
   object qryPrograma: TFDQuery
+    Active = True
     AfterInsert = qryProgramaAfterInsert
     AfterEdit = qryProgramaAfterEdit
     Connection = DM.FDCONN
@@ -454,6 +455,7 @@ inherited frmGeraProgramaPalete: TfrmGeraProgramaPalete
         Value = Null
       end>
     object qryProgramaID: TIntegerField
+      AutoGenerateValue = arAutoInc
       FieldName = 'ID'
       Origin = 'ID'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -504,11 +506,9 @@ inherited frmGeraProgramaPalete: TfrmGeraProgramaPalete
       Origin = 'CAIXA_ALTURA'
       Required = True
     end
-    object qryProgramaPROGRAMA: TStringField
+    object qryProgramaPROGRAMA: TBlobField
       FieldName = 'PROGRAMA'
       Origin = 'PROGRAMA'
-      Required = True
-      Size = 5000
     end
     object qryProgramaSITUACAO: TIntegerField
       FieldName = 'SITUACAO'
@@ -820,5 +820,9 @@ inherited frmGeraProgramaPalete: TfrmGeraProgramaPalete
     DataSet = qryRobo
     Left = 800
     Top = 93
+  end
+  object SelectDirectory: TJvSelectDirectory
+    Left = 792
+    Top = 13
   end
 end

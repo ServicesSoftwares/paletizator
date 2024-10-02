@@ -38,4 +38,5 @@ implementation
 
 {$R *.dfm}
 
+{ TfrmFormGerador }
 end.

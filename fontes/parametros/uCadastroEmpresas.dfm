@@ -11,24 +11,6 @@ inherited frmCadastroEmpresas: TfrmCadastroEmpresas
   inherited StatusBar: TStatusBar
     Top = 316
     Width = 932
-    Panels = <
-      item
-        Alignment = taRightJustify
-        Text = 'Data/Hora:'
-        Width = 65
-      end
-      item
-        Text = '00/00/0000 00:00:00'
-        Width = 110
-      end
-      item
-        Text = 'Usu'#225'rio:'
-        Width = 50
-      end
-      item
-        Text = '1 - ADMINISTRADOR'
-        Width = 350
-      end>
     ExplicitTop = 316
     ExplicitWidth = 932
   end
@@ -277,7 +259,6 @@ inherited frmCadastroEmpresas: TfrmCadastroEmpresas
   end
   inherited ToolBar: TToolBar
     Width = 932
-    ExplicitTop = 0
     ExplicitWidth = 932
     inherited btnSalvar: TToolButton
       OnClick = btnSalvarClick

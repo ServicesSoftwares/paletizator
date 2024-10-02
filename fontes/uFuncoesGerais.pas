@@ -20,10 +20,11 @@ uses
   //procedimentos
   procedure ValidaCampos(PCAMPO : TDBEdit; PTITULO : STRING); OVERLOAD;
   procedure ValidaCampos(PCAMPO : TJvDBComboBox; PTITULO : STRING); OVERLOAD;
+  procedure InsereLog(PIDUSUARIO : INTEGER; PFRM, PACAO : STRING);
 
 
 var
-  CodUsuario, CodEmpresa : Integer;
+  CodUsuario, CodEmpresa, TipoUsuario : Integer;
   NomeUsuario, NomeEmpresa : String;
 
 implementation
@@ -44,6 +45,7 @@ begin
     BEGIN
       CodUsuario  := frmAutenticacao.qryUsuariosID.AsInteger;
       NomeUsuario := frmAutenticacao.qryUsuariosNOME.AsString;
+      TipoUsuario := frmAutenticacao.qryUsuariosTIPO.AsInteger;
     END;
 
     logado := TRUE;
@@ -125,6 +127,22 @@ begin
     PCAMPO.SetFocus;
     ABORT;
   END;
+end;
+
+procedure InsereLog(PIDUSUARIO : INTEGER; PFRM, PACAO : STRING);
+begin
+  DM.QRYLOG.Close;
+  DM.QRYLOG.Params[0].AsInteger := 0;
+  DM.QRYLOG.Open;
+  DM.QRYLOG.Append;
+
+  DM.QRYLOGIDUSUARIO.AsInteger := PIDUSUARIO;
+  DM.QRYLOGDATA.AsDateTime     := NOW;
+  DM.QRYLOGHORA.AsDateTime     := NOW;
+  DM.QRYLOGFORMULARIO.AsString := PFRM;
+  DM.QRYLOGACAO.AsString       := PACAO;
+
+  DM.QRYLOG.Post;
 end;
 
 end.

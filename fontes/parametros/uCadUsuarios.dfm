@@ -8,10 +8,11 @@ inherited frmCadastroUsuarios: TfrmCadastroUsuarios
   TextHeight = 13
   inherited StatusBar: TStatusBar
     Top = 225
+    ExplicitTop = 225
   end
   inherited pnBase: TPanel
     Height = 170
-    ExplicitTop = 49
+    ExplicitHeight = 170
     object Label1: TLabel
       Left = 127
       Top = 26
@@ -117,6 +118,8 @@ inherited frmCadastroUsuarios: TfrmCadastroUsuarios
       Top = 116
       Width = 320
       Height = 21
+      DataField = 'SITUACAO'
+      DataSource = DS
       Items.Strings = (
         '0 - INATIVO'
         '1 - ATIVO')
@@ -145,9 +148,6 @@ inherited frmCadastroUsuarios: TfrmCadastroUsuarios
   inherited ToolBar: TToolBar
     inherited btnSalvar: TToolButton
       OnClick = btnSalvarClick
-    end
-    inherited btnCancelar: TToolButton
-      OnClick = btnCancelarClick
     end
     inherited btnPesquisar: TToolButton
       OnClick = btnPesquisarClick
