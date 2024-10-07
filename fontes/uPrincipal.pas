@@ -55,6 +55,8 @@ type
     QRYAUX: TFDQuery;
     btnTrocarUsuario: TcxButton;
     btnLog: TcxButton;
+    N6: TMenuItem;
+    PermissesdeUsurio1: TMenuItem;
     procedure FormShow(Sender: TObject);
     procedure TimerTimer(Sender: TObject);
     procedure ApplicationEventsMinimize(Sender: TObject);
@@ -74,6 +76,8 @@ type
     procedure btnControlarRoboClick(Sender: TObject);
     procedure ControlarRob1Click(Sender: TObject);
     procedure btnLogClick(Sender: TObject);
+    procedure TrayIconDblClick(Sender: TObject);
+    procedure ApplicationEventsRestore(Sender: TObject);
   private
     { Private declarations }
 
@@ -204,6 +208,11 @@ begin
   TrayIcon.BalloonTitle := 'Informação';
   TrayIcon.BalloonFlags := bfInfo;
   TrayIcon.ShowBalloonHint;
+end;
+
+procedure TfrmPrincipal.ApplicationEventsRestore(Sender: TObject);
+begin
+  //
 end;
 
 procedure TfrmPrincipal.btnControlarRoboClick(Sender: TObject);
@@ -393,6 +402,11 @@ begin
   StatusBar.Panels.Items[5].Text := IntToStr(CodEmpresa) + ' - ' + NomeEmpresa;
 
   Calendar.CalendarDate := Now;
+end;
+
+procedure TfrmPrincipal.TrayIconDblClick(Sender: TObject);
+begin
+  Restaurar1Click(self);
 end;
 
 end.

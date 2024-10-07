@@ -16,8 +16,8 @@ type
   TfrmDesenharPalete = class(TfrmPadrao)
     QRYROBO: TFDQuery;
     pnAguarde: TPanel;
-    cxPageControl1: TcxPageControl;
-    cxTabSheet1: TcxTabSheet;
+    pgBasePaletizacao: TcxPageControl;
+    tbsPaletizacaoEsquerda: TcxTabSheet;
     Label4: TLabel;
     Label6: TLabel;
     Label7: TLabel;
@@ -113,6 +113,166 @@ type
     Label11: TLabel;
     Label14: TLabel;
     Shape1: TShape;
+    QRYROBOID: TIntegerField;
+    QRYROBOIDEMPRESA: TIntegerField;
+    QRYROBONOME: TStringField;
+    QRYROBOTIPO_ROBO: TIntegerField;
+    QRYROBOTIPO_PALETIZACAO: TIntegerField;
+    QRYROBOTIPO_COMUNICAO: TIntegerField;
+    QRYROBOHOST_IP: TStringField;
+    QRYROBOPORTA: TIntegerField;
+    QRYROBOTIMEOUT: TIntegerField;
+    QRYROBOAGUARDAR_PC_SENSOR: TStringField;
+    QRYROBOFECHAR_GARRA: TStringField;
+    QRYROBOABRIR_GARRA: TStringField;
+    QRYROBOREPOSICIONA_GARRA: TStringField;
+    QRYROBOFIM_PALETE: TStringField;
+    QRYROBOINICIO_PALETE: TStringField;
+    QRYROBOPONTO0_PALLETE_X: TIntegerField;
+    QRYROBOPONTO0_PALLETE_Y: TIntegerField;
+    QRYROBOPONTO0_PALLETE_Z: TIntegerField;
+    QRYROBOPONTO0_MAGAZINE_X: TIntegerField;
+    QRYROBOPONTO0_MAGAZINE_Y: TIntegerField;
+    QRYROBOPONTO_INTERSEG_B_X: TIntegerField;
+    QRYROBOPONTO_INTERSEG_B_Y: TIntegerField;
+    QRYROBOPONTO_INTERSEG_B_Z: TIntegerField;
+    QRYROBOPONTO_INTERSEG_A_X: TIntegerField;
+    QRYROBOPONTO_INTERSEG_A_Y: TIntegerField;
+    QRYROBOPONTO_INTERSEG_A_Z: TIntegerField;
+    QRYROBOPONTO_SEGRET_X: TIntegerField;
+    QRYROBOPONTO_SEGRET_Y: TIntegerField;
+    QRYROBOPONTO_SEGRET_Z: TIntegerField;
+    QRYROBOPONTO_SEGRET_CURVA_Z: TIntegerField;
+    QRYROBOPONTO_SUPMESA_X: TIntegerField;
+    QRYROBOPONTO_SUPMESA_Y: TIntegerField;
+    QRYROBOPONTO_SUPMESA_ESP_ENC: TIntegerField;
+    QRYROBOPONTO_SUPMESA_CENTROY: TIntegerField;
+    QRYROBOPONTO_SUPMESA_POS_BATY: TIntegerField;
+    QRYROBOPONTO_INFMESA_Y: TIntegerField;
+    QRYROBOPONTO_INFMESA_ROLETES: TIntegerField;
+    QRYROBOPONTO_INFMESA_LIVRE: TIntegerField;
+    QRYROBOALTURA_MESA_Z_ALIN: TIntegerField;
+    QRYROBOALTURA_MESA_Z_MESAMIN: TIntegerField;
+    QRYROBOALTURA_MESA_OFFSET_UP: TIntegerField;
+    QRYROBOALTURA_MESA_PONTO_Z: TIntegerField;
+    QRYROBOALTURA_MESA_CURVA_CICLO: TIntegerField;
+    QRYROBOOFFSET_ALTURA: TIntegerField;
+    QRYROBOOFFSET_APPROC: TIntegerField;
+    QRYROBOOFFSET_GARRA: TIntegerField;
+    QRYROBOZ_PALETE: TIntegerField;
+    QRYROBOOS_Z_RETORNO: TIntegerField;
+    QRYROBOVEL_PEGADA: TIntegerField;
+    QRYROBOVEL_SOLTURA: TIntegerField;
+    QRYROBOVEL_LINEAR: TIntegerField;
+    QRYROBOY_MESA_LIVRE: TIntegerField;
+    QRYROBOOS_ENCOSTO: TIntegerField;
+    QRYROBOZ_PEGADA: TIntegerField;
+    QRYROBOCURVA_PEGADA: TIntegerField;
+    QRYROBOCENTRO_ESTEIRA_Y: TIntegerField;
+    QRYROBOPOS_BATENTE_Y: TIntegerField;
+    QRYROBOOFFSET_SUBIDA: TIntegerField;
+    QRYROBOVEL_SUBIDA: TIntegerField;
+    QRYROBOCURVA_AFAST: TIntegerField;
+    QRYROBODATA_INCLUSAO: TSQLTimeStampField;
+    QRYROBOIDUSUARIO_INCLUSAO: TIntegerField;
+    QRYROBODATA_ULT_ALTERACAO: TSQLTimeStampField;
+    QRYROBOIDUSUARIO_ULT_ALTERACAO: TIntegerField;
+    tbsPaletizacaoDireita: TcxTabSheet;
+    Label15: TLabel;
+    Label18: TLabel;
+    Label19: TLabel;
+    lblTotalCxaCam1: TLabel;
+    Label21: TLabel;
+    lblTotalCxaCam2: TLabel;
+    Label23: TLabel;
+    lblCentroCxaDir: TLabel;
+    imgCxaPaletDir: TImage;
+    Label25: TLabel;
+    lblTotalCxa: TLabel;
+    Label27: TLabel;
+    Label28: TLabel;
+    Label29: TLabel;
+    Label30: TLabel;
+    Label31: TLabel;
+    Label32: TLabel;
+    Shape2: TShape;
+    Panel3: TPanel;
+    imgPaletDirCam1: TImage;
+    btnAddCxaDirCam1: TButton;
+    DPLX1: TEdit;
+    DPLY1: TEdit;
+    DPLZ1: TEdit;
+    DPLX2: TEdit;
+    DPLY2: TEdit;
+    DPLZ2: TEdit;
+    Edit14: TEdit;
+    Edit15: TEdit;
+    Edit16: TEdit;
+    Panel4: TPanel;
+    imgPaletDirCam2: TImage;
+    btnDelCxaDirCam1: TButton;
+    DPLX3: TEdit;
+    DPLY3: TEdit;
+    DPLZ3: TEdit;
+    DPLX4: TEdit;
+    DPLY4: TEdit;
+    DPLZ4: TEdit;
+    DPLX5: TEdit;
+    DPLY5: TEdit;
+    DPLZ5: TEdit;
+    DPLX6: TEdit;
+    DPLY6: TEdit;
+    DPLZ6: TEdit;
+    DPLX7: TEdit;
+    DPLY7: TEdit;
+    DPLZ7: TEdit;
+    DPLX8: TEdit;
+    DPLY8: TEdit;
+    DPLZ8: TEdit;
+    DPLX9: TEdit;
+    DPLY9: TEdit;
+    DPLZ9: TEdit;
+    DPPX1: TEdit;
+    DPPY1: TEdit;
+    DPPZ1: TEdit;
+    DPPX2: TEdit;
+    DPPY2: TEdit;
+    DPPZ2: TEdit;
+    DPPX3: TEdit;
+    DPPY3: TEdit;
+    DPPZ3: TEdit;
+    DPPX4: TEdit;
+    DPPY4: TEdit;
+    DPPZ4: TEdit;
+    DPPX5: TEdit;
+    DPPY5: TEdit;
+    DPPZ5: TEdit;
+    DPPX6: TEdit;
+    DPPY6: TEdit;
+    DPPZ6: TEdit;
+    DPPX7: TEdit;
+    DPPY7: TEdit;
+    DPPZ7: TEdit;
+    DPPX8: TEdit;
+    DPPY8: TEdit;
+    DPPZ8: TEdit;
+    DPPX9: TEdit;
+    DPPY9: TEdit;
+    DPPZ9: TEdit;
+    btnAddCxaDirCam2: TButton;
+    btnDelCxaDirCam2: TButton;
+    Button17: TButton;
+    Button18: TButton;
+    Button19: TButton;
+    Button20: TButton;
+    Button21: TButton;
+    Button22: TButton;
+    Button23: TButton;
+    Button24: TButton;
+    edtPontoFimCam1PaletDir: TEdit;
+    edtPontoIniCam1PaletDir: TEdit;
+    edtPontoIniCam2PaletDir: TEdit;
+    edtPontoFimCam2PaletDir: TEdit;
     procedure Button5Click(Sender: TObject);
     procedure Button6Click(Sender: TObject);
     procedure Button7Click(Sender: TObject);
@@ -127,6 +287,11 @@ type
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
+    procedure btnPesquisarClick(Sender: TObject);
+    procedure btnAddCxaDirCam1Click(Sender: TObject);
+    procedure btnAddCxaDirCam2Click(Sender: TObject);
+    procedure btnDelCxaDirCam1Click(Sender: TObject);
+    procedure btnDelCxaDirCam2Click(Sender: TObject);
   private
     { Private declarations }
     FDownX,
@@ -150,7 +315,9 @@ type
 
 
     procedure GeraPontosMovimento;
+    procedure GeraPontosMovimentoKosa;
     procedure GeraCodigos;
+    procedure GeraCodigosKosa;
     procedure BuscaPontosCaixa(NUM_CX:INTEGER);
     var
       PIDROBO : integer;
@@ -161,7 +328,7 @@ type
 
 var
   frmDesenharPalete: TfrmDesenharPalete;
-  NUM_CAIXA : Integer;
+  NUM_CAIXA, DNUM_CAIXA : Integer;
   PANEL_CX : TPanel;
   PANEL_CX_VR : TPanel;
 
@@ -177,6 +344,7 @@ var
 
   px_base, mm_base, px_at , mm_at : Integer;
   CX_CM1, CX_CM2 : Integer;
+  CX_DCM1, CX_DCM2 : Integer;
 
   XP_SEG, YP_SEG, ZP_SEG, WP_SEG : Integer;
   XP_APP, YP_APP, ZP_APP, WP_APP : Integer;
@@ -194,6 +362,85 @@ type
 
 { TfrmDesenharPalete }
 
+procedure TfrmDesenharPalete.btnAddCxaDirCam1Click(Sender: TObject);
+begin
+  inherited;
+  Application.CreateForm(tfrmCaixas, frmCaixas);
+  frmCaixas.Image1.Picture := imgCxaPaletDir.Picture;
+  frmCaixas.PLADO := 1;
+  frmCaixas.ShowModal;
+  frmCaixas.Release;
+  frmCaixas.Free;
+end;
+
+procedure TfrmDesenharPalete.btnAddCxaDirCam2Click(Sender: TObject);
+begin
+  inherited;
+  Application.CreateForm(tfrmDesenharCamada2, frmDesenharCamada2);
+  frmCaixas.PLADO := 1;
+  frmDesenharCamada2.Image1.Picture := Image2.Picture;
+  CX_DCM1 := StrToInt(Label8.Caption);
+  frmDesenharCamada2.showmodal;
+  frmDesenharCamada2.Release;
+  frmDesenharCamada2.Free;
+end;
+
+procedure TfrmDesenharPalete.btnDelCxaDirCam1Click(Sender: TObject);
+begin
+  inherited;
+  if DNUM_CAIXA > 0 then
+  BEGIN
+    TPanel(FindComponent('DCX' + IntToStr(DNUM_CAIXA))).Destroy;
+    TPanel(FindComponent('DCX_VR' + IntToStr(DNUM_CAIXA))).Destroy;
+
+    TEdit(FindComponent('DPLX' + IntToStr(DNUM_CAIXA))).Text := '0';
+    TEdit(FindComponent('DPLY' + IntToStr(DNUM_CAIXA))).Text := '0';
+    TEdit(FindComponent('DPLW' + IntToStr(DNUM_CAIXA))).Text := '0';
+
+    DNUM_CAIXA := DNUM_CAIXA - 1;
+
+    lblTotalCxaCam1.Caption := IntToStr(DNUM_CAIXA);
+    lblTotalCxaCam2.Caption := IntToStr(0);
+
+    ContaCaixas;
+  END;
+end;
+
+procedure TfrmDesenharPalete.btnDelCxaDirCam2Click(Sender: TObject);
+VAR
+  CX_M1 : Integer;
+begin
+  CX_M1 := StrToInt(lblTotalCxaCam1.Caption);
+
+  if DNUM_CAIXA > CX_M1 then
+  BEGIN
+    TPanel(FindComponent('DCX' + IntToStr(DNUM_CAIXA))).Destroy;
+    //TPanel(FindComponent('CX_VR' + IntToStr(NUM_CAIXA))).Destroy;
+
+    TEdit(FindComponent('DPPX' + IntToStr(DNUM_CAIXA - CX_CM1))).Text := '0';
+    TEdit(FindComponent('DPPY' + IntToStr(DNUM_CAIXA - CX_CM1))).Text := '0';
+    TEdit(FindComponent('DPPW' + IntToStr(DNUM_CAIXA - CX_CM1))).Text := '0';
+
+    DNUM_CAIXA := DNUM_CAIXA - 1;
+
+
+    lblTotalCxaCam2.Caption := IntToStr(DNUM_CAIXA - CX_CM1);
+    ContaCaixas;
+
+    if CX_CM1 = DNUM_CAIXA then
+    BEGIN
+      btnAddCxaDirCam1.Enabled := True;
+      btnDelCxaDirCam1.Enabled := True;
+    END;
+  END;
+end;
+
+procedure TfrmDesenharPalete.btnPesquisarClick(Sender: TObject);
+begin
+  inherited;
+  //
+end;
+
 procedure TfrmDesenharPalete.btnSalvarClick(Sender: TObject);
 begin
   inherited;
@@ -206,13 +453,21 @@ begin
   pnAguarde.Caption := 'Aguarde... Gerando pontos de movimento...';
   pnAguarde.Visible := true;
   Application.ProcessMessages;
-  GeraPontosMovimento;
+  //ROBO GSK
+  IF(QRYROBO.FieldByName('TIPO_ROBO').AsInteger = 0)THEN
+    GeraPontosMovimento
+  ELSE //ROBO KOSA
+    GeraPontosMovimentoKosa;
   Application.ProcessMessages;
 
   pnAguarde.Caption := 'Aguarde... Gerando códigos do programa...';
   pnAguarde.Visible := true;
   Application.ProcessMessages;
-  GeraCodigos;
+  //ROBO GSK
+  IF(QRYROBO.FieldByName('TIPO_ROBO').AsInteger = 0)THEN
+    GeraCodigos
+  ELSE //ROBO KOSA
+    GeraCodigosKosa;
   Application.ProcessMessages;
 
   ModalResult := MROK;
@@ -331,6 +586,7 @@ begin
   inherited;
   Application.CreateForm(tfrmCaixas, frmCaixas);
   frmCaixas.Image1.Picture := Image2.Picture;
+  frmCaixas.PLADO := 0;
   frmCaixas.ShowModal;
   frmCaixas.Release;
   frmCaixas.Free;
@@ -340,6 +596,7 @@ procedure TfrmDesenharPalete.Button4Click(Sender: TObject);
 begin
   inherited;
   Application.CreateForm(tfrmDesenharCamada2, frmDesenharCamada2);
+  frmCaixas.PLADO := 1;
   frmDesenharCamada2.Image1.Picture := Image2.Picture;
   CX_CM1 := StrToInt(Label8.Caption);
   frmDesenharCamada2.showmodal;
@@ -465,24 +722,47 @@ begin
   frmFormGerador.Label16.Caption := label16.Caption;
   (***********************************)
 
+  if(QRYROBO.FieldByName('TIPO_PALETIZACAO').AsInteger in [0,2])then
+  begin
+    Image2.Picture := nil;
+    Image2.Canvas.Brush.Color := $00333333;
+    Image2.Canvas.Rectangle(0,0,425,145);
 
-  Image2.Picture := nil;
-  Image2.Canvas.Brush.Color := $00333333;
-  Image2.Canvas.Rectangle(0,0,425,145);
+    Image2.Canvas.Pen.Color := clWhite;
+    Image2.Canvas.MoveTo(10,135);
+    Image2.Canvas.LineTo(10,10);
+    Image2.Canvas.LineTo(5,15);
+    Image2.Canvas.MoveTo(10,10);
+    Image2.Canvas.LineTo(15,15);
 
-  Image2.Canvas.Pen.Color := clWhite;
-  Image2.Canvas.MoveTo(10,135);
-  Image2.Canvas.LineTo(10,10);
-  Image2.Canvas.LineTo(5,15);
-  Image2.Canvas.MoveTo(10,10);
-  Image2.Canvas.LineTo(15,15);
+    Image2.Canvas.Pen.Color := clWhite;
+    Image2.Canvas.MoveTo(10,135);
+    Image2.Canvas.LineTo(415,135);
+    Image2.Canvas.LineTo(410,130);
+    Image2.Canvas.MoveTo(415,135);
+    Image2.Canvas.LineTo(410,140);
+  end;
 
-  Image2.Canvas.Pen.Color := clWhite;
-  Image2.Canvas.MoveTo(10,135);
-  Image2.Canvas.LineTo(415,135);
-  Image2.Canvas.LineTo(410,130);
-  Image2.Canvas.MoveTo(415,135);
-  Image2.Canvas.LineTo(410,140);
+  if(QRYROBO.FieldByName('TIPO_PALETIZACAO').AsInteger in [1,2])then
+  begin
+    imgCxaPaletDir.Picture := nil;
+    imgCxaPaletDir.Canvas.Brush.Color := $00333333;
+    imgCxaPaletDir.Canvas.Rectangle(0,0,425,145);
+
+    imgCxaPaletDir.Canvas.Pen.Color := clWhite;
+    imgCxaPaletDir.Canvas.MoveTo(10,135);
+    imgCxaPaletDir.Canvas.LineTo(10,10);
+    imgCxaPaletDir.Canvas.LineTo(5,15);
+    imgCxaPaletDir.Canvas.MoveTo(10,10);
+    imgCxaPaletDir.Canvas.LineTo(15,15);
+
+    imgCxaPaletDir.Canvas.Pen.Color := clWhite;
+    imgCxaPaletDir.Canvas.MoveTo(10,135);
+    imgCxaPaletDir.Canvas.LineTo(415,135);
+    imgCxaPaletDir.Canvas.LineTo(410,130);
+    imgCxaPaletDir.Canvas.MoveTo(415,135);
+    imgCxaPaletDir.Canvas.LineTo(410,140);
+  end;
 
   ESCALA_CX := 1;
   NUM_CAIXA := 0;
@@ -508,9 +788,19 @@ begin
 
   end;
 
+  //imgCxaPaletDir
   try
-    Image2.Canvas.Pen.Color := clBlack;
-    Image2.Canvas.Brush.Color := clYellow;
+    if(QRYROBO.FieldByName('TIPO_PALETIZACAO').AsInteger in [0,2])then
+    begin
+      Image2.Canvas.Pen.Color    := clBlack;
+      Image2.Canvas.Brush.Color  := clYellow;
+    end;
+
+    if(QRYROBO.FieldByName('TIPO_PALETIZACAO').AsInteger in [1,2])then
+    begin
+      imgCxaPaletDir.Canvas.Pen.Color   := clBlack;
+      imgCxaPaletDir.Canvas.Brush.Color := clYellow;
+    end;
 
     X_IN := 20;
     Y_IN := 125 - LARG_PX;
@@ -527,7 +817,11 @@ begin
     GOTO RECALCULA_ESCALA;
   END;
 
-  Image2.Canvas.Rectangle(X_IN, Y_IN, X_FIN, Y_FIN);
+  if(QRYROBO.FieldByName('TIPO_PALETIZACAO').AsInteger in [0,2])then
+    Image2.Canvas.Rectangle(X_IN, Y_IN, X_FIN, Y_FIN);
+
+  if(QRYROBO.FieldByName('TIPO_PALETIZACAO').AsInteger in [1,2])then
+    imgCxaPaletDir.Canvas.Rectangle(X_IN, Y_IN, X_FIN, Y_FIN);
 
   //desenha palete
    try
@@ -542,75 +836,151 @@ begin
 
   end;
 
-  //desenho palete camada 1;
-  Image3.Picture := nil;
-  Image3.Canvas.Brush.Color := $00333333;
-  Image3.Canvas.Rectangle(0,0,400,400);
+  //desenho palete camada 1 palet esquerda;
+  if(QRYROBO.FieldByName('TIPO_PALETIZACAO').AsInteger in [0,2])then
+  begin
+    Image3.Picture := nil;
+    Image3.Canvas.Brush.Color := $00333333;
+    Image3.Canvas.Rectangle(0,0,400,400);
 
-  XP_IN := 200 - TRUNC(comp_pl_px / 2);
-  YP_IN := 200 - TRUNC(larg_pl_px / 2);
+    XP_IN := 200 - TRUNC(comp_pl_px / 2);
+    YP_IN := 200 - TRUNC(larg_pl_px / 2);
 
-  XP_FIN := XP_IN + comp_pl_px;
-  YP_FIN := YP_IN + larg_pl_px;
+    XP_FIN := XP_IN + comp_pl_px;
+    YP_FIN := YP_IN + larg_pl_px;
 
-  Image3.Canvas.Pen.Color := clWhite;
-  Image3.Canvas.MoveTo(XP_IN,0);
-  Image3.Canvas.LineTo(XP_IN, 400);
+    Image3.Canvas.Pen.Color := clWhite;
+    Image3.Canvas.MoveTo(XP_IN,0);
+    Image3.Canvas.LineTo(XP_IN, 400);
 
-  Image3.Canvas.Pen.Color := clWhite;
-  Image3.Canvas.MoveTo(0,YP_IN);
-  Image3.Canvas.LineTo(400, YP_IN);
+    Image3.Canvas.Pen.Color := clWhite;
+    Image3.Canvas.MoveTo(0,YP_IN);
+    Image3.Canvas.LineTo(400, YP_IN);
 
-  Image3.Canvas.Pen.Color := clWhite;
-  Image3.Canvas.MoveTo(XP_FIN,0);
-  Image3.Canvas.LineTo(XP_FIN, 400);
+    Image3.Canvas.Pen.Color := clWhite;
+    Image3.Canvas.MoveTo(XP_FIN,0);
+    Image3.Canvas.LineTo(XP_FIN, 400);
 
-  Image3.Canvas.Pen.Color := clWhite;
-  Image3.Canvas.MoveTo(0, YP_FIN);
-  Image3.Canvas.LineTo(400, YP_FIN);
-
-
-  Image3.Canvas.Brush.Color := clGreen;
-  Image3.Canvas.Rectangle(XP_IN, YP_IN, XP_FIN, YP_FIN);
-
-  //coloca ponto inicial do palete 1
-  Edit4.Text := IntToStr(XP_IN);
-  Edit5.Text := IntToStr(YP_FIN);
-
-  //desenho palete camada 2;
-  Image6.Picture := nil;
-  Image6.Canvas.Brush.Color := $00333333;
-  Image6.Canvas.Rectangle(0,0,400,400);
-
-  XP_IN := 200 - TRUNC(comp_pl_px / 2);
-  YP_IN := 200 - TRUNC(larg_pl_px / 2);
-
-  XP_FIN := XP_IN + comp_pl_px;
-  YP_FIN := YP_IN + larg_pl_px;
-
-  Image6.Canvas.Pen.Color := clWhite;
-  Image6.Canvas.MoveTo(XP_IN,0);
-  Image6.Canvas.LineTo(XP_IN, 400);
-
-  Image6.Canvas.Pen.Color := clWhite;
-  Image6.Canvas.MoveTo(0,YP_IN);
-  Image6.Canvas.LineTo(400, YP_IN);
-
-  Image6.Canvas.Pen.Color := clWhite;
-  Image6.Canvas.MoveTo(XP_FIN,0);
-  Image6.Canvas.LineTo(XP_FIN, 400);
-
-  Image6.Canvas.Pen.Color := clWhite;
-  Image6.Canvas.MoveTo(0, YP_FIN);
-  Image6.Canvas.LineTo(400, YP_FIN);
+    Image3.Canvas.Pen.Color := clWhite;
+    Image3.Canvas.MoveTo(0, YP_FIN);
+    Image3.Canvas.LineTo(400, YP_FIN);
 
 
-  Image6.Canvas.Brush.Color := clGreen;
-  Image6.Canvas.Rectangle(XP_IN, YP_IN, XP_FIN, YP_FIN);
+    Image3.Canvas.Brush.Color := clGreen;
+    Image3.Canvas.Rectangle(XP_IN, YP_IN, XP_FIN, YP_FIN);
 
-  //coloca ponto inicial do palete
-  Edit6.Text := IntToStr(XP_IN);
-  Edit7.Text := IntToStr(YP_FIN);
+    //coloca ponto inicial do palete 1
+    Edit4.Text := IntToStr(XP_IN);
+    Edit5.Text := IntToStr(YP_FIN);
+
+    //desenho palete camada 2;
+    Image6.Picture := nil;
+    Image6.Canvas.Brush.Color := $00333333;
+    Image6.Canvas.Rectangle(0,0,400,400);
+
+    XP_IN := 200 - TRUNC(comp_pl_px / 2);
+    YP_IN := 200 - TRUNC(larg_pl_px / 2);
+
+    XP_FIN := XP_IN + comp_pl_px;
+    YP_FIN := YP_IN + larg_pl_px;
+
+    Image6.Canvas.Pen.Color := clWhite;
+    Image6.Canvas.MoveTo(XP_IN,0);
+    Image6.Canvas.LineTo(XP_IN, 400);
+
+    Image6.Canvas.Pen.Color := clWhite;
+    Image6.Canvas.MoveTo(0,YP_IN);
+    Image6.Canvas.LineTo(400, YP_IN);
+
+    Image6.Canvas.Pen.Color := clWhite;
+    Image6.Canvas.MoveTo(XP_FIN,0);
+    Image6.Canvas.LineTo(XP_FIN, 400);
+
+    Image6.Canvas.Pen.Color := clWhite;
+    Image6.Canvas.MoveTo(0, YP_FIN);
+    Image6.Canvas.LineTo(400, YP_FIN);
+
+
+    Image6.Canvas.Brush.Color := clGreen;
+    Image6.Canvas.Rectangle(XP_IN, YP_IN, XP_FIN, YP_FIN);
+
+    //coloca ponto inicial do palete
+    Edit6.Text := IntToStr(XP_IN);
+    Edit7.Text := IntToStr(YP_FIN);
+  end;
+
+  //desenho palete camada 1 palet dir;
+  if(QRYROBO.FieldByName('TIPO_PALETIZACAO').AsInteger in [1,2])then
+  begin
+    imgPaletDirCam1.Picture := nil;
+    imgPaletDirCam1.Canvas.Brush.Color := $00333333;
+    imgPaletDirCam1.Canvas.Rectangle(0,0,400,400);
+
+    XP_IN := 200 - TRUNC(comp_pl_px / 2);
+    YP_IN := 200 - TRUNC(larg_pl_px / 2);
+
+    XP_FIN := XP_IN + comp_pl_px;
+    YP_FIN := YP_IN + larg_pl_px;
+
+    imgPaletDirCam1.Canvas.Pen.Color := clWhite;
+    imgPaletDirCam1.Canvas.MoveTo(XP_IN,0);
+    imgPaletDirCam1.Canvas.LineTo(XP_IN, 400);
+
+    imgPaletDirCam1.Canvas.Pen.Color := clWhite;
+    imgPaletDirCam1.Canvas.MoveTo(0,YP_IN);
+    imgPaletDirCam1.Canvas.LineTo(400, YP_IN);
+
+    imgPaletDirCam1.Canvas.Pen.Color := clWhite;
+    imgPaletDirCam1.Canvas.MoveTo(XP_FIN,0);
+    imgPaletDirCam1.Canvas.LineTo(XP_FIN, 400);
+
+    imgPaletDirCam1.Canvas.Pen.Color := clWhite;
+    imgPaletDirCam1.Canvas.MoveTo(0, YP_FIN);
+    imgPaletDirCam1.Canvas.LineTo(400, YP_FIN);
+
+
+    imgPaletDirCam1.Canvas.Brush.Color := clGreen;
+    imgPaletDirCam1.Canvas.Rectangle(XP_IN, YP_IN, XP_FIN, YP_FIN);
+
+    //coloca ponto inicial do palete 1
+    edtPontoIniCam1PaletDir.Text := IntToStr(XP_IN);
+    edtPontoFimCam1PaletDir.Text := IntToStr(YP_FIN);
+
+    //desenho palete camada 2;
+    imgPaletDirCam2.Picture := nil;
+    imgPaletDirCam2.Canvas.Brush.Color := $00333333;
+    imgPaletDirCam2.Canvas.Rectangle(0,0,400,400);
+
+    XP_IN := 200 - TRUNC(comp_pl_px / 2);
+    YP_IN := 200 - TRUNC(larg_pl_px / 2);
+
+    XP_FIN := XP_IN + comp_pl_px;
+    YP_FIN := YP_IN + larg_pl_px;
+
+    imgPaletDirCam2.Canvas.Pen.Color := clWhite;
+    imgPaletDirCam2.Canvas.MoveTo(XP_IN,0);
+    imgPaletDirCam2.Canvas.LineTo(XP_IN, 400);
+
+    imgPaletDirCam2.Canvas.Pen.Color := clWhite;
+    imgPaletDirCam2.Canvas.MoveTo(0,YP_IN);
+    imgPaletDirCam2.Canvas.LineTo(400, YP_IN);
+
+    imgPaletDirCam2.Canvas.Pen.Color := clWhite;
+    imgPaletDirCam2.Canvas.MoveTo(XP_FIN,0);
+    imgPaletDirCam2.Canvas.LineTo(XP_FIN, 400);
+
+    imgPaletDirCam2.Canvas.Pen.Color := clWhite;
+    imgPaletDirCam2.Canvas.MoveTo(0, YP_FIN);
+    imgPaletDirCam2.Canvas.LineTo(400, YP_FIN);
+
+
+    imgPaletDirCam2.Canvas.Brush.Color := clGreen;
+    imgPaletDirCam2.Canvas.Rectangle(XP_IN, YP_IN, XP_FIN, YP_FIN);
+
+    //coloca ponto inicial do palete
+    edtPontoIniCam2PaletDir.Text := IntToStr(XP_IN);
+    edtPontoFimCam2PaletDir.Text := IntToStr(YP_FIN);
+  end;
 end;
 
 procedure TfrmDesenharPalete.CalcularPosicaoCaixa;
@@ -1020,6 +1390,27 @@ begin
   QRYROBO.Open;
   QRYROBO.FetchAll;
 
+  CASE(QRYROBO.FieldByName('TIPO_PALETIZACAO').AsInteger)OF
+    //PADRAO
+    0:BEGIN
+        tbsPaletizacaoEsquerda.TabVisible := true;
+        //tbsPaletizacaoDireita.TabVisible := false;
+      END;
+    //DIREITA
+    1:BEGIN
+        tbsPaletizacaoEsquerda.TabVisible := true;
+        //tbsPaletizacaoDireita.TabVisible := true;
+      END;
+    //AMBOS
+    2:BEGIN
+        tbsPaletizacaoEsquerda.TabVisible := true;
+        //tbsPaletizacaoDireita.TabVisible := true;
+
+        pgBasePaletizacao.ActivePageIndex := 0;
+      END;
+  END;
+
+  //
   GeraImagemCxa;
   CalcularCaixa;
 end;
@@ -1143,407 +1534,411 @@ begin
   frmFormGerador.Memo2.Lines.Add('###################');
 
   //inicio do loop de posições de caixas
-  for I := 1 to T_cx do
-  begin
-    //adiciona pontos ate espera
-    frmFormGerador.Memo2.Lines.Add('#pontos de Retorno');
+  IF(QRYROBO.FieldByName('TIPO_ROBO').AsInteger in [0,2])THEN
+  BEGIN
+    for I := 1 to T_cx do
+    begin
+      //adiciona pontos ate espera
+      frmFormGerador.Memo2.Lines.Add('#pontos de Retorno');
+      frmFormGerador.Memo2.Lines.Add(ponto_retorno);
+
+      if I = 1 then
+      begin
+        frmFormGerador.Memo2.Lines.Add('#JUMP REINICIO');
+        frmFormGerador.Memo2.Lines.Add('LAB0;');
+      end;
+
+
+      frmFormGerador.Memo2.Lines.Add(ponto_pre);
+      frmFormGerador.Memo2.Lines.Add(ponto_aguardo);
+
+      //adiciona aguarda peça no sensor
+      frmFormGerador.Memo2.Lines.Add('#add IOs aguarda caixa no Sensor');
+      frmFormGerador.Memo2.Lines.Add(QRYROBO.FieldByName('AGUARDAR_PC_SENSOR').AsString);
+
+      frmFormGerador.Memo2.Lines.Add('#pontos de alinhamento');
+      frmFormGerador.Memo2.Lines.Add(ponto_alinhamento);
+
+      //adiciona fechamento da Pinca
+      frmFormGerador.Memo2.Lines.Add('#add IOs fechamento pinca');
+      frmFormGerador.Memo2.Lines.Add(QRYROBO.FieldByName('FECHAR_GARRA').AsString);
+
+      (*CALCULA AS POSICOES E GIROS*)
+      (****************************************)
+      (*CRIA PONTOS DE SEGURANCA E ALOCAÇÃO*)
+      (****************************************)
+      (*adidciona memoria de ponto de seguranc*)
+      //VERIFICA Z PARA PONTO DE SEGURANÇA
+      //localiza ponto da caixa atual;
+      BuscaPontosCaixa(I);
+      ZP_MOV_SEG := ZP_FIN;
+      ZP_APROCH := ZP_APP;
+
+      (* ponto de aproximação*)
+      XP_APROCH := XP_APP;
+      YP_APROCH := YP_APP;
+      ZP_APROCH := ZP_APP;
+      WP_APROCH := WP_APP;
+
+      if (ZP_APROCH < (POS_Z_SUBIDA - VAR_ALT)) then
+      begin
+        XP_MOV_SEG := QRYROBO.FieldByName('PONTO_INTERSEG_B_X').AsInteger;
+        YP_MOV_SEG := QRYROBO.FieldByName('PONTO_INTERSEG_B_Y').AsInteger;
+        ZP_MOV_SEG := pos_z_subida;
+        CURVA_APROCH := QRYROBO.FieldByName('PONTO_INTERSEG_B_Z').AsInteger;
+
+
+        if WP_FIN <> 90 then
+        begin
+          (*Se tiver gito cria ponto alto*)
+          //CRIA PONTO NO z alto no giro completo
+          //monta codigo
+          frmFormGerador.Memo2.Lines.Add('#Monta Codigo de Giro final no ALto');
+          frmFormGerador.Memo2.Lines.Add('SETE PX6 (1),' + IntToStr(XP_APROCH) + ';');
+          frmFormGerador.Memo2.Lines.Add('SETE PX6 (2),' + IntToStr(YP_APROCH) + ';');
+          frmFormGerador.Memo2.Lines.Add('SETE PX6 (3),' + IntToStr(ZP_MOV_SEG) + ';');
+          frmFormGerador.Memo2.Lines.Add('SETE PX6 (4),' + IntToStr(WP_APROCH) + ';');
+          frmFormGerador.Memo2.Lines.Add('ADDP P6, PX6;');
+          (*fim do ponto de seguranca*)
+        end;
+
+      end
+      ELSE
+      BEGIN
+        XP_MOV_SEG := QRYROBO.FieldByName('PONTO_INTERSEG_A_X').AsInteger;
+        YP_MOV_SEG := QRYROBO.FieldByName('PONTO_INTERSEG_A_Y').AsInteger;
+
+        if (ZP_MOV_SEG < POS_Z_SUBIDA) then
+        ZP_MOV_SEG := pos_z_subida + VAR_ALT ELSE
+        ZP_MOV_SEG := ZP_MOV_SEG + VAR_ALT;
+
+        CURVA_APROCH := QRYROBO.FieldByName('PONTO_INTERSEG_A_Z').AsInteger;
+
+
+        if WP_FIN <> 90 then
+        begin
+          (*Se tiver gito cria ponto alto*)
+          //CRIA PONTO NO z alto no giro completo
+          //monta codigo
+          frmFormGerador.Memo2.Lines.Add('#Monta Codigo de Giro final no ALto');
+          frmFormGerador.Memo2.Lines.Add('SETE PX6 (1),' + IntToStr(XP_APROCH) + ';');
+          frmFormGerador.Memo2.Lines.Add('SETE PX6 (2),' + IntToStr(YP_APROCH) + ';');
+          frmFormGerador.Memo2.Lines.Add('SETE PX6 (3),' + IntToStr(ZP_MOV_SEG) + ';');
+          frmFormGerador.Memo2.Lines.Add('SETE PX6 (4),' + IntToStr(WP_APROCH) + ';');
+          frmFormGerador.Memo2.Lines.Add('ADDP P6, PX6;');
+          (*fim do ponto de seguranca*)
+        end;
+
+      END;
+      (*****************************************)
+      (*****************************************)
+
+      (*VERIFICA ANGULO FINAL*)
+      WP_MOV_FIN := WP_FIN;
+      IF WP_MOV_FIN = 90 then
+        WP_ANG := 90;
+      if WP_MOV_FIN = 180 then
+        WP_ANG := 90 + 45;
+      if WP_MOV_FIN = 270 then
+        WP_ANG := 90 + 90;
+      if WP_ANG = 0 then
+        WP_ANG := 90 - 45;
+
+
+      //CRIA PONTO NO PROGRAMA
+      //monta codigo
+      frmFormGerador.Memo2.Lines.Add('SETE PX0 (1),' + IntToStr(XP_MOV_SEG) + ';');
+      frmFormGerador.Memo2.Lines.Add('SETE PX0 (2),' + IntToStr(YP_MOV_SEG) + ';');
+      frmFormGerador.Memo2.Lines.Add('SETE PX0 (3),' + IntToStr(ZP_MOV_SEG) + ';');
+      frmFormGerador.Memo2.Lines.Add('SETE PX0 (4),' + IntToStr(WP_ANG) + ';');
+      frmFormGerador.Memo2.Lines.Add('ADDP P0, PX0;');
+      (*fim do ponto de seguranca*)
+
+      //PONTO SEGURANCA RETORNO
+      frmFormGerador.Memo2.Lines.Add('SETE PX5 (1),' + IntToStr(XP_MOV_SEG) + ';');
+      frmFormGerador.Memo2.Lines.Add('SETE PX5 (2),' + IntToStr(YP_MOV_SEG) + ';');
+      frmFormGerador.Memo2.Lines.Add('SETE PX5 (3),' + IntToStr(ZP_MOV_SEG) + ';');
+      frmFormGerador.Memo2.Lines.Add('SETE PX5 (4),' + IntToStr(WP_ANG) + ';');
+      frmFormGerador.Memo2.Lines.Add('ADDP P5, PX5;');
+      (*fim do ponto de seguranca*)
+
+
+      (* ponto de aproximação*)
+      XP_APROCH := XP_APP;
+      YP_APROCH := YP_APP;
+      ZP_APROCH := ZP_APP;
+      WP_APROCH := WP_APP;
+
+      //CRIA PONTO NO PROGRAMA
+      //monta codigo
+      frmFormGerador.Memo2.Lines.Add('SETE PX1 (1),' + IntToStr(XP_APROCH) + ';');
+      frmFormGerador.Memo2.Lines.Add('SETE PX1 (2),' + IntToStr(YP_APROCH) + ';');
+      frmFormGerador.Memo2.Lines.Add('SETE PX1 (3),' + IntToStr(ZP_APROCH) + ';');
+      frmFormGerador.Memo2.Lines.Add('SETE PX1 (4),' + IntToStr(WP_APROCH) + ';');
+      frmFormGerador.Memo2.Lines.Add('ADDP P1, PX1;');
+      (***************************)
+
+
+      (*****************************************)
+      XP_MOV_FIN := XP_FIN;
+      YP_MOV_FIN := YP_FIN;
+      ZP_MOV_FIN := ZP_FIN;
+      WP_MOV_FIN := WP_FIN;
+
+      //CRIA PONTO NO PROGRAMA
+      //monta codigo
+      frmFormGerador.Memo2.Lines.Add('SETE PX2 (1),' + IntToStr(XP_MOV_FIN) + ';');
+      frmFormGerador.Memo2.Lines.Add('SETE PX2 (2),' + IntToStr(YP_MOV_FIN) + ';');
+      frmFormGerador.Memo2.Lines.Add('SETE PX2 (3),' + IntToStr(ZP_MOV_FIN) + ';');
+      frmFormGerador.Memo2.Lines.Add('SETE PX2 (4),' + IntToStr(WP_MOV_FIN) + ';');
+      frmFormGerador.Memo2.Lines.Add('ADDP P2, PX2;');
+      (**********************************)
+
+      (* PONTO DE SEGURANCA BAIXA*)
+      (*MOVEMNTA APENAS Z NO PONTO DE DESCIDA*)
+      if (ZP_APROCH < (POS_Z_SUBIDA - VAR_ALT)) then
+      begin
+
+        //CRIA PONTO NO PROGRAMA
+
+        frmFormGerador.Memo2.Lines.Add('#CRIA PONTO DE SEGURANCA BAIXA');
+        //monta codigo
+
+        if WP_FIN = 90 then
+        BEGIN
+          frmFormGerador.Memo2.Lines.Add('SETE PX3 (1),' + IntToStr(XP_MOV_FIN) + ';');
+          frmFormGerador.Memo2.Lines.Add('SETE PX3 (2),' + IntToStr(YP_MOV_FIN - 40) + ';');
+          frmFormGerador.Memo2.Lines.Add('SETE PX3 (3),' + IntToStr(ZP_MOV_SEG) + ';');
+          frmFormGerador.Memo2.Lines.Add('SETE PX3 (4),' + IntToStr(WP_MOV_FIN) + ';');
+          frmFormGerador.Memo2.Lines.Add('ADDP P3, PX3;');
+        END;
+        if WP_FIN = 180 then
+        BEGIN
+          frmFormGerador.Memo2.Lines.Add('SETE PX3 (1),' + IntToStr(XP_MOV_FIN + 40) + ';');
+          frmFormGerador.Memo2.Lines.Add('SETE PX3 (2),' + IntToStr(YP_MOV_FIN) + ';');
+          frmFormGerador.Memo2.Lines.Add('SETE PX3 (3),' + IntToStr(ZP_MOV_SEG) + ';');
+          frmFormGerador.Memo2.Lines.Add('SETE PX3 (4),' + IntToStr(WP_MOV_FIN) + ';');
+          frmFormGerador.Memo2.Lines.Add('ADDP P3, PX3;');
+        END;
+        if WP_FIN = 270 then
+        BEGIN
+          frmFormGerador.Memo2.Lines.Add('SETE PX3 (1),' + IntToStr(XP_MOV_FIN) + ';');
+          frmFormGerador.Memo2.Lines.Add('SETE PX3 (2),' + IntToStr(YP_MOV_FIN + 40) + ';');
+          frmFormGerador.Memo2.Lines.Add('SETE PX3 (3),' + IntToStr(ZP_MOV_SEG) + ';');
+          frmFormGerador.Memo2.Lines.Add('SETE PX3 (4),' + IntToStr(WP_MOV_FIN) + ';');
+          frmFormGerador.Memo2.Lines.Add('ADDP P3, PX3;');
+        END;
+        if WP_FIN = 0 then
+        BEGIN
+          frmFormGerador.Memo2.Lines.Add('SETE PX3 (1),' + IntToStr(XP_MOV_FIN - 40) + ';');
+          frmFormGerador.Memo2.Lines.Add('SETE PX3 (2),' + IntToStr(YP_MOV_FIN) + ';');
+          frmFormGerador.Memo2.Lines.Add('SETE PX3 (3),' + IntToStr(ZP_MOV_SEG) + ';');
+          frmFormGerador.Memo2.Lines.Add('SETE PX3 (4),' + IntToStr(WP_MOV_FIN) + ';');
+          frmFormGerador.Memo2.Lines.Add('ADDP P3, PX3;');
+        END;
+        (*****************************)
+
+      end ELSE
+      begin
+
+        //CRIA PONTO NO PROGRAMA
+
+        frmFormGerador.Memo2.Lines.Add('#CRIA PONTO DE SEGURANCA ALTA');
+        //monta codigo
+        if WP_FIN = 90 then
+        BEGIN
+          frmFormGerador.Memo2.Lines.Add('SETE PX3 (1),' + IntToStr(XP_MOV_FIN) + ';');
+          frmFormGerador.Memo2.Lines.Add('SETE PX3 (2),' + IntToStr(YP_MOV_FIN - 40) + ';');
+          frmFormGerador.Memo2.Lines.Add('SETE PX3 (3),' + IntToStr(ZP_MOV_SEG) + ';');
+          frmFormGerador.Memo2.Lines.Add('SETE PX3 (4),' + IntToStr(WP_MOV_FIN) + ';');
+          frmFormGerador.Memo2.Lines.Add('ADDP P3, PX3;');
+        END;
+        if WP_FIN = 180 then
+        BEGIN
+          frmFormGerador.Memo2.Lines.Add('SETE PX3 (1),' + IntToStr(XP_MOV_FIN + 40) + ';');
+          frmFormGerador.Memo2.Lines.Add('SETE PX3 (2),' + IntToStr(YP_MOV_FIN) + ';');
+          frmFormGerador.Memo2.Lines.Add('SETE PX3 (3),' + IntToStr(ZP_MOV_SEG) + ';');
+          frmFormGerador.Memo2.Lines.Add('SETE PX3 (4),' + IntToStr(WP_MOV_FIN) + ';');
+          frmFormGerador.Memo2.Lines.Add('ADDP P3, PX3;');
+        END;
+        if WP_FIN = 270 then
+        BEGIN
+          frmFormGerador.Memo2.Lines.Add('SETE PX3 (1),' + IntToStr(XP_MOV_FIN) + ';');
+          frmFormGerador.Memo2.Lines.Add('SETE PX3 (2),' + IntToStr(YP_MOV_FIN + 40) + ';');
+          frmFormGerador.Memo2.Lines.Add('SETE PX3 (3),' + IntToStr(ZP_MOV_SEG) + ';');
+          frmFormGerador.Memo2.Lines.Add('SETE PX3 (4),' + IntToStr(WP_MOV_FIN) + ';');
+          frmFormGerador.Memo2.Lines.Add('ADDP P3, PX3;');
+        END;
+        if WP_FIN = 0 then
+        BEGIN
+          frmFormGerador.Memo2.Lines.Add('SETE PX3 (1),' + IntToStr(XP_MOV_FIN - 40) + ';');
+          frmFormGerador.Memo2.Lines.Add('SETE PX3 (2),' + IntToStr(YP_MOV_FIN) + ';');
+          frmFormGerador.Memo2.Lines.Add('SETE PX3 (3),' + IntToStr(ZP_MOV_SEG) + ';');
+          frmFormGerador.Memo2.Lines.Add('SETE PX3 (4),' + IntToStr(WP_MOV_FIN) + ';');
+          frmFormGerador.Memo2.Lines.Add('ADDP P3, PX3;');
+        END;
+        (*****************************)
+
+      end;
+
+      (***********************************)
+
+
+      (*DETERINA PONTO DE AFASTAMENTO*)
+      //afastamento
+      (*******************************)
+      frmFormGerador.Memo2.Lines.Add('#CRIA PONTO DE afastamento');
+      //monta codigo
+      if (WP_FIN = 90) then
+      begin
+        frmFormGerador.Memo2.Lines.Add('SETE PX4 (1),' + IntToStr(XP_MOV_FIN) + ';');
+        frmFormGerador.Memo2.Lines.Add('SETE PX4 (2),' + IntToStr(YP_MOV_FIN - 40) + ';');
+        frmFormGerador.Memo2.Lines.Add('SETE PX4 (3),' + IntToStr(ZP_MOV_FIN) + ';');
+        frmFormGerador.Memo2.Lines.Add('SETE PX4 (4),' + IntToStr(WP_MOV_FIN) + ';');
+        frmFormGerador.Memo2.Lines.Add('ADDP P4, PX4;');
+      end;
+
+      if (WP_FIN = 180) then
+      begin
+        frmFormGerador.Memo2.Lines.Add('SETE PX4 (1),' + IntToStr(XP_MOV_FIN + 40) + ';');
+        frmFormGerador.Memo2.Lines.Add('SETE PX4 (2),' + IntToStr(YP_MOV_FIN) + ';');
+        frmFormGerador.Memo2.Lines.Add('SETE PX4 (3),' + IntToStr(ZP_MOV_FIN) + ';');
+        frmFormGerador.Memo2.Lines.Add('SETE PX4 (4),' + IntToStr(WP_MOV_FIN) + ';');
+        frmFormGerador.Memo2.Lines.Add('ADDP P4, PX4;');
+      end;
+
+      if (WP_FIN = 270) then
+      begin
+        frmFormGerador.Memo2.Lines.Add('SETE PX4 (1),' + IntToStr(XP_MOV_FIN) + ';');
+        frmFormGerador.Memo2.Lines.Add('SETE PX4 (2),' + IntToStr(YP_MOV_FIN + 40) + ';');
+        frmFormGerador.Memo2.Lines.Add('SETE PX4 (3),' + IntToStr(ZP_MOV_FIN) + ';');
+        frmFormGerador.Memo2.Lines.Add('SETE PX4 (4),' + IntToStr(WP_MOV_FIN) + ';');
+        frmFormGerador.Memo2.Lines.Add('ADDP P4, PX4;');
+      end;
+
+      if (WP_FIN = 0) then
+      begin
+        frmFormGerador.Memo2.Lines.Add('SETE PX4 (1),' + IntToStr(XP_MOV_FIN - 40) + ';');
+        frmFormGerador.Memo2.Lines.Add('SETE PX4 (2),' + IntToStr(YP_MOV_FIN) + ';');
+        frmFormGerador.Memo2.Lines.Add('SETE PX4 (3),' + IntToStr(ZP_MOV_FIN) + ';');
+        frmFormGerador.Memo2.Lines.Add('SETE PX4 (4),' + IntToStr(WP_MOV_FIN) + ';');
+        frmFormGerador.Memo2.Lines.Add('ADDP P4, PX4;');
+      end;
+
+      (********************************)
+
+      (***********************************)
+      (***********************************)
+      (*FINAL DO CODIGO DE GERACAO DE PONTO*)
+      (***********************************)
+
+      (*FINAL DOS CALCULOS*)
+
+      frmFormGerador.Memo2.Lines.Add('#Ponto de Subida da Caixa');
+      frmFormGerador.Memo2.Lines.Add(Ponto_Subida);
+
+      //checa se palete ok
+      frmFormGerador.Memo2.Lines.Add('#Check Palete OK');
+      frmFormGerador.Memo2.Lines.Add(QRYROBO.FieldByName('INICIO_PALETE').AsString);
+
+      (*****************************************)
+      frmFormGerador.Memo2.Lines.Add('#Ponto de Seguranca FWD');
+      frmFormGerador.Memo2.Lines.Add('MOVJ P0, V' + IntToStr(VELOC) + ', Z' + IntToStr(CURVA_APROCH));
+      (*****************************)
+
+
+      (*CRIA PONTO DE GIRO FINAL NO ALTO*)
+      if WP_FIN <> 90 then
+      begin
+        (*****************************************)
+        frmFormGerador.Memo2.Lines.Add('#Ponto de GIRO ALTO');
+        frmFormGerador.Memo2.Lines.Add('MOVJ P6, V' + IntToStr(VELOC) + ', Z' + IntToStr(CURVA_APROCH));
+        (*****************************)
+      end;
+
+
+      (*****************************************)
+      frmFormGerador.Memo2.Lines.Add('#Ponto de Aproximacao');
+      frmFormGerador.Memo2.Lines.Add('MOVJ P1, V' + IntToStr(VELOC) + ', Z' + IntToStr(CURVA_APROCH));
+      (*****************************)
+
+
+      (*****************************************)
+      frmFormGerador.Memo2.Lines.Add('#Ponto de alocacao');
+      frmFormGerador.Memo2.Lines.Add('MOVL P2, V' + IntToStr(V_PALETE) + ', Z0');
+      (*****************************)
+
+
+      //adiciona ABERTURA DA PINCA
+      frmFormGerador.Memo2.Lines.Add('#add IOs abertura da pinca');
+      frmFormGerador.Memo2.Lines.Add(QRYROBO.FieldByName('ABRIR_GARRA').AsString);
+
+
+      (*****************************)
+      (* ponto de afastamento*)
+      frmFormGerador.Memo2.Lines.Add('#PONTO DE AFASTAMENTO');
+      frmFormGerador.Memo2.Lines.Add('MOVJ P4, V' + IntToStr(VELOC) + ', Z' + IntToStr(CURVA_APROCH));
+      (*****************************)
+
+
+
+      if (ZP_APROCH < (POS_Z_SUBIDA - VAR_ALT)) then
+      begin
+
+        //CRIA PONTO NO PROGRAMA DE SEGURANCA
+        frmFormGerador.Memo2.Lines.Add('#PONTO SEGURANCA BAIXA');
+        frmFormGerador.Memo2.Lines.Add('MOVJ P3, V' + IntToStr(VELOC) + ', Z' + IntToStr(CURVA_APROCH));
+        (*****************************)
+
+      end else
+      BEGIN
+
+         //CRIA PONTO NO PROGRAMA DE SEGURANCA
+        frmFormGerador.Memo2.Lines.Add('#PONTO SEGURANCA ALTA');
+        frmFormGerador.Memo2.Lines.Add('MOVJ P3, V' + IntToStr(VELOC) + ', Z' + IntToStr(CURVA_APROCH));
+        (*****************************)
+
+      end;
+
+      //adiciona RETORNO DA PINCA
+      frmFormGerador.Memo2.Lines.Add('#add IOs para retorno da pinca BAIXA');
+      frmFormGerador.Memo2.Lines.Add(QRYROBO.FieldByName('ABRIR_GARRA').AsString);
+
+      //retorno ao ponto de segurança
+      (*****************************************)
+      frmFormGerador.Memo2.Lines.Add('#Retorno ao Ponto de Seguranca FWD');
+      (*****************************************)
+      frmFormGerador.Memo2.Lines.Add('#PONTO ANULADO PELO Z');
+      //CRIA PONTO NO PROGRAMA
+      //monta codigo
+      //frmFormGerador.Memo2.Lines.Add('MOVJ P5, V' + IntToStr(90) + ', Z' + IntToStr(CURVA_APROCH));
+      (*****************************)
+
+
+      if (ZP_APROCH >= POS_Z_SUBIDA) then
+      begin
+        //adiciona RETORNO DA PINCA
+        frmFormGerador.Memo2.Lines.Add('#add IOs para retorno da pinca ALTA');
+        frmFormGerador.Memo2.Lines.Add(QRYROBO.FieldByName('REPOSICIONA_GARRA').AsString);
+      end;
+
+    end;
+
+
+    //manda sinal de palete completo
+    //adiciona palete cheio
+    frmFormGerador.Memo2.Lines.Add('#add IOs PALETE COMPLETO');
+    frmFormGerador.Memo2.Lines.Add(QRYROBO.FieldByName('FIM_PALETE').AsString);
+
     frmFormGerador.Memo2.Lines.Add(ponto_retorno);
 
-    if I = 1 then
-    begin
-      frmFormGerador.Memo2.Lines.Add('#JUMP REINICIO');
-      frmFormGerador.Memo2.Lines.Add('LAB0;');
-    end;
-
-
-    frmFormGerador.Memo2.Lines.Add(ponto_pre);
-    frmFormGerador.Memo2.Lines.Add(ponto_aguardo);
-
-    //adiciona aguarda peça no sensor
-    frmFormGerador.Memo2.Lines.Add('#add IOs aguarda caixa no Sensor');
-    frmFormGerador.Memo2.Lines.Add(QRYROBO.FieldByName('AGUARDAR_PC_SENSOR').AsString);
-
-    frmFormGerador.Memo2.Lines.Add('#pontos de alinhamento');
-    frmFormGerador.Memo2.Lines.Add(ponto_alinhamento);
-
-    //adiciona fechamento da Pinca
-    frmFormGerador.Memo2.Lines.Add('#add IOs fechamento pinca');
-    frmFormGerador.Memo2.Lines.Add(QRYROBO.FieldByName('FECHAR_GARRA').AsString);
-
-    (*CALCULA AS POSICOES E GIROS*)
-    (****************************************)
-    (*CRIA PONTOS DE SEGURANCA E ALOCAÇÃO*)
-    (****************************************)
-    (*adidciona memoria de ponto de seguranc*)
-    //VERIFICA Z PARA PONTO DE SEGURANÇA
-    //localiza ponto da caixa atual;
-    BuscaPontosCaixa(I);
-    ZP_MOV_SEG := ZP_FIN;
-    ZP_APROCH := ZP_APP;
-
-    (* ponto de aproximação*)
-    XP_APROCH := XP_APP;
-    YP_APROCH := YP_APP;
-    ZP_APROCH := ZP_APP;
-    WP_APROCH := WP_APP;
-
-    if (ZP_APROCH < (POS_Z_SUBIDA - VAR_ALT)) then
-    begin
-      XP_MOV_SEG := QRYROBO.FieldByName('PONTO_INTERSEG_B_X').AsInteger;
-      YP_MOV_SEG := QRYROBO.FieldByName('PONTO_INTERSEG_B_Y').AsInteger;
-      ZP_MOV_SEG := pos_z_subida;
-      CURVA_APROCH := QRYROBO.FieldByName('PONTO_INTERSEG_B_Z').AsInteger;
-
-
-      if WP_FIN <> 90 then
-      begin
-        (*Se tiver gito cria ponto alto*)
-        //CRIA PONTO NO z alto no giro completo
-        //monta codigo
-        frmFormGerador.Memo2.Lines.Add('#Monta Codigo de Giro final no ALto');
-        frmFormGerador.Memo2.Lines.Add('SETE PX6 (1),' + IntToStr(XP_APROCH) + ';');
-        frmFormGerador.Memo2.Lines.Add('SETE PX6 (2),' + IntToStr(YP_APROCH) + ';');
-        frmFormGerador.Memo2.Lines.Add('SETE PX6 (3),' + IntToStr(ZP_MOV_SEG) + ';');
-        frmFormGerador.Memo2.Lines.Add('SETE PX6 (4),' + IntToStr(WP_APROCH) + ';');
-        frmFormGerador.Memo2.Lines.Add('ADDP P6, PX6;');
-        (*fim do ponto de seguranca*)
-      end;
-
-    end
-    ELSE
-    BEGIN
-      XP_MOV_SEG := QRYROBO.FieldByName('PONTO_INTERSEG_A_X').AsInteger;
-      YP_MOV_SEG := QRYROBO.FieldByName('PONTO_INTERSEG_A_Y').AsInteger;
-
-      if (ZP_MOV_SEG < POS_Z_SUBIDA) then
-      ZP_MOV_SEG := pos_z_subida + VAR_ALT ELSE
-      ZP_MOV_SEG := ZP_MOV_SEG + VAR_ALT;
-
-      CURVA_APROCH := QRYROBO.FieldByName('PONTO_INTERSEG_A_Z').AsInteger;
-
-
-      if WP_FIN <> 90 then
-      begin
-        (*Se tiver gito cria ponto alto*)
-        //CRIA PONTO NO z alto no giro completo
-        //monta codigo
-        frmFormGerador.Memo2.Lines.Add('#Monta Codigo de Giro final no ALto');
-        frmFormGerador.Memo2.Lines.Add('SETE PX6 (1),' + IntToStr(XP_APROCH) + ';');
-        frmFormGerador.Memo2.Lines.Add('SETE PX6 (2),' + IntToStr(YP_APROCH) + ';');
-        frmFormGerador.Memo2.Lines.Add('SETE PX6 (3),' + IntToStr(ZP_MOV_SEG) + ';');
-        frmFormGerador.Memo2.Lines.Add('SETE PX6 (4),' + IntToStr(WP_APROCH) + ';');
-        frmFormGerador.Memo2.Lines.Add('ADDP P6, PX6;');
-        (*fim do ponto de seguranca*)
-      end;
-
-    END;
-    (*****************************************)
-    (*****************************************)
-
-    (*VERIFICA ANGULO FINAL*)
-    WP_MOV_FIN := WP_FIN;
-    IF WP_MOV_FIN = 90 then
-      WP_ANG := 90;
-    if WP_MOV_FIN = 180 then
-      WP_ANG := 90 + 45;
-    if WP_MOV_FIN = 270 then
-      WP_ANG := 90 + 90;
-    if WP_ANG = 0 then
-      WP_ANG := 90 - 45;
-
-
-    //CRIA PONTO NO PROGRAMA
-    //monta codigo
-    frmFormGerador.Memo2.Lines.Add('SETE PX0 (1),' + IntToStr(XP_MOV_SEG) + ';');
-    frmFormGerador.Memo2.Lines.Add('SETE PX0 (2),' + IntToStr(YP_MOV_SEG) + ';');
-    frmFormGerador.Memo2.Lines.Add('SETE PX0 (3),' + IntToStr(ZP_MOV_SEG) + ';');
-    frmFormGerador.Memo2.Lines.Add('SETE PX0 (4),' + IntToStr(WP_ANG) + ';');
-    frmFormGerador.Memo2.Lines.Add('ADDP P0, PX0;');
-    (*fim do ponto de seguranca*)
-
-    //PONTO SEGURANCA RETORNO
-    frmFormGerador.Memo2.Lines.Add('SETE PX5 (1),' + IntToStr(XP_MOV_SEG) + ';');
-    frmFormGerador.Memo2.Lines.Add('SETE PX5 (2),' + IntToStr(YP_MOV_SEG) + ';');
-    frmFormGerador.Memo2.Lines.Add('SETE PX5 (3),' + IntToStr(ZP_MOV_SEG) + ';');
-    frmFormGerador.Memo2.Lines.Add('SETE PX5 (4),' + IntToStr(WP_ANG) + ';');
-    frmFormGerador.Memo2.Lines.Add('ADDP P5, PX5;');
-    (*fim do ponto de seguranca*)
-
-
-    (* ponto de aproximação*)
-    XP_APROCH := XP_APP;
-    YP_APROCH := YP_APP;
-    ZP_APROCH := ZP_APP;
-    WP_APROCH := WP_APP;
-
-    //CRIA PONTO NO PROGRAMA
-    //monta codigo
-    frmFormGerador.Memo2.Lines.Add('SETE PX1 (1),' + IntToStr(XP_APROCH) + ';');
-    frmFormGerador.Memo2.Lines.Add('SETE PX1 (2),' + IntToStr(YP_APROCH) + ';');
-    frmFormGerador.Memo2.Lines.Add('SETE PX1 (3),' + IntToStr(ZP_APROCH) + ';');
-    frmFormGerador.Memo2.Lines.Add('SETE PX1 (4),' + IntToStr(WP_APROCH) + ';');
-    frmFormGerador.Memo2.Lines.Add('ADDP P1, PX1;');
-    (***************************)
-
-
-    (*****************************************)
-    XP_MOV_FIN := XP_FIN;
-    YP_MOV_FIN := YP_FIN;
-    ZP_MOV_FIN := ZP_FIN;
-    WP_MOV_FIN := WP_FIN;
-
-    //CRIA PONTO NO PROGRAMA
-    //monta codigo
-    frmFormGerador.Memo2.Lines.Add('SETE PX2 (1),' + IntToStr(XP_MOV_FIN) + ';');
-    frmFormGerador.Memo2.Lines.Add('SETE PX2 (2),' + IntToStr(YP_MOV_FIN) + ';');
-    frmFormGerador.Memo2.Lines.Add('SETE PX2 (3),' + IntToStr(ZP_MOV_FIN) + ';');
-    frmFormGerador.Memo2.Lines.Add('SETE PX2 (4),' + IntToStr(WP_MOV_FIN) + ';');
-    frmFormGerador.Memo2.Lines.Add('ADDP P2, PX2;');
-    (**********************************)
-
-    (* PONTO DE SEGURANCA BAIXA*)
-    (*MOVEMNTA APENAS Z NO PONTO DE DESCIDA*)
-    if (ZP_APROCH < (POS_Z_SUBIDA - VAR_ALT)) then
-    begin
-
-      //CRIA PONTO NO PROGRAMA
-
-      frmFormGerador.Memo2.Lines.Add('#CRIA PONTO DE SEGURANCA BAIXA');
-      //monta codigo
-
-      if WP_FIN = 90 then
-      BEGIN
-        frmFormGerador.Memo2.Lines.Add('SETE PX3 (1),' + IntToStr(XP_MOV_FIN) + ';');
-        frmFormGerador.Memo2.Lines.Add('SETE PX3 (2),' + IntToStr(YP_MOV_FIN - 40) + ';');
-        frmFormGerador.Memo2.Lines.Add('SETE PX3 (3),' + IntToStr(ZP_MOV_SEG) + ';');
-        frmFormGerador.Memo2.Lines.Add('SETE PX3 (4),' + IntToStr(WP_MOV_FIN) + ';');
-        frmFormGerador.Memo2.Lines.Add('ADDP P3, PX3;');
-      END;
-      if WP_FIN = 180 then
-      BEGIN
-        frmFormGerador.Memo2.Lines.Add('SETE PX3 (1),' + IntToStr(XP_MOV_FIN + 40) + ';');
-        frmFormGerador.Memo2.Lines.Add('SETE PX3 (2),' + IntToStr(YP_MOV_FIN) + ';');
-        frmFormGerador.Memo2.Lines.Add('SETE PX3 (3),' + IntToStr(ZP_MOV_SEG) + ';');
-        frmFormGerador.Memo2.Lines.Add('SETE PX3 (4),' + IntToStr(WP_MOV_FIN) + ';');
-        frmFormGerador.Memo2.Lines.Add('ADDP P3, PX3;');
-      END;
-      if WP_FIN = 270 then
-      BEGIN
-        frmFormGerador.Memo2.Lines.Add('SETE PX3 (1),' + IntToStr(XP_MOV_FIN) + ';');
-        frmFormGerador.Memo2.Lines.Add('SETE PX3 (2),' + IntToStr(YP_MOV_FIN + 40) + ';');
-        frmFormGerador.Memo2.Lines.Add('SETE PX3 (3),' + IntToStr(ZP_MOV_SEG) + ';');
-        frmFormGerador.Memo2.Lines.Add('SETE PX3 (4),' + IntToStr(WP_MOV_FIN) + ';');
-        frmFormGerador.Memo2.Lines.Add('ADDP P3, PX3;');
-      END;
-      if WP_FIN = 0 then
-      BEGIN
-        frmFormGerador.Memo2.Lines.Add('SETE PX3 (1),' + IntToStr(XP_MOV_FIN - 40) + ';');
-        frmFormGerador.Memo2.Lines.Add('SETE PX3 (2),' + IntToStr(YP_MOV_FIN) + ';');
-        frmFormGerador.Memo2.Lines.Add('SETE PX3 (3),' + IntToStr(ZP_MOV_SEG) + ';');
-        frmFormGerador.Memo2.Lines.Add('SETE PX3 (4),' + IntToStr(WP_MOV_FIN) + ';');
-        frmFormGerador.Memo2.Lines.Add('ADDP P3, PX3;');
-      END;
-      (*****************************)
-
-    end ELSE
-    begin
-
-      //CRIA PONTO NO PROGRAMA
-
-      frmFormGerador.Memo2.Lines.Add('#CRIA PONTO DE SEGURANCA ALTA');
-      //monta codigo
-      if WP_FIN = 90 then
-      BEGIN
-        frmFormGerador.Memo2.Lines.Add('SETE PX3 (1),' + IntToStr(XP_MOV_FIN) + ';');
-        frmFormGerador.Memo2.Lines.Add('SETE PX3 (2),' + IntToStr(YP_MOV_FIN - 40) + ';');
-        frmFormGerador.Memo2.Lines.Add('SETE PX3 (3),' + IntToStr(ZP_MOV_SEG) + ';');
-        frmFormGerador.Memo2.Lines.Add('SETE PX3 (4),' + IntToStr(WP_MOV_FIN) + ';');
-        frmFormGerador.Memo2.Lines.Add('ADDP P3, PX3;');
-      END;
-      if WP_FIN = 180 then
-      BEGIN
-        frmFormGerador.Memo2.Lines.Add('SETE PX3 (1),' + IntToStr(XP_MOV_FIN + 40) + ';');
-        frmFormGerador.Memo2.Lines.Add('SETE PX3 (2),' + IntToStr(YP_MOV_FIN) + ';');
-        frmFormGerador.Memo2.Lines.Add('SETE PX3 (3),' + IntToStr(ZP_MOV_SEG) + ';');
-        frmFormGerador.Memo2.Lines.Add('SETE PX3 (4),' + IntToStr(WP_MOV_FIN) + ';');
-        frmFormGerador.Memo2.Lines.Add('ADDP P3, PX3;');
-      END;
-      if WP_FIN = 270 then
-      BEGIN
-        frmFormGerador.Memo2.Lines.Add('SETE PX3 (1),' + IntToStr(XP_MOV_FIN) + ';');
-        frmFormGerador.Memo2.Lines.Add('SETE PX3 (2),' + IntToStr(YP_MOV_FIN + 40) + ';');
-        frmFormGerador.Memo2.Lines.Add('SETE PX3 (3),' + IntToStr(ZP_MOV_SEG) + ';');
-        frmFormGerador.Memo2.Lines.Add('SETE PX3 (4),' + IntToStr(WP_MOV_FIN) + ';');
-        frmFormGerador.Memo2.Lines.Add('ADDP P3, PX3;');
-      END;
-      if WP_FIN = 0 then
-      BEGIN
-        frmFormGerador.Memo2.Lines.Add('SETE PX3 (1),' + IntToStr(XP_MOV_FIN - 40) + ';');
-        frmFormGerador.Memo2.Lines.Add('SETE PX3 (2),' + IntToStr(YP_MOV_FIN) + ';');
-        frmFormGerador.Memo2.Lines.Add('SETE PX3 (3),' + IntToStr(ZP_MOV_SEG) + ';');
-        frmFormGerador.Memo2.Lines.Add('SETE PX3 (4),' + IntToStr(WP_MOV_FIN) + ';');
-        frmFormGerador.Memo2.Lines.Add('ADDP P3, PX3;');
-      END;
-      (*****************************)
-
-    end;
-
-    (***********************************)
-
-
-    (*DETERINA PONTO DE AFASTAMENTO*)
-    //afastamento
-    (*******************************)
-    frmFormGerador.Memo2.Lines.Add('#CRIA PONTO DE afastamento');
-    //monta codigo
-    if (WP_FIN = 90) then
-    begin
-      frmFormGerador.Memo2.Lines.Add('SETE PX4 (1),' + IntToStr(XP_MOV_FIN) + ';');
-      frmFormGerador.Memo2.Lines.Add('SETE PX4 (2),' + IntToStr(YP_MOV_FIN - 40) + ';');
-      frmFormGerador.Memo2.Lines.Add('SETE PX4 (3),' + IntToStr(ZP_MOV_FIN) + ';');
-      frmFormGerador.Memo2.Lines.Add('SETE PX4 (4),' + IntToStr(WP_MOV_FIN) + ';');
-      frmFormGerador.Memo2.Lines.Add('ADDP P4, PX4;');
-    end;
-
-    if (WP_FIN = 180) then
-    begin
-      frmFormGerador.Memo2.Lines.Add('SETE PX4 (1),' + IntToStr(XP_MOV_FIN + 40) + ';');
-      frmFormGerador.Memo2.Lines.Add('SETE PX4 (2),' + IntToStr(YP_MOV_FIN) + ';');
-      frmFormGerador.Memo2.Lines.Add('SETE PX4 (3),' + IntToStr(ZP_MOV_FIN) + ';');
-      frmFormGerador.Memo2.Lines.Add('SETE PX4 (4),' + IntToStr(WP_MOV_FIN) + ';');
-      frmFormGerador.Memo2.Lines.Add('ADDP P4, PX4;');
-    end;
-
-    if (WP_FIN = 270) then
-    begin
-      frmFormGerador.Memo2.Lines.Add('SETE PX4 (1),' + IntToStr(XP_MOV_FIN) + ';');
-      frmFormGerador.Memo2.Lines.Add('SETE PX4 (2),' + IntToStr(YP_MOV_FIN + 40) + ';');
-      frmFormGerador.Memo2.Lines.Add('SETE PX4 (3),' + IntToStr(ZP_MOV_FIN) + ';');
-      frmFormGerador.Memo2.Lines.Add('SETE PX4 (4),' + IntToStr(WP_MOV_FIN) + ';');
-      frmFormGerador.Memo2.Lines.Add('ADDP P4, PX4;');
-    end;
-
-    if (WP_FIN = 0) then
-    begin
-      frmFormGerador.Memo2.Lines.Add('SETE PX4 (1),' + IntToStr(XP_MOV_FIN - 40) + ';');
-      frmFormGerador.Memo2.Lines.Add('SETE PX4 (2),' + IntToStr(YP_MOV_FIN) + ';');
-      frmFormGerador.Memo2.Lines.Add('SETE PX4 (3),' + IntToStr(ZP_MOV_FIN) + ';');
-      frmFormGerador.Memo2.Lines.Add('SETE PX4 (4),' + IntToStr(WP_MOV_FIN) + ';');
-      frmFormGerador.Memo2.Lines.Add('ADDP P4, PX4;');
-    end;
-
-    (********************************)
-
-    (***********************************)
-    (***********************************)
-    (*FINAL DO CODIGO DE GERACAO DE PONTO*)
-    (***********************************)
-
-    (*FINAL DOS CALCULOS*)
-
-    frmFormGerador.Memo2.Lines.Add('#Ponto de Subida da Caixa');
-    frmFormGerador.Memo2.Lines.Add(Ponto_Subida);
-
-    //checa se palete ok
-    frmFormGerador.Memo2.Lines.Add('#Check Palete OK');
-    frmFormGerador.Memo2.Lines.Add(QRYROBO.FieldByName('INICIO_PALETE').AsString);
-
-    (*****************************************)
-    frmFormGerador.Memo2.Lines.Add('#Ponto de Seguranca FWD');
-    frmFormGerador.Memo2.Lines.Add('MOVJ P0, V' + IntToStr(VELOC) + ', Z' + IntToStr(CURVA_APROCH));
-    (*****************************)
-
-
-    (*CRIA PONTO DE GIRO FINAL NO ALTO*)
-    if WP_FIN <> 90 then
-    begin
-      (*****************************************)
-      frmFormGerador.Memo2.Lines.Add('#Ponto de GIRO ALTO');
-      frmFormGerador.Memo2.Lines.Add('MOVJ P6, V' + IntToStr(VELOC) + ', Z' + IntToStr(CURVA_APROCH));
-      (*****************************)
-    end;
-
-
-    (*****************************************)
-    frmFormGerador.Memo2.Lines.Add('#Ponto de Aproximacao');
-    frmFormGerador.Memo2.Lines.Add('MOVJ P1, V' + IntToStr(VELOC) + ', Z' + IntToStr(CURVA_APROCH));
-    (*****************************)
-
-
-    (*****************************************)
-    frmFormGerador.Memo2.Lines.Add('#Ponto de alocacao');
-    frmFormGerador.Memo2.Lines.Add('MOVL P2, V' + IntToStr(V_PALETE) + ', Z0');
-    (*****************************)
-
-
-    //adiciona ABERTURA DA PINCA
-    frmFormGerador.Memo2.Lines.Add('#add IOs abertura da pinca');
-    frmFormGerador.Memo2.Lines.Add(QRYROBO.FieldByName('ABRIR_GARRA').AsString);
-
-
-    (*****************************)
-    (* ponto de afastamento*)
-    frmFormGerador.Memo2.Lines.Add('#PONTO DE AFASTAMENTO');
-    frmFormGerador.Memo2.Lines.Add('MOVJ P4, V' + IntToStr(VELOC) + ', Z' + IntToStr(CURVA_APROCH));
-    (*****************************)
-
-
-
-    if (ZP_APROCH < (POS_Z_SUBIDA - VAR_ALT)) then
-    begin
-
-      //CRIA PONTO NO PROGRAMA DE SEGURANCA
-      frmFormGerador.Memo2.Lines.Add('#PONTO SEGURANCA BAIXA');
-      frmFormGerador.Memo2.Lines.Add('MOVJ P3, V' + IntToStr(VELOC) + ', Z' + IntToStr(CURVA_APROCH));
-      (*****************************)
-
-    end else
-    BEGIN
-
-       //CRIA PONTO NO PROGRAMA DE SEGURANCA
-      frmFormGerador.Memo2.Lines.Add('#PONTO SEGURANCA ALTA');
-      frmFormGerador.Memo2.Lines.Add('MOVJ P3, V' + IntToStr(VELOC) + ', Z' + IntToStr(CURVA_APROCH));
-      (*****************************)
-
-    end;
-
-    //adiciona RETORNO DA PINCA
-    frmFormGerador.Memo2.Lines.Add('#add IOs para retorno da pinca BAIXA');
-    frmFormGerador.Memo2.Lines.Add(QRYROBO.FieldByName('ABRIR_GARRA').AsString);
-
-    //retorno ao ponto de segurança
-    (*****************************************)
-    frmFormGerador.Memo2.Lines.Add('#Retorno ao Ponto de Seguranca FWD');
-    (*****************************************)
-    frmFormGerador.Memo2.Lines.Add('#PONTO ANULADO PELO Z');
-    //CRIA PONTO NO PROGRAMA
-    //monta codigo
-    //frmFormGerador.Memo2.Lines.Add('MOVJ P5, V' + IntToStr(90) + ', Z' + IntToStr(CURVA_APROCH));
-    (*****************************)
-
-
-    if (ZP_APROCH >= POS_Z_SUBIDA) then
-    begin
-      //adiciona RETORNO DA PINCA
-      frmFormGerador.Memo2.Lines.Add('#add IOs para retorno da pinca ALTA');
-      frmFormGerador.Memo2.Lines.Add(QRYROBO.FieldByName('REPOSICIONA_GARRA').AsString);
-    end;
-
-  end;
-
-  //manda sinal de palete completo
-  //adiciona palete cheio
-  frmFormGerador.Memo2.Lines.Add('#add IOs PALETE COMPLETO');
-  frmFormGerador.Memo2.Lines.Add(QRYROBO.FieldByName('FIM_PALETE').AsString);
-
-  frmFormGerador.Memo2.Lines.Add(ponto_retorno);
-
-  //JUMP PARA CONTROLE DE INICIO
-  frmFormGerador.Memo2.Lines.Add('#JUMP REINICIO');
-  frmFormGerador.Memo2.Lines.Add('JUMP LAB0;');
-
-
-  IF(Application.MessageBox('Deseja gerar paletização para o lado direito?','',MB_YESNO+MB_ICONQUESTION)=MRYES)THEN
+    //JUMP PARA CONTROLE DE INICIO
+    frmFormGerador.Memo2.Lines.Add('#JUMP REINICIO');
+    frmFormGerador.Memo2.Lines.Add('JUMP LAB0;');
+  END;
+
+  //LADO DIREITO
+  IF(QRYROBO.FieldByName('TIPO_ROBO').AsInteger in [1,2])THEN
   BEGIN
     //inicio do loop de posições de caixas para o lado direito
     for I := 1 to T_cx do
@@ -1958,25 +2353,57 @@ begin
   frmFormGerador.Memo2.Lines.Add('END;');
 end;
 
+procedure TfrmDesenharPalete.GeraCodigosKosa;
+begin
+  Application.MessageBox('Robo do tipo KOSA ainda não tem implementação de geração de código. Contate o administrador!','Informação!',MB_OK+MB_ICONINFORMATION);
+  ABORT;
+end;
+
 procedure TfrmDesenharPalete.GeraImagemCxa;
 begin
-  Image2.Picture := nil;
-  Image2.Canvas.Brush.Color := $00333333;
-  Image2.Canvas.Rectangle(0,0,425,145);
+  if(QRYROBO.FieldByName('TIPO_PALETIZACAO').AsInteger in [0,2])then
+  begin
+    Image2.Picture := nil;
+    Image2.Canvas.Brush.Color := $00333333;
+    Image2.Canvas.Rectangle(0,0,425,145);
 
-  Image2.Canvas.Pen.Color := clWhite;
-  Image2.Canvas.MoveTo(10,135);
-  Image2.Canvas.LineTo(10,10);
-  Image2.Canvas.LineTo(5,15);
-  Image2.Canvas.MoveTo(10,10);
-  Image2.Canvas.LineTo(15,15);
+    Image2.Canvas.Pen.Color := clWhite;
+    Image2.Canvas.MoveTo(10,135);
+    Image2.Canvas.LineTo(10,10);
+    Image2.Canvas.LineTo(5,15);
+    Image2.Canvas.MoveTo(10,10);
+    Image2.Canvas.LineTo(15,15);
 
-  Image2.Canvas.Pen.Color := clWhite;
-  Image2.Canvas.MoveTo(10,135);
-  Image2.Canvas.LineTo(415,135);
-  Image2.Canvas.LineTo(410,130);
-  Image2.Canvas.MoveTo(415,135);
-  Image2.Canvas.LineTo(410,140);
+    Image2.Canvas.Pen.Color := clWhite;
+    Image2.Canvas.MoveTo(10,135);
+    Image2.Canvas.LineTo(415,135);
+    Image2.Canvas.LineTo(410,130);
+    Image2.Canvas.MoveTo(415,135);
+    Image2.Canvas.LineTo(410,140);
+  end;
+
+  if(QRYROBO.FieldByName('TIPO_PALETIZACAO').AsInteger in [1,2])then
+  begin
+    //imgCxaPaletDir
+
+    imgCxaPaletDir.Picture := nil;
+    imgCxaPaletDir.Canvas.Brush.Color := $00333333;
+    imgCxaPaletDir.Canvas.Rectangle(0,0,425,145);
+
+    imgCxaPaletDir.Canvas.Pen.Color := clWhite;
+    imgCxaPaletDir.Canvas.MoveTo(10,135);
+    imgCxaPaletDir.Canvas.LineTo(10,10);
+    imgCxaPaletDir.Canvas.LineTo(5,15);
+    imgCxaPaletDir.Canvas.MoveTo(10,10);
+    imgCxaPaletDir.Canvas.LineTo(15,15);
+
+    imgCxaPaletDir.Canvas.Pen.Color := clWhite;
+    imgCxaPaletDir.Canvas.MoveTo(10,135);
+    imgCxaPaletDir.Canvas.LineTo(415,135);
+    imgCxaPaletDir.Canvas.LineTo(410,130);
+    imgCxaPaletDir.Canvas.MoveTo(415,135);
+    imgCxaPaletDir.Canvas.LineTo(410,140);
+  end;
 end;
 
 procedure TfrmDesenharPalete.GeraPontosMovimento;
@@ -2143,6 +2570,12 @@ begin
   frmFormGerador.Memo7.Lines.Add('ADDP P14, PX14;');
   frmFormGerador.Memo7.Lines.Add('MOVL P14, V' + IntToStr(1200) + ', Z1;');
   (*****************************)
+end;
+
+procedure TfrmDesenharPalete.GeraPontosMovimentoKosa;
+begin
+   Application.MessageBox('Robo do tipo KOSA ainda não tem implementação de geração de pontos de movimento. Contate o administrador!','Informação!',MB_OK+MB_ICONINFORMATION);
+  ABORT;
 end;
 
 end.

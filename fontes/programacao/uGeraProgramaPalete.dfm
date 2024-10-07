@@ -107,6 +107,7 @@ inherited frmGeraProgramaPalete: TfrmGeraProgramaPalete
           0CE18612951F009597813AEE7F1300C1DAC83D34A97CDFD9E00677CB8075BC3E
           E0171A811CE8F7E0E9CD0000000049454E44AE426082}
         TabOrder = 3
+        OnClick = btnBuscarRoboClick
       end
       object dbdtpDataPrograma: TJvDBDateEdit
         Left = 183
@@ -814,6 +815,14 @@ inherited frmGeraProgramaPalete: TfrmGeraProgramaPalete
     object qryRoboCENTRO_ESTEIRA_Y: TIntegerField
       FieldName = 'CENTRO_ESTEIRA_Y'
       Origin = 'CENTRO_ESTEIRA_Y'
+    end
+    object qryRoboTIPO_ROBO: TIntegerField
+      FieldName = 'TIPO_ROBO'
+      Origin = 'TIPO_ROBO'
+    end
+    object qryRoboTIPO_PALETIZACAO: TIntegerField
+      FieldName = 'TIPO_PALETIZACAO'
+      Origin = 'TIPO_PALETIZACAO'
     end
   end
   object dsRobo: TDataSource

@@ -78,7 +78,6 @@ object frmDesenharCamada2: TfrmDesenharCamada2
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 2
-      Visible = False
       OnClick = Button2Click
     end
     object Button3: TButton

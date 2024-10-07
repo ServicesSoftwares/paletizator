@@ -2895,6 +2895,7 @@ object frmPrincipal: TfrmPrincipal
         D760A6AABA22C9077FEED088A2284312542A9594DF85733425918D4C4D9C7FE9
         FFFCBF1DB067A3B2569D69F077C10000000049454E44AE426082}
       TabOrder = 4
+      Visible = False
       OnClick = btnControlarRoboClick
     end
     object btnTrocarUsuario: TcxButton
@@ -3175,6 +3176,12 @@ object frmPrincipal: TfrmPrincipal
         Caption = 'Rob'#244's'
         OnClick = Robes1Click
       end
+      object N6: TMenuItem
+        Caption = '-'
+      end
+      object PermissesdeUsurio1: TMenuItem
+        Caption = 'Permiss'#245'es de Usu'#225'rio'
+      end
     end
     object Programao1: TMenuItem
       Caption = 'Programa'#231#227'o'
@@ -3184,10 +3191,12 @@ object frmPrincipal: TfrmPrincipal
       end
       object N3: TMenuItem
         Caption = '-'
+        Visible = False
       end
       object ControlarRob1: TMenuItem
         Caption = 'Controlar Rob'#244
         Enabled = False
+        Visible = False
         OnClick = ControlarRob1Click
       end
     end
@@ -3214,11 +3223,13 @@ object frmPrincipal: TfrmPrincipal
   end
   object ApplicationEvents: TApplicationEvents
     OnMinimize = ApplicationEventsMinimize
+    OnRestore = ApplicationEventsRestore
     Left = 1024
     Top = 8
   end
   object TrayIcon: TTrayIcon
     PopupMenu = PopupMenu
+    OnDblClick = TrayIconDblClick
     Left = 992
     Top = 8
   end

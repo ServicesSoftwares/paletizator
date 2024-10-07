@@ -270,6 +270,12 @@ type
     dbspdPosBatente: TJvDBSpinEdit;
     dbpsdVelSubida: TJvDBSpinEdit;
     dbspdCurvaAfast: TJvDBSpinEdit;
+    Label50: TLabel;
+    dbcbTipoRobo: TJvDBComboBox;
+    Label52: TLabel;
+    dbcbTipoPaletizacao: TJvDBComboBox;
+    qryRobosTIPO_ROBO: TIntegerField;
+    qryRobosTIPO_PALETIZACAO: TIntegerField;
     procedure btnSalvarClick(Sender: TObject);
     procedure btnPesquisarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -343,6 +349,8 @@ begin
     ValidaCampos(dbedtPorta, 'Porta');
     ValidaCampos(dbedtTimeOut, 'TimeOut');
   end;
+  ValidaCampos(dbcbTipoRobo, 'Tipo do Robô');
+  ValidaCampos(dbcbTipoPaletizacao, 'Tipo de Paletização');
 
   qryRobos.Post;
 
@@ -432,6 +440,8 @@ begin
   qryRobosALTURA_MESA_CURVA_CICLO.AsInteger := 0;
   qryRobosDATA_INCLUSAO.AsDateTime          := now;
   qryRobosIDUSUARIO_INCLUSAO.AsInteger      := CodUsuario;
+  qryRobosTIPO_ROBO.AsInteger               := 0;
+  qryRobosTIPO_PALETIZACAO.AsInteger        := 0;
 
   dbcbTipoComunicacaoChange(self);
 end;

@@ -130,6 +130,8 @@ type
     qryProgramaIDUSUARIO_INCLUSAO: TIntegerField;
     qryProgramaDATA_ULT_ALTERACAO: TSQLTimeStampField;
     qryProgramaIDUSUARIO_ULT_ALTERACAO: TIntegerField;
+    qryRoboTIPO_ROBO: TIntegerField;
+    qryRoboTIPO_PALETIZACAO: TIntegerField;
     procedure btnCancelarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
@@ -137,6 +139,7 @@ type
     procedure qryProgramaAfterInsert(DataSet: TDataSet);
     procedure qryProgramaAfterEdit(DataSet: TDataSet);
     procedure dblkpRoboEnter(Sender: TObject);
+    procedure btnBuscarRoboClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -151,6 +154,27 @@ implementation
 {$R *.dfm}
 
 uses uDM, uFuncoesGerais, uGeraProgramaPalete_DesenharCaixas, uFormGerador;
+
+procedure TfrmGeraProgramaPalete.btnBuscarRoboClick(Sender: TObject);
+var
+  R : STRING;
+begin
+  inherited;
+
+  R := Consultar('Cadastro de Robôs',
+                 'SELECT A.ID, A.NOME AS "Nome", CASE(A.TIPO_COMUNICAO) WHEN 0 THEN ''0 - USB'' ELSE ''1 - MODBUS'' END AS "Tipo de Comunicação" FROM TBROBO A', //SELECT
+                 '', //WHERE
+                 'A.NOME', //ORDER BY
+                 'A.NOME; A.ID', //CAMPOS FILTROS
+                 'Nome; ID', //LABEL CAMPOS FILTROS
+                 'ID');
+
+  IF(LENGTH(TRIM(R)) > 0)THEN
+  BEGIN
+    qryProgramaIDROBO.AsString := TRIM(R);
+    dblkpRoboEnter(SELF);
+  END;
+end;
 
 procedure TfrmGeraProgramaPalete.btnCancelarClick(Sender: TObject);
 begin
@@ -214,8 +238,8 @@ begin
   if(ds.State in [dsInsert])then
   begin
     Application.CreateForm(TfrmDesenharPalete, frmDesenharPalete);
-    frmDesenharPalete.PIDROBO := qryProgramaIDROBO.AsInteger;
-    frmDesenharPalete.PLARGURACXA := qryProgramaCAIXA_LARGURA.AsInteger;
+    frmDesenharPalete.PIDROBO         := qryProgramaIDROBO.AsInteger;
+    frmDesenharPalete.PLARGURACXA     := qryProgramaCAIXA_LARGURA.AsInteger;
     frmDesenharPalete.PCOMPRIMENTOCXA := qryProgramaCAIXA_COMPRIMENTO.AsInteger;
     frmDesenharPalete.PCOMPRIMENTOPLT := qryProgramaPALETE_COMPRIMENTO.AsInteger;
     frmDesenharPalete.PLARGURAPLT     := qryProgramaPALETE_LARGURA.AsInteger;

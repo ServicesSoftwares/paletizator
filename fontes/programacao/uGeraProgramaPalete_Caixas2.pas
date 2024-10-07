@@ -22,6 +22,8 @@ type
     { Private declarations }
   public
     { Public declarations }
+    VAR
+      PLADO : INTEGER;
   end;
 
 var
@@ -52,39 +54,79 @@ begin
   larg_cp   := Trunc(larg_c / escala_cx);
   comp_cp   := Trunc(comp_c / escala_cx);
 
-  TEdit(frmDesenharPalete.FindComponent('PPW' + IntToStr(NUM_CAIXA - CX_CM1))).Text := '88';
+  IF(PLADO = 0)THEN //ESQUERDO
+  BEGIN
+    TEdit(frmDesenharPalete.FindComponent('PPW' + IntToStr(NUM_CAIXA - CX_CM1))).Text := '88';
 
-  //CAIXA CAMADA 1
+    //CAIXA CAMADA 1
+    PANEL_CX := TPanel.Create(frmDesenharPalete);
+    with PANEL_CX do
+    begin
+      Name             :=  'CX' + IntToStr(NUM_CAIXA);
+      Caption          := Name + ' ' + '»↑88↑«';
+      Width            := comp_cp;
+      Height           := larg_cp;
+      Top              := 50;
+      Left             := 50;
+      ParentColor      := False;
+      ParentBackground := false;
+      BevelKind        := bkSoft;
+      BevelOuter       := bvNone;
+      StyleElements    := [];
+      Color            := clYellow;
 
-  PANEL_CX := TPanel.Create(frmDesenharPalete);
-  with PANEL_CX do
-  begin
-    Name             :=  'CX' + IntToStr(NUM_CAIXA);
-    Caption          := Name + ' ' + '»↑88↑«';
-    Width            := comp_cp;
-    Height           := larg_cp;
-    Top              := 50;
-    Left             := 50;
-    ParentColor      := False;
-    ParentBackground := false;
-    BevelKind        := bkSoft;
-    BevelOuter       := bvNone;
-    StyleElements    := [];
-    Color            := clYellow;
+      Parent        := frmDesenharPalete.Panel2;
 
-    Parent        := frmDesenharPalete.Panel2;
+      OnMouseMove   := frmDesenharPalete.ControlMouseMove;
+      OnMouseDown   := frmDesenharPalete.ControlMouseDown;
+      OnMouseUp     := frmDesenharPalete.ControlMouseUp;
+      OnClick       := frmDesenharPalete.controlClick_2;
+    end;
 
-    OnMouseMove   := frmDesenharPalete.ControlMouseMove;
-    OnMouseDown   := frmDesenharPalete.ControlMouseDown;
-    OnMouseUp     := frmDesenharPalete.ControlMouseUp;
-    OnClick       := frmDesenharPalete.controlClick_2;
-  end;
+    frmDesenharPalete.Button3.Enabled := FALSE;
+    frmDesenharPalete.Button5.Enabled := FALSE;
 
-  frmDesenharPalete.Button3.Enabled := FALSE;
-  frmDesenharPalete.Button5.Enabled := FALSE;
+    frmDesenharPalete.Label10.Caption := IntToStr(NUM_CAIXA - CX_CM1);
+    frmDesenharPalete.ContaCaixas;
+  END;
 
-  frmDesenharPalete.Label10.Caption := IntToStr(NUM_CAIXA - CX_CM1);
-  frmDesenharPalete.ContaCaixas;
+  IF(PLADO = 1)THEN //ESQUERDO
+  BEGIN
+    TEdit(frmDesenharPalete.FindComponent('DPPW' + IntToStr(NUM_CAIXA - CX_CM1))).Text := '88';
+
+    //CAIXA CAMADA 1
+    PANEL_CX := TPanel.Create(frmDesenharPalete);
+    with PANEL_CX do
+    begin
+      Name             :=  'DCX' + IntToStr(NUM_CAIXA);
+      Caption          := Name + ' ' + '»↑88↑«';
+      Width            := comp_cp;
+      Height           := larg_cp;
+      Top              := 50;
+      Left             := 50;
+      ParentColor      := False;
+      ParentBackground := false;
+      BevelKind        := bkSoft;
+      BevelOuter       := bvNone;
+      StyleElements    := [];
+      Color            := clYellow;
+
+      Parent        := frmDesenharPalete.Panel2;
+
+      OnMouseMove   := frmDesenharPalete.ControlMouseMove;
+      OnMouseDown   := frmDesenharPalete.ControlMouseDown;
+      OnMouseUp     := frmDesenharPalete.ControlMouseUp;
+      OnClick       := frmDesenharPalete.controlClick_2;
+    end;
+
+    frmDesenharPalete.Button3.Enabled := FALSE;
+    frmDesenharPalete.Button5.Enabled := FALSE;
+
+    frmDesenharPalete.Label10.Caption := IntToStr(NUM_CAIXA - CX_CM1);
+    frmDesenharPalete.ContaCaixas;
+  END;
+
+
   frmDesenharCamada2.Close;
 end;
 
@@ -101,40 +143,41 @@ begin
   larg_cp   := Trunc(larg_c / escala_cx);
   comp_cp   := Trunc(comp_c / escala_cx);
 
-  TEdit(frmDesenharPalete.FindComponent('PPW' + IntToStr(NUM_CAIXA - CX_CM1))).Text := '268';
+  IF(PLADO = 0)THEN //ESQUERDO
+  BEGIN
+    TEdit(frmDesenharPalete.FindComponent('PPW' + IntToStr(NUM_CAIXA - CX_CM1))).Text := '268';
 
-  //CAIXA CAMADA 1
+    //CAIXA CAMADA 1
+    PANEL_CX := TPanel.Create(frmDesenharPalete);
+    with PANEL_CX do
+    begin
+      Name             :=  'CX' + IntToStr(NUM_CAIXA);
+      Caption          := Name + ' ' + '»↓268↓«';
+      Width            := comp_cp;
+      Height           := larg_cp;
+      Top              := 50;
+      Left             := 50;
+      ParentColor      := False;
+      ParentBackground := false;
+      BevelKind        := bkSoft;
+      BevelOuter       := bvNone;
+      StyleElements    := [];
+      Color            := clYellow;
 
-  PANEL_CX := TPanel.Create(frmDesenharPalete);
-  with PANEL_CX do
-  begin
-    Name             :=  'CX' + IntToStr(NUM_CAIXA);
-    Caption          := Name + ' ' + '»↓268↓«';
-    Width            := comp_cp;
-    Height           := larg_cp;
-    Top              := 50;
-    Left             := 50;
-    ParentColor      := False;
-    ParentBackground := false;
-    BevelKind        := bkSoft;
-    BevelOuter       := bvNone;
-    StyleElements    := [];
-    Color            := clYellow;
+      Parent      := frmDesenharPalete.Panel2;
 
-    Parent      := frmDesenharPalete.Panel2;
+      OnMouseMove := frmDesenharPalete.ControlMouseMove;
+      OnMouseDown := frmDesenharPalete.ControlMouseDown;
+      OnMouseUp   := frmDesenharPalete.ControlMouseUp;
+      OnClick     := frmDesenharPalete.controlClick_2;
+    end;
 
-    OnMouseMove := frmDesenharPalete.ControlMouseMove;
-    OnMouseDown := frmDesenharPalete.ControlMouseDown;
-    OnMouseUp   := frmDesenharPalete.ControlMouseUp;
-    OnClick     := frmDesenharPalete.controlClick_2;
-  end;
+    frmDesenharPalete.Button3.Enabled := FALSE;
+    frmDesenharPalete.Button5.Enabled := FALSE;
 
-
-  frmDesenharPalete.Button3.Enabled := FALSE;
-  frmDesenharPalete.Button5.Enabled := FALSE;
-
-  frmDesenharPalete.Label10.Caption := IntToStr(NUM_CAIXA - CX_CM1);
-  frmDesenharPalete.ContaCaixas;
+    frmDesenharPalete.Label10.Caption := IntToStr(NUM_CAIXA - CX_CM1);
+    frmDesenharPalete.ContaCaixas;
+  END;
   frmDesenharCamada2.Close;
 end;
 
@@ -151,39 +194,41 @@ begin
   larg_cp   := Trunc(larg_c / escala_cx);
   comp_cp   := Trunc(comp_c / escala_cx);
 
-  TEdit(frmDesenharPalete.FindComponent('PPW' + IntToStr(NUM_CAIXA - CX_CM1))).Text := '0';
+  IF(PLADO = 0)THEN //ESQUERDO
+  BEGIN
+    TEdit(frmDesenharPalete.FindComponent('PPW' + IntToStr(NUM_CAIXA - CX_CM1))).Text := '0';
 
-  //CAIXA CAMADA 1
+    //CAIXA CAMADA 1
+    PANEL_CX := TPanel.Create(frmDesenharPalete);
+    with PANEL_CX do
+    begin
+      Name             :=  'CX' + IntToStr(NUM_CAIXA);
+      Caption          := Name + ' ' + '»←0←«';
+      Width            := LARG_cp;
+      Height           := COMP_cp;
+      Top              := 50;
+      Left             := 50;
+      ParentColor      := False;
+      ParentBackground := false;
+      BevelKind        := bkSoft;
+      BevelOuter       := bvNone;
+      StyleElements    := [];
+      Color            := clYellow;
 
-  PANEL_CX := TPanel.Create(frmDesenharPalete);
-  with PANEL_CX do
-  begin
-    Name             :=  'CX' + IntToStr(NUM_CAIXA);
-    Caption          := Name + ' ' + '»←0←«';
-    Width            := LARG_cp;
-    Height           := COMP_cp;
-    Top              := 50;
-    Left             := 50;
-    ParentColor      := False;
-    ParentBackground := false;
-    BevelKind        := bkSoft;
-    BevelOuter       := bvNone;
-    StyleElements    := [];
-    Color            := clYellow;
+      Parent := frmDesenharPalete.Panel2;
 
-    Parent := frmDesenharPalete.Panel2;
+      OnMouseMove := frmDesenharPalete.ControlMouseMove;
+      OnMouseDown := frmDesenharPalete.ControlMouseDown;
+      OnMouseUp   := frmDesenharPalete.ControlMouseUp;
+      OnClick     := frmDesenharPalete.controlClick_2;
+    end;
 
-    OnMouseMove := frmDesenharPalete.ControlMouseMove;
-    OnMouseDown := frmDesenharPalete.ControlMouseDown;
-    OnMouseUp   := frmDesenharPalete.ControlMouseUp;
-    OnClick     := frmDesenharPalete.controlClick_2;
-  end;
+    frmDesenharPalete.Button3.Enabled := FALSE;
+    frmDesenharPalete.Button5.Enabled := FALSE;
 
-  frmDesenharPalete.Button3.Enabled := FALSE;
-  frmDesenharPalete.Button5.Enabled := FALSE;
-
-  frmDesenharPalete.Label10.Caption := IntToStr(NUM_CAIXA - CX_CM1);
-  frmDesenharPalete.ContaCaixas;
+    frmDesenharPalete.Label10.Caption := IntToStr(NUM_CAIXA - CX_CM1);
+    frmDesenharPalete.ContaCaixas;
+  END;
   frmDesenharCamada2.Close;
 end;
 
@@ -200,41 +245,43 @@ begin
   larg_cp   := Trunc(larg_c / escala_cx);
   comp_cp   := Trunc(comp_c / escala_cx);
 
-  TEdit(frmDesenharPalete.FindComponent('PPW' + IntToStr(NUM_CAIXA - CX_CM1))).Text := '178';
+  IF(PLADO = 0)THEN //ESQUERDO
+  BEGIN
+    TEdit(frmDesenharPalete.FindComponent('PPW' + IntToStr(NUM_CAIXA - CX_CM1))).Text := '178';
 
-  //CAIXA CAMADA 1
+    //CAIXA CAMADA 1
+    PANEL_CX := TPanel.Create(frmDesenharPalete);
+    with PANEL_CX do
+    begin
+      Name             :=  'CX' + IntToStr(NUM_CAIXA);
+      Caption          := Name + ' ' + '»→178→«';
+      Width            := LARG_cp;
+      Height           := COMP_cp;
+      Top              := 50;
+      Left             := 50;
+      ParentColor      := False;
+      ParentBackground := false;
+      BevelKind        := bkSoft;
+      BevelOuter       := bvNone;
+      StyleElements    := [];
+      Color            := clYellow;
 
-  PANEL_CX := TPanel.Create(frmDesenharPalete);
-  with PANEL_CX do
-  begin
-    Name             :=  'CX' + IntToStr(NUM_CAIXA);
-    Caption          := Name + ' ' + '»→178→«';
-    Width            := LARG_cp;
-    Height           := COMP_cp;
-    Top              := 50;
-    Left             := 50;
-    ParentColor      := False;
-    ParentBackground := false;
-    BevelKind        := bkSoft;
-    BevelOuter       := bvNone;
-    StyleElements    := [];
-    Color            := clYellow;
+      Parent      := frmDesenharPalete.Panel2;
 
-    Parent      := frmDesenharPalete.Panel2;
+      OnMouseMove := frmDesenharPalete.ControlMouseMove;
+      OnMouseDown := frmDesenharPalete.ControlMouseDown;
+      OnMouseUp   := frmDesenharPalete.ControlMouseUp;
+      OnClick     := frmDesenharPalete.controlClick_2;
 
-    OnMouseMove := frmDesenharPalete.ControlMouseMove;
-    OnMouseDown := frmDesenharPalete.ControlMouseDown;
-    OnMouseUp   := frmDesenharPalete.ControlMouseUp;
-    OnClick     := frmDesenharPalete.controlClick_2;
+    end;
 
-  end;
+    frmDesenharPalete.Button3.Enabled := FALSE;
+    frmDesenharPalete.Button5.Enabled := FALSE;
 
+    frmDesenharPalete.Label10.Caption := IntToStr(NUM_CAIXA - CX_CM1);
+    frmDesenharPalete.ContaCaixas;
+  END;
 
-  frmDesenharPalete.Button3.Enabled := FALSE;
-  frmDesenharPalete.Button5.Enabled := FALSE;
-
-  frmDesenharPalete.Label10.Caption := IntToStr(NUM_CAIXA - CX_CM1);
-  frmDesenharPalete.ContaCaixas;
   frmDesenharCamada2.Close;
 end;
 
