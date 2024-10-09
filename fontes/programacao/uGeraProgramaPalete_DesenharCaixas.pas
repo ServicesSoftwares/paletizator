@@ -178,8 +178,8 @@ type
     QRYROBODATA_ULT_ALTERACAO: TSQLTimeStampField;
     QRYROBOIDUSUARIO_ULT_ALTERACAO: TIntegerField;
     tbsPaletizacaoDireita: TcxTabSheet;
-    Label15: TLabel;
-    Label18: TLabel;
+    lblCam1: TLabel;
+    lblCam2: TLabel;
     Label19: TLabel;
     lblTotalCxaCam1: TLabel;
     Label21: TLabel;
@@ -205,9 +205,9 @@ type
     DPLX2: TEdit;
     DPLY2: TEdit;
     DPLZ2: TEdit;
-    Edit14: TEdit;
-    Edit15: TEdit;
-    Edit16: TEdit;
+    edtDir1: TEdit;
+    edtDir2: TEdit;
+    edtDir3: TEdit;
     Panel4: TPanel;
     imgPaletDirCam2: TImage;
     btnDelCxaDirCam1: TButton;
@@ -261,14 +261,14 @@ type
     DPPZ9: TEdit;
     btnAddCxaDirCam2: TButton;
     btnDelCxaDirCam2: TButton;
-    Button17: TButton;
-    Button18: TButton;
-    Button19: TButton;
-    Button20: TButton;
-    Button21: TButton;
-    Button22: TButton;
-    Button23: TButton;
-    Button24: TButton;
+    btnCam1Up: TButton;
+    btnCam1Down: TButton;
+    btnCam1Rigth: TButton;
+    btnCam1Left: TButton;
+    btnCam2Up: TButton;
+    btnCam2Down: TButton;
+    btnCam2Rigth: TButton;
+    btnCam2Left: TButton;
     edtPontoFimCam1PaletDir: TEdit;
     edtPontoIniCam1PaletDir: TEdit;
     edtPontoIniCam2PaletDir: TEdit;
@@ -292,6 +292,14 @@ type
     procedure btnAddCxaDirCam2Click(Sender: TObject);
     procedure btnDelCxaDirCam1Click(Sender: TObject);
     procedure btnDelCxaDirCam2Click(Sender: TObject);
+    procedure btnCam1UpClick(Sender: TObject);
+    procedure btnCam1DownClick(Sender: TObject);
+    procedure btnCam1LeftClick(Sender: TObject);
+    procedure btnCam1RigthClick(Sender: TObject);
+    procedure btnCam2UpClick(Sender: TObject);
+    procedure btnCam2DownClick(Sender: TObject);
+    procedure btnCam2RigthClick(Sender: TObject);
+    procedure btnCam2LeftClick(Sender: TObject);
   private
     { Private declarations }
     FDownX,
@@ -304,11 +312,19 @@ type
     procedure ControlMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
     procedure ControlMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 
+    procedure ControlMouseDirDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure ControlMouseDirMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
+    procedure ControlMouseDirUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+
     procedure ContaCaixas;
+    procedure ContaCaixasDir;
     procedure CalcularPosicaoCaixa;
 
     procedure controlClick(Sender : Tobject);
     procedure controlClick_2(Sender : Tobject);
+
+    procedure controlClickDir(Sender : Tobject);
+    procedure controlClickDir2(Sender : Tobject);
 
     procedure CalcularCaixa;
     procedure GeraImagemCxa;
@@ -328,9 +344,13 @@ type
 
 var
   frmDesenharPalete: TfrmDesenharPalete;
-  NUM_CAIXA, DNUM_CAIXA : Integer;
+  NUM_CAIXA : Integer = 0;
+  DNUM_CAIXA : Integer = 0;
   PANEL_CX : TPanel;
   PANEL_CX_VR : TPanel;
+
+  PANEL_DCX : TPanel;
+  PANEL_DCX_VR : TPanel;
 
   COMP_CX, LARG_CX, ALT_CX : Integer;
   comp_p, larg_p : Integer;
@@ -377,12 +397,132 @@ procedure TfrmDesenharPalete.btnAddCxaDirCam2Click(Sender: TObject);
 begin
   inherited;
   Application.CreateForm(tfrmDesenharCamada2, frmDesenharCamada2);
-  frmCaixas.PLADO := 1;
-  frmDesenharCamada2.Image1.Picture := Image2.Picture;
-  CX_DCM1 := StrToInt(Label8.Caption);
+  frmDesenharCamada2.PLADO := 1;
+  frmDesenharCamada2.Image1.Picture := imgCxaPaletDir.Picture;
+  CX_DCM1 := StrToInt(lblTotalCxaCam1.Caption);
   frmDesenharCamada2.showmodal;
   frmDesenharCamada2.Release;
   frmDesenharCamada2.Free;
+end;
+
+procedure TfrmDesenharPalete.btnCam1DownClick(Sender: TObject);
+var
+  nome : string;
+begin
+  try
+
+    nome := lblCam1.Caption;
+    Tpanel(FindComponent(nome)).Top := TEdit(FindComponent(nome)).Top + 1;
+    controlClickDir(TEdit(FindComponent(nome)));
+
+  except
+
+  end;
+end;
+
+procedure TfrmDesenharPalete.btnCam1LeftClick(Sender: TObject);
+var
+  nome : string;
+begin
+  try
+
+    nome := lblCam1.Caption;
+    Tpanel(FindComponent(nome)).Left := TEdit(FindComponent(nome)).Left - 1;
+    controlClickDir(TEdit(FindComponent(nome)));
+
+  except
+
+  end;
+end;
+
+procedure TfrmDesenharPalete.btnCam1RigthClick(Sender: TObject);
+var
+  nome : string;
+begin
+  try
+
+    nome := lblCam1.Caption;
+    Tpanel(FindComponent(nome)).Left := TEdit(FindComponent(nome)).Left + 1;
+    controlClickDir(TEdit(FindComponent(nome)));
+
+  except
+
+  end;
+end;
+
+procedure TfrmDesenharPalete.btnCam1UpClick(Sender: TObject);
+var
+  nome : string;
+begin
+  try
+
+    nome := lblCam1.Caption;
+    Tpanel(FindComponent(nome)).Top := TEdit(FindComponent(nome)).Top - 1;
+    controlClickDir(TEdit(FindComponent(nome)));
+
+  except
+
+  end;
+end;
+
+procedure TfrmDesenharPalete.btnCam2DownClick(Sender: TObject);
+var
+  nome : string;
+begin
+  try
+
+    nome := lblCam2.Caption;
+    Tpanel(FindComponent(nome)).Top := TEdit(FindComponent(nome)).Top + 1;
+    controlClickDir2(TEdit(FindComponent(nome)));
+
+  except
+
+  end;
+end;
+
+procedure TfrmDesenharPalete.btnCam2LeftClick(Sender: TObject);
+var
+  nome : string;
+begin
+  try
+
+    nome := lblCam2.Caption;
+    Tpanel(FindComponent(nome)).Left := TEdit(FindComponent(nome)).Left - 1;
+    controlClickDir2(TEdit(FindComponent(nome)));
+
+  except
+
+  end;
+end;
+
+procedure TfrmDesenharPalete.btnCam2RigthClick(Sender: TObject);
+var
+  nome : string;
+begin
+  try
+
+    nome := lblCam2.Caption;
+    Tpanel(FindComponent(nome)).Left := TEdit(FindComponent(nome)).Left + 1;
+    controlClickDir2(TEdit(FindComponent(nome)));
+
+  except
+
+  end;
+end;
+
+procedure TfrmDesenharPalete.btnCam2UpClick(Sender: TObject);
+var
+  nome : string;
+begin
+  try
+
+    nome := lblCam2.Caption;
+    Tpanel(FindComponent(nome)).Top := TEdit(FindComponent(nome)).Top - 1;
+    controlClickDir2(TEdit(FindComponent(nome)));
+
+  except
+
+  end;
 end;
 
 procedure TfrmDesenharPalete.btnDelCxaDirCam1Click(Sender: TObject);
@@ -402,7 +542,7 @@ begin
     lblTotalCxaCam1.Caption := IntToStr(DNUM_CAIXA);
     lblTotalCxaCam2.Caption := IntToStr(0);
 
-    ContaCaixas;
+    ContaCaixasDir;
   END;
 end;
 
@@ -425,7 +565,7 @@ begin
 
 
     lblTotalCxaCam2.Caption := IntToStr(DNUM_CAIXA - CX_CM1);
-    ContaCaixas;
+    ContaCaixasDir;
 
     if CX_CM1 = DNUM_CAIXA then
     BEGIN
@@ -596,7 +736,7 @@ procedure TfrmDesenharPalete.Button4Click(Sender: TObject);
 begin
   inherited;
   Application.CreateForm(tfrmDesenharCamada2, frmDesenharCamada2);
-  frmCaixas.PLADO := 1;
+  frmCaixas.PLADO := 0;
   frmDesenharCamada2.Image1.Picture := Image2.Picture;
   CX_CM1 := StrToInt(Label8.Caption);
   frmDesenharCamada2.showmodal;
@@ -618,7 +758,7 @@ begin
 
     NUM_CAIXA := NUM_CAIXA - 1;
 
-    Label8.Caption := IntToStr(NUM_CAIXA);
+    Label8.Caption  := IntToStr(NUM_CAIXA);
     Label10.Caption := IntToStr(0);
 
     ContaCaixas;
@@ -771,7 +911,7 @@ begin
     BEGIN
       COMP_CX := PCOMPRIMENTOCXA;
       LARG_CX := PLARGURACXA;
-      ALT_CX := PALTURACXA;
+      ALT_CX  := PALTURACXA;
     END;
   except
 
@@ -824,7 +964,7 @@ begin
     imgCxaPaletDir.Canvas.Rectangle(X_IN, Y_IN, X_FIN, Y_FIN);
 
   //desenha palete
-   try
+  try
     BEGIN
       comp_p := PCOMPRIMENTOPLT;
       LARG_p := PLARGURAPLT;
@@ -916,11 +1056,11 @@ begin
     imgPaletDirCam1.Canvas.Brush.Color := $00333333;
     imgPaletDirCam1.Canvas.Rectangle(0,0,400,400);
 
-    XP_IN := 200 - TRUNC(comp_pl_px / 2);
-    YP_IN := 200 - TRUNC(larg_pl_px / 2);
+    XP_IN := 200 - TRUNC(larg_pl_px / 2);
+    YP_IN := 200 - TRUNC(comp_pl_px / 2);
 
-    XP_FIN := XP_IN + comp_pl_px;
-    YP_FIN := YP_IN + larg_pl_px;
+    XP_FIN := XP_IN + larg_pl_px;
+    YP_FIN := YP_IN + comp_pl_px;
 
     imgPaletDirCam1.Canvas.Pen.Color := clWhite;
     imgPaletDirCam1.Canvas.MoveTo(XP_IN,0);
@@ -951,11 +1091,11 @@ begin
     imgPaletDirCam2.Canvas.Brush.Color := $00333333;
     imgPaletDirCam2.Canvas.Rectangle(0,0,400,400);
 
-    XP_IN := 200 - TRUNC(comp_pl_px / 2);
-    YP_IN := 200 - TRUNC(larg_pl_px / 2);
+    XP_IN := 200 - TRUNC(larg_pl_px / 2);
+    YP_IN := 200 - TRUNC(comp_pl_px / 2);
 
-    XP_FIN := XP_IN + comp_pl_px;
-    YP_FIN := YP_IN + larg_pl_px;
+    XP_FIN := XP_IN + larg_pl_px;
+    YP_FIN := YP_IN + comp_pl_px;
 
     imgPaletDirCam2.Canvas.Pen.Color := clWhite;
     imgPaletDirCam2.Canvas.MoveTo(XP_IN,0);
@@ -1261,6 +1401,46 @@ begin
   end;
 end;
 
+procedure TfrmDesenharPalete.ContaCaixasDir;
+var
+  t_cam, t_cam_1, t_cam_2 : Integer;
+  calc_m1, calc_m2, calc_m3 : Integer;
+  qtde_cam_par, qtde_cam_impar : Integer;
+begin
+  try
+    t_cam := PCAMADAS;
+    t_cam_1 := StrToInt(lblTotalCxaCam1.Caption);
+    t_cam_2 := StrToInt(lblTotalCxaCam2.caption);
+
+    //calcula qtde de cada camada
+    if t_cam_2 = 0 then
+    begin
+      qtde_cam_par := 0;
+      qtde_cam_impar := t_cam;
+    end else
+    begin
+      if (t_cam mod 2) = 0 then
+      begin
+        qtde_cam_par := trunc(t_cam / 2);
+        qtde_cam_impar := trunc(t_cam / 2);
+      end else
+      begin
+        qtde_cam_par := trunc(t_cam / 2);
+        qtde_cam_impar := trunc(t_cam / 2) + 1;
+      end;
+    end;
+
+    //conta as camadas
+    calc_m1 := t_cam_1 * qtde_cam_impar;
+    calc_m2 := t_cam_2 * qtde_cam_par;
+
+    calc_m3 := calc_m1 + calc_m2;
+    lblTotalCxa.Caption := IntToStr(calc_m3);
+  except
+
+  end;
+end;
+
 procedure TfrmDesenharPalete.controlClick(Sender: Tobject);
 var
   num_peca : Integer;
@@ -1303,6 +1483,97 @@ begin
       //coloca cx camada 2 na mesma posição
       TPanel(FindComponent('CX_VR' + IntToStr(I))).Top  := TOP_CX;
       TPanel(FindComponent('CX_VR' + IntToStr(I))).Left := LEFT_CX;
+    END;
+  end;
+end;
+
+procedure TfrmDesenharPalete.controlClickDir(Sender: Tobject);
+var
+  num_peca : Integer;
+  calc_base : Integer;
+  I : Integer;
+  NOME_CX : string;
+  TOP_CX, LEFT_CX, WIDTH_CX, HEIGHT_CX : Integer;
+begin
+  lblCam1.Caption := (Sender as TPanel).Name;
+  num_peca := StrToInt(Copy(lblCam1.Caption, 3, 2));
+
+  for I := 1 to CX_DCM1 do
+  begin
+    NOME_CX := 'DCX' + IntToStr(I);
+    if assigned(FindComponent(NOME_CX)) then
+    BEGIN
+      //calculo das posições Y
+      TOP_CX    := TPanel(FindComponent('DCX' + IntToStr(I))).TOP;
+      HEIGHT_CX := TPanel(FindComponent('DCX' + IntToStr(I))).Height;
+
+      px_at     := Top_CX + TRUNC(Height_CX / 2);
+      px_base   := StrToInt(edtPontoFimCam1PaletDir.Text) - PX_AT;
+      MM_BASE   := (px_base * 6);
+      calc_base := StrToInt(edtDir2.TEXT) + MM_BASE;
+
+      TEdit(FindComponent('DPLY' + IntToStr(I))).Text := IntToStr(calc_base * -1);
+
+      //calculo das posições X
+      Left_CX  := TPanel(FindComponent('DCX' + IntToStr(I))).Left;
+      WIDTH_CX := TPanel(FindComponent('DCX' + IntToStr(I))).Width;
+
+      px_at     := TRUNC(WIDTH_CX / 2)+ LEFT_CX;
+      px_base   := px_at + StrToInt(edtPontoFimCam1PaletDir.Text);
+      mm_base   := (px_base * 6);
+      calc_base := StrToInt(edtDir1.TEXT) - MM_BASE;
+      //calc_base := escala_pl;
+
+      TEdit(FindComponent('DPLX' + IntToStr(I))).Text    := IntToStr(calc_base);
+
+      //coloca cx camada 2 na mesma posição
+      TPanel(FindComponent('DCX_VR' + IntToStr(I))).Top  := TOP_CX;
+      TPanel(FindComponent('DCX_VR' + IntToStr(I))).Left := LEFT_CX;
+    END;
+  end;
+end;
+
+procedure TfrmDesenharPalete.controlClickDir2(Sender: Tobject);
+var
+  num_peca : Integer;
+  calc_base : Integer;
+  I : Integer;
+  NOME_CX : string;
+  TOP_CX, LEFT_CX, WIDTH_CX, HEIGHT_CX : Integer;
+begin
+  lblCam2.Caption := (Sender as TPanel).Name;
+  num_peca := StrToInt(Copy(lblCam2.Caption, 3, 2));
+
+  for I := NUM_PECA to 20 do
+  begin
+    NOME_CX := 'DCX' + IntToStr(I);
+    if assigned(FindComponent(NOME_CX)) then
+    BEGIN
+      //calculo das posições Y
+      TOP_CX    := TPanel(FindComponent('DCX' + IntToStr(I))).TOP;
+      HEIGHT_CX := TPanel(FindComponent('DCX' + IntToStr(I))).Height;
+
+      px_at     := Top_CX + TRUNC(Height_CX / 2);
+      px_base   := StrToInt(edtPontoFimCam2PaletDir.Text) - PX_AT;
+      MM_BASE   := (px_base * 6);
+      calc_base := StrToInt(edtDir2.TEXT)+ MM_BASE;
+
+      TEdit(FindComponent('DPPY' + IntToStr(I - CX_CM1))).Text := IntToStr(calc_base * -1);
+
+      //calculo das posições X
+      Left_CX   := TPanel(FindComponent('DCX' + IntToStr(I))).Left;
+      WIDTH_CX  := TPanel(FindComponent('DCX' + IntToStr(I))).Width;
+
+      px_at     := LEFT_CX + TRUNC(WIDTH_CX / 2);
+      px_base   := px_at + StrToInt(edtPontoIniCam2PaletDir.Text);
+      mm_base   := (px_base * 6);
+      calc_base := StrToInt(edtDir1.TEXT) - MM_BASE;
+
+      TEdit(FindComponent('DPPX' + IntToStr(I - CX_CM1))).Text := IntToStr(calc_base);
+
+      //coloca cx camada 2 na mesma posição
+      //TPanel(FindComponent('CX_VR' + IntToStr(I))).Top  := TOP_CX;
+      //TPanel(FindComponent('CX_VR' + IntToStr(I))).Left := LEFT_CX;
     END;
   end;
 end;
@@ -1352,6 +1623,38 @@ begin
   end;
 end;
 
+procedure TfrmDesenharPalete.ControlMouseDirDown(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  FDownX := X;
+  FDownY := Y;
+  FDragging := True;
+  TMoveCracker(Sender).MouseCapture := True;
+end;
+
+procedure TfrmDesenharPalete.ControlMouseDirMove(Sender: TObject;
+  Shift: TShiftState; X, Y: Integer);
+begin
+  if FDragging then
+  begin
+    with Sender as TControl do
+    begin
+      Left := X - FDownX + Left;
+      Top  := Y - FDownY + Top;
+    end;
+  end;
+end;
+
+procedure TfrmDesenharPalete.ControlMouseDirUp(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  if FDragging then
+  begin
+   FDragging := False;
+   TMoveCracker(Sender).MouseCapture := False;
+  end;
+end;
+
 procedure TfrmDesenharPalete.ControlMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
   FDownX := X;
@@ -1390,21 +1693,22 @@ begin
   QRYROBO.Open;
   QRYROBO.FetchAll;
 
+  tbsPaletizacaoDireita.TabVisible := false;
   CASE(QRYROBO.FieldByName('TIPO_PALETIZACAO').AsInteger)OF
     //PADRAO
     0:BEGIN
         tbsPaletizacaoEsquerda.TabVisible := true;
-        //tbsPaletizacaoDireita.TabVisible := false;
+        tbsPaletizacaoDireita.TabVisible := false;
       END;
     //DIREITA
     1:BEGIN
         tbsPaletizacaoEsquerda.TabVisible := true;
-        //tbsPaletizacaoDireita.TabVisible := true;
+        tbsPaletizacaoDireita.TabVisible := true;
       END;
     //AMBOS
     2:BEGIN
         tbsPaletizacaoEsquerda.TabVisible := true;
-        //tbsPaletizacaoDireita.TabVisible := true;
+        tbsPaletizacaoDireita.TabVisible := true;
 
         pgBasePaletizacao.ActivePageIndex := 0;
       END;
@@ -1481,38 +1785,59 @@ begin
 
   //inicio e registro do codigo
   //frmFormGerador.Memo2.Clear;
+  frmFormGerador.Memo2.Lines.Add('#INICIO DO PROGRAMA');
   frmFormGerador.Memo2.Lines.Add('MAIN;');
   //adicionada ponto seguro de inicio
   frmFormGerador.Memo2.Lines.Add('');
+
   //ZERA TODAS SAIDAS
-  frmFormGerador.Memo2.Lines.Add('#Zera todas saidas');
-  frmFormGerador.Memo2.Lines.Add('DOUT F10.0, OFF;');
+  frmFormGerador.Memo2.Lines.Add('#######################################');
+  frmFormGerador.Memo2.Lines.Add('#INICIO DO ZERAMENTO DE TODAS AS SAÍDAS');
+  frmFormGerador.Memo2.Lines.Add('#######################################');
+  frmFormGerador.Memo2.Lines.Add('');
+  frmFormGerador.Memo2.Lines.Add('DOUT OT8, OFF;');
+  frmFormGerador.Memo2.Lines.Add('DOUT OT9, OFF;');
+  frmFormGerador.Memo2.Lines.Add('DOUT OT10, OFF;');
+  frmFormGerador.Memo2.Lines.Add('DOUT OT11, OFF;');
+  frmFormGerador.Memo2.Lines.Add('');
+  frmFormGerador.Memo2.Lines.Add('#######################################');
+  frmFormGerador.Memo2.Lines.Add('#FIM DO ZERAMENTO DE TODAS AS SAÍDAS');
+  frmFormGerador.Memo2.Lines.Add('#######################################');
+  frmFormGerador.Memo2.Lines.Add('');
+  {frmFormGerador.Memo2.Lines.Add('DOUT F10.0, OFF;');
   frmFormGerador.Memo2.Lines.Add('DOUT F10.1, OFF;');
   frmFormGerador.Memo2.Lines.Add('DOUT F10.2, OFF;');
-  frmFormGerador.Memo2.Lines.Add('DOUT F10.3, OFF;');
+  frmFormGerador.Memo2.Lines.Add('DOUT F10.3, OFF;'); }
 
   //adidiona unica vez para memoria
   //todos os pontos auxiliares
   //adiciona pontos retorno
-  frmFormGerador.Memo2.Lines.Add('################');
-  frmFormGerador.Memo2.Lines.Add('#CADASTRA PONTOS');
-  frmFormGerador.Memo2.Lines.Add('################');
-  frmFormGerador.Memo2.Lines.Add('#pontos de Retorno');
+  frmFormGerador.Memo2.Lines.Add('########################');
+  frmFormGerador.Memo2.Lines.Add('#CADASTRAMENTO DE PONTOS');
+  frmFormGerador.Memo2.Lines.Add('########################');
+  frmFormGerador.Memo2.Lines.Add('');
+  frmFormGerador.Memo2.Lines.Add('#PONTOS DE RETORNO');
   for II := 0 to frmFormGerador.Memo3.Lines.Count - 2 do
     frmFormGerador.Memo2.Lines.Add(frmFormGerador.Memo3.Lines[II]);
   ponto_retorno := frmFormGerador.Memo3.Lines[frmFormGerador.Memo3.Lines.Count - 1];
+  frmFormGerador.Memo2.Lines.Add('#FIM DOS PONTOS DE RETORNO');
+  frmFormGerador.Memo2.Lines.Add('');
 
   //adiciona pontos pre entrada
-  frmFormGerador.Memo2.Lines.Add('#pontos de Pre Entrada');
+  frmFormGerador.Memo2.Lines.Add('#PONTOS DE PRE-ENTRADA');
   for II := 0 to frmFormGerador.Memo4.Lines.Count - 2 do
     frmFormGerador.Memo2.Lines.Add(frmFormGerador.Memo4.Lines[II]);
   ponto_pre := frmFormGerador.Memo4.Lines[frmFormGerador.Memo4.Lines.Count - 1];
+  frmFormGerador.Memo2.Lines.Add('#FIM DOS PONTOS DE PRE-ENTRADA');
+  frmFormGerador.Memo2.Lines.Add('');
 
   //adiciona pontos ate espera
-  frmFormGerador.Memo2.Lines.Add('#pontos de Espera');
+  frmFormGerador.Memo2.Lines.Add('#PONTOS DE ESPERA');
   for II := 0 to frmFormGerador.Memo5.Lines.Count - 2 do
     frmFormGerador.Memo2.Lines.Add(frmFormGerador.Memo5.Lines[II]);
   ponto_aguardo := frmFormGerador.Memo5.Lines[frmFormGerador.Memo5.Lines.Count - 1];
+  frmFormGerador.Memo2.Lines.Add('#FIM DOS PONTOS DE ESPERA');
+  frmFormGerador.Memo2.Lines.Add('');
 
   //adiciona pontos de alinhamento
   frmFormGerador.Memo2.Lines.Add('#pontos de alinhamento');
@@ -1588,7 +1913,7 @@ begin
         CURVA_APROCH := QRYROBO.FieldByName('PONTO_INTERSEG_B_Z').AsInteger;
 
 
-        if WP_FIN <> 90 then
+       { if WP_FIN <> 90 then
         begin
           (*Se tiver gito cria ponto alto*)
           //CRIA PONTO NO z alto no giro completo
@@ -1600,7 +1925,7 @@ begin
           frmFormGerador.Memo2.Lines.Add('SETE PX6 (4),' + IntToStr(WP_APROCH) + ';');
           frmFormGerador.Memo2.Lines.Add('ADDP P6, PX6;');
           (*fim do ponto de seguranca*)
-        end;
+        end;  }
 
       end
       ELSE
@@ -1615,7 +1940,7 @@ begin
         CURVA_APROCH := QRYROBO.FieldByName('PONTO_INTERSEG_A_Z').AsInteger;
 
 
-        if WP_FIN <> 90 then
+        {if WP_FIN <> 90 then
         begin
           (*Se tiver gito cria ponto alto*)
           //CRIA PONTO NO z alto no giro completo
@@ -1627,7 +1952,7 @@ begin
           frmFormGerador.Memo2.Lines.Add('SETE PX6 (4),' + IntToStr(WP_APROCH) + ';');
           frmFormGerador.Memo2.Lines.Add('ADDP P6, PX6;');
           (*fim do ponto de seguranca*)
-        end;
+        end;  }
 
       END;
       (*****************************************)

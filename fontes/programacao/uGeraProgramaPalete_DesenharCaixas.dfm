@@ -25,7 +25,7 @@ inherited frmDesenharPalete: TfrmDesenharPalete
       Height = 513
       Align = alClient
       TabOrder = 0
-      Properties.ActivePage = tbsPaletizacaoEsquerda
+      Properties.ActivePage = tbsPaletizacaoDireita
       Properties.CustomButtons.Buttons = <>
       Properties.Style = 9
       ClientRectBottom = 513
@@ -245,10 +245,15 @@ inherited frmDesenharPalete: TfrmDesenharPalete
           BorderStyle = bsSingle
           TabOrder = 0
           object Image3: TImage
-            Left = 2
-            Top = -2
-            Width = 400
-            Height = 400
+            Left = 1
+            Top = 1
+            Width = 394
+            Height = 394
+            Align = alClient
+            ExplicitLeft = 2
+            ExplicitTop = -2
+            ExplicitWidth = 400
+            ExplicitHeight = 400
           end
         end
         object Button3: TButton
@@ -379,10 +384,15 @@ inherited frmDesenharPalete: TfrmDesenharPalete
           BorderStyle = bsSingle
           TabOrder = 11
           object Image6: TImage
-            Left = -2
-            Top = -2
-            Width = 400
-            Height = 400
+            Left = 1
+            Top = 1
+            Width = 394
+            Height = 394
+            Align = alClient
+            ExplicitLeft = -2
+            ExplicitTop = -2
+            ExplicitWidth = 400
+            ExplicitHeight = 400
           end
         end
         object Button5: TButton
@@ -1080,14 +1090,14 @@ inherited frmDesenharPalete: TfrmDesenharPalete
       object tbsPaletizacaoDireita: TcxTabSheet
         Caption = 'Paletiza'#231#227'o '#224' Direita'
         ImageIndex = 1
-        object Label15: TLabel
+        object lblCam1: TLabel
           Left = 524
           Top = 45
           Width = 18
           Height = 13
           Caption = '000'
         end
-        object Label18: TLabel
+        object lblCam2: TLabel
           Left = 634
           Top = 45
           Width = 18
@@ -1296,10 +1306,7 @@ inherited frmDesenharPalete: TfrmDesenharPalete
             Width = 394
             Height = 394
             Align = alClient
-            ExplicitLeft = 2
-            ExplicitTop = -2
-            ExplicitWidth = 400
-            ExplicitHeight = 400
+            ExplicitLeft = -2
           end
         end
         object btnAddCxaDirCam1: TButton
@@ -1371,7 +1378,7 @@ inherited frmDesenharPalete: TfrmDesenharPalete
           TabOrder = 7
           Text = '0'
         end
-        object Edit14: TEdit
+        object edtDir1: TEdit
           Left = 534
           Top = 334
           Width = 98
@@ -1388,7 +1395,7 @@ inherited frmDesenharPalete: TfrmDesenharPalete
           TabOrder = 8
           Text = '500'
         end
-        object Edit15: TEdit
+        object edtDir2: TEdit
           Left = 534
           Top = 359
           Width = 98
@@ -1405,7 +1412,7 @@ inherited frmDesenharPalete: TfrmDesenharPalete
           TabOrder = 9
           Text = '1200'
         end
-        object Edit16: TEdit
+        object edtDir3: TEdit
           Left = 534
           Top = 384
           Width = 98
@@ -1948,7 +1955,7 @@ inherited frmDesenharPalete: TfrmDesenharPalete
           TabOrder = 62
           OnClick = btnDelCxaDirCam2Click
         end
-        object Button17: TButton
+        object btnCam1Up: TButton
           Left = 458
           Top = 335
           Width = 33
@@ -1961,9 +1968,9 @@ inherited frmDesenharPalete: TfrmDesenharPalete
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 63
-          OnClick = Button7Click
+          OnClick = btnCam1UpClick
         end
-        object Button18: TButton
+        object btnCam1Down: TButton
           Left = 458
           Top = 383
           Width = 33
@@ -1976,9 +1983,9 @@ inherited frmDesenharPalete: TfrmDesenharPalete
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 64
-          OnClick = Button8Click
+          OnClick = btnCam1DownClick
         end
-        object Button19: TButton
+        object btnCam1Rigth: TButton
           Left = 490
           Top = 359
           Width = 33
@@ -1991,9 +1998,9 @@ inherited frmDesenharPalete: TfrmDesenharPalete
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 65
-          OnClick = Button9Click
+          OnClick = btnCam1RigthClick
         end
-        object Button20: TButton
+        object btnCam1Left: TButton
           Left = 426
           Top = 359
           Width = 33
@@ -2006,9 +2013,9 @@ inherited frmDesenharPalete: TfrmDesenharPalete
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 66
-          OnClick = Button10Click
+          OnClick = btnCam1LeftClick
         end
-        object Button21: TButton
+        object btnCam2Up: TButton
           Left = 676
           Top = 335
           Width = 33
@@ -2021,9 +2028,9 @@ inherited frmDesenharPalete: TfrmDesenharPalete
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 67
-          OnClick = Button11Click
+          OnClick = btnCam2UpClick
         end
-        object Button22: TButton
+        object btnCam2Down: TButton
           Left = 676
           Top = 383
           Width = 33
@@ -2036,9 +2043,9 @@ inherited frmDesenharPalete: TfrmDesenharPalete
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 68
-          OnClick = Button12Click
+          OnClick = btnCam2DownClick
         end
-        object Button23: TButton
+        object btnCam2Rigth: TButton
           Left = 708
           Top = 359
           Width = 33
@@ -2051,9 +2058,9 @@ inherited frmDesenharPalete: TfrmDesenharPalete
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 69
-          OnClick = Button13Click
+          OnClick = btnCam2RigthClick
         end
-        object Button24: TButton
+        object btnCam2Left: TButton
           Left = 644
           Top = 359
           Width = 33
@@ -2066,7 +2073,7 @@ inherited frmDesenharPalete: TfrmDesenharPalete
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 70
-          OnClick = Button14Click
+          OnClick = btnCam2LeftClick
         end
         object edtPontoFimCam1PaletDir: TEdit
           Left = 286

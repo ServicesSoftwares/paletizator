@@ -10,7 +10,7 @@ uses
   FireDAC.Stan.Async, FireDAC.DApt, Vcl.ComCtrls, Data.DB,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, JvExMask, JvSpin,
   JvDBSpinEdit, JvExStdCtrls, JvCombobox, Vcl.StdCtrls, Vcl.Mask,
-  Vcl.DBCtrls, JvDBCombobox;
+  Vcl.DBCtrls, JvDBCombobox, JvDBControls;
 
   //Funções
   function Autenticar(PTIPOAUT : INTEGER) : boolean;
@@ -20,6 +20,8 @@ uses
   //procedimentos
   procedure ValidaCampos(PCAMPO : TDBEdit; PTITULO : STRING); OVERLOAD;
   procedure ValidaCampos(PCAMPO : TJvDBComboBox; PTITULO : STRING); OVERLOAD;
+  procedure ValidaCampos(PCAMPO : TJvDBSpinEdit; PTITULO : STRING); OVERLOAD;
+  procedure ValidaCampos(PCAMPO : TJvDBDateEdit; PTITULO : STRING); OVERLOAD;
   procedure InsereLog(PIDUSUARIO : INTEGER; PFRM, PACAO : STRING);
 
 
@@ -122,6 +124,26 @@ end;
 procedure ValidaCampos(PCAMPO : TJvDBComboBox; PTITULO : STRING); OVERLOAD;
 begin
   IF(PCAMPO.ItemIndex = -1)THEN
+  BEGIN
+    Application.MessageBox(PCHAR('Campo "' + PTITULO + '" é de preenchimento obrigatório! Verifique!'),'Aviso!',MB_OK+MB_ICONWARNING);
+    PCAMPO.SetFocus;
+    ABORT;
+  END;
+end;
+
+procedure ValidaCampos(PCAMPO : TJvDBSpinEdit; PTITULO : STRING); OVERLOAD;
+begin
+  IF(PCAMPO.Value = 0)THEN
+  BEGIN
+    Application.MessageBox(PCHAR('Campo "' + PTITULO + '" é de preenchimento obrigatório! Verifique!'),'Aviso!',MB_OK+MB_ICONWARNING);
+    PCAMPO.SetFocus;
+    ABORT;
+  END;
+end;
+
+procedure ValidaCampos(PCAMPO : TJvDBDateEdit; PTITULO : STRING); OVERLOAD;
+begin
+  IF(PCAMPO.Date = 0)THEN
   BEGIN
     Application.MessageBox(PCHAR('Campo "' + PTITULO + '" é de preenchimento obrigatório! Verifique!'),'Aviso!',MB_OK+MB_ICONWARNING);
     PCAMPO.SetFocus;

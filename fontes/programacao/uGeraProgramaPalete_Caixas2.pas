@@ -92,13 +92,14 @@ begin
 
   IF(PLADO = 1)THEN //ESQUERDO
   BEGIN
-    TEdit(frmDesenharPalete.FindComponent('DPPW' + IntToStr(NUM_CAIXA - CX_CM1))).Text := '88';
+    DNUM_CAIXA := DNUM_CAIXA + 1;
+    TEdit(frmDesenharPalete.FindComponent('DPPW' + IntToStr(DNUM_CAIXA - CX_CM1))).Text := '88';
 
     //CAIXA CAMADA 1
-    PANEL_CX := TPanel.Create(frmDesenharPalete);
-    with PANEL_CX do
+    PANEL_DCX := TPanel.Create(frmDesenharPalete);
+    with PANEL_DCX do
     begin
-      Name             :=  'DCX' + IntToStr(NUM_CAIXA);
+      Name             :=  'DCX' + IntToStr(DNUM_CAIXA);
       Caption          := Name + ' ' + '»↑88↑«';
       Width            := comp_cp;
       Height           := larg_cp;
@@ -111,19 +112,19 @@ begin
       StyleElements    := [];
       Color            := clYellow;
 
-      Parent        := frmDesenharPalete.Panel2;
+      Parent        := frmDesenharPalete.Panel4;
 
-      OnMouseMove   := frmDesenharPalete.ControlMouseMove;
-      OnMouseDown   := frmDesenharPalete.ControlMouseDown;
-      OnMouseUp     := frmDesenharPalete.ControlMouseUp;
-      OnClick       := frmDesenharPalete.controlClick_2;
+      OnMouseMove := frmDesenharPalete.ControlMouseDirMove;
+      OnMouseDown := frmDesenharPalete.ControlMouseDirDown;
+      OnMouseUp   := frmDesenharPalete.ControlMouseDirUp;
+      OnClick     := frmDesenharPalete.controlClickDir2;
     end;
 
-    frmDesenharPalete.Button3.Enabled := FALSE;
-    frmDesenharPalete.Button5.Enabled := FALSE;
+    frmDesenharPalete.btnAddCxaDirCam1.Enabled := FALSE;
+    frmDesenharPalete.btnDelCxaDirCam1.Enabled := FALSE;
 
-    frmDesenharPalete.Label10.Caption := IntToStr(NUM_CAIXA - CX_CM1);
-    frmDesenharPalete.ContaCaixas;
+    frmDesenharPalete.lblTotalCxaCam2.Caption := IntToStr(DNUM_CAIXA - CX_DCM1);
+    frmDesenharPalete.ContaCaixasDir;
   END;
 
 
@@ -178,6 +179,44 @@ begin
     frmDesenharPalete.Label10.Caption := IntToStr(NUM_CAIXA - CX_CM1);
     frmDesenharPalete.ContaCaixas;
   END;
+
+  IF(PLADO = 1)THEN //ESQUERDO
+  BEGIN
+    DNUM_CAIXA := DNUM_CAIXA + 1;
+    TEdit(frmDesenharPalete.FindComponent('DPPW' + IntToStr(DNUM_CAIXA - CX_CM1))).Text := '268';
+
+    //CAIXA CAMADA 1
+    PANEL_DCX := TPanel.Create(frmDesenharPalete);
+    with PANEL_DCX do
+    begin
+      Name             :=  'DCX' + IntToStr(DNUM_CAIXA);
+      Caption          := Name + ' ' + '»↓268↓«';
+      Width            := comp_cp;
+      Height           := larg_cp;
+      Top              := 50;
+      Left             := 50;
+      ParentColor      := False;
+      ParentBackground := false;
+      BevelKind        := bkSoft;
+      BevelOuter       := bvNone;
+      StyleElements    := [];
+      Color            := clYellow;
+
+      Parent        := frmDesenharPalete.Panel4;
+
+      OnMouseMove := frmDesenharPalete.ControlMouseDirMove;
+      OnMouseDown := frmDesenharPalete.ControlMouseDirDown;
+      OnMouseUp   := frmDesenharPalete.ControlMouseDirUp;
+      OnClick     := frmDesenharPalete.controlClickDir2;
+    end;
+
+    frmDesenharPalete.btnAddCxaDirCam1.Enabled := FALSE;
+    frmDesenharPalete.btnDelCxaDirCam1.Enabled := FALSE;
+
+    frmDesenharPalete.lblTotalCxaCam2.Caption := IntToStr(DNUM_CAIXA - CX_DCM1);
+    frmDesenharPalete.ContaCaixasDir;
+  END;
+
   frmDesenharCamada2.Close;
 end;
 
@@ -229,6 +268,46 @@ begin
     frmDesenharPalete.Label10.Caption := IntToStr(NUM_CAIXA - CX_CM1);
     frmDesenharPalete.ContaCaixas;
   END;
+
+  IF(PLADO = 1)THEN //ESQUERDO
+  BEGIN
+    DNUM_CAIXA := DNUM_CAIXA + 1;
+
+    TEdit(frmDesenharPalete.FindComponent('DPPW' + IntToStr(DNUM_CAIXA - CX_CM1))).Text := '0';
+
+    //CAIXA CAMADA 1
+    PANEL_DCX := TPanel.Create(frmDesenharPalete);
+    with PANEL_DCX do
+    begin
+      Name             :=  'DCX' + IntToStr(DNUM_CAIXA);
+      Caption          := Name + ' ' + '»←0←«';
+      Width            := LARG_cp;
+      Height           := COMP_cp;
+      Top              := 50;
+      Left             := 50;
+      ParentColor      := False;
+      ParentBackground := false;
+      BevelKind        := bkSoft;
+      BevelOuter       := bvNone;
+      StyleElements    := [];
+      Color            := clYellow;
+
+      Parent := frmDesenharPalete.Panel4;
+
+      OnMouseMove := frmDesenharPalete.ControlMouseDirMove;
+      OnMouseDown := frmDesenharPalete.ControlMouseDirDown;
+      OnMouseUp   := frmDesenharPalete.ControlMouseDirUp;
+      OnClick     := frmDesenharPalete.controlClickDir2;
+    end;
+
+    frmDesenharPalete.btnAddCxaDirCam1.Enabled := FALSE;
+    frmDesenharPalete.btnDelCxaDirCam1.Enabled := FALSE;
+
+    frmDesenharPalete.lblTotalCxaCam2.Caption := IntToStr(DNUM_CAIXA - CX_DCM1);
+    frmDesenharPalete.ContaCaixasDir;
+  END;
+
+
   frmDesenharCamada2.Close;
 end;
 
@@ -280,6 +359,44 @@ begin
 
     frmDesenharPalete.Label10.Caption := IntToStr(NUM_CAIXA - CX_CM1);
     frmDesenharPalete.ContaCaixas;
+  END;
+
+  IF(PLADO = 1)THEN //ESQUERDO
+  BEGIN
+    inc(DNUM_CAIXA);
+
+    TEdit(frmDesenharPalete.FindComponent('DPPW' + IntToStr(DNUM_CAIXA - CX_CM1))).Text := '178';
+
+    //CAIXA CAMADA 1
+    PANEL_DCX := TPanel.Create(frmDesenharPalete);
+    with PANEL_DCX do
+    begin
+      Name             :=  'DCX' + IntToStr(DNUM_CAIXA);
+      Caption          := Name + ' ' + '»→178→«';
+      Width            := LARG_cp;
+      Height           := COMP_cp;
+      Top              := 50;
+      Left             := 50;
+      ParentColor      := False;
+      ParentBackground := false;
+      BevelKind        := bkSoft;
+      BevelOuter       := bvNone;
+      StyleElements    := [];
+      Color            := clYellow;
+
+      Parent        := frmDesenharPalete.Panel4;
+
+      OnMouseMove := frmDesenharPalete.ControlMouseDirMove;
+      OnMouseDown := frmDesenharPalete.ControlMouseDirDown;
+      OnMouseUp   := frmDesenharPalete.ControlMouseDirUp;
+      OnClick     := frmDesenharPalete.controlClickDir2;
+    end;
+
+    frmDesenharPalete.btnAddCxaDirCam1.Enabled := FALSE;
+    frmDesenharPalete.btnDelCxaDirCam1.Enabled := FALSE;
+
+    frmDesenharPalete.lblTotalCxaCam2.Caption := IntToStr(DNUM_CAIXA - CX_DCM1);
+    frmDesenharPalete.ContaCaixasDir;
   END;
 
   frmDesenharCamada2.Close;

@@ -222,7 +222,7 @@ inherited frmGeraProgramaPalete: TfrmGeraProgramaPalete
           ParentFont = False
           StyleElements = [seClient, seBorder]
         end
-        object JvDBSpinEdit1: TJvDBSpinEdit
+        object dbspdComprimentoPalete: TJvDBSpinEdit
           Left = 135
           Top = 19
           Width = 181
@@ -238,7 +238,7 @@ inherited frmGeraProgramaPalete: TfrmGeraProgramaPalete
           DataField = 'PALETE_COMPRIMENTO'
           DataSource = DS
         end
-        object JvDBSpinEdit2: TJvDBSpinEdit
+        object dbspdLarguraPalete: TJvDBSpinEdit
           Left = 135
           Top = 56
           Width = 181
@@ -254,7 +254,7 @@ inherited frmGeraProgramaPalete: TfrmGeraProgramaPalete
           DataField = 'PALETE_LARGURA'
           DataSource = DS
         end
-        object JvDBSpinEdit3: TJvDBSpinEdit
+        object dbspdCamadas: TJvDBSpinEdit
           Left = 135
           Top = 93
           Width = 181
@@ -374,7 +374,7 @@ inherited frmGeraProgramaPalete: TfrmGeraProgramaPalete
           ParentFont = False
           StyleElements = [seClient, seBorder]
         end
-        object JvDBSpinEdit4: TJvDBSpinEdit
+        object dbspdComprimentoCxa: TJvDBSpinEdit
           Left = 132
           Top = 19
           Width = 181
@@ -390,7 +390,7 @@ inherited frmGeraProgramaPalete: TfrmGeraProgramaPalete
           DataField = 'CAIXA_COMPRIMENTO'
           DataSource = DS
         end
-        object JvDBSpinEdit5: TJvDBSpinEdit
+        object dbspdLarguraCxa: TJvDBSpinEdit
           Left = 132
           Top = 56
           Width = 181
@@ -406,7 +406,7 @@ inherited frmGeraProgramaPalete: TfrmGeraProgramaPalete
           DataField = 'CAIXA_LARGURA'
           DataSource = DS
         end
-        object JvDBSpinEdit6: TJvDBSpinEdit
+        object dbspdAlturaCxa: TJvDBSpinEdit
           Left = 132
           Top = 93
           Width = 181
@@ -442,6 +442,7 @@ inherited frmGeraProgramaPalete: TfrmGeraProgramaPalete
     Active = True
     AfterInsert = qryProgramaAfterInsert
     AfterEdit = qryProgramaAfterEdit
+    BeforePost = qryProgramaBeforePost
     Connection = DM.FDCONN
     SQL.Strings = (
       'SELECT * FROM TBPROGRAMACAO A'

@@ -14,7 +14,7 @@ uses
   cxLookAndFeelPainters, cxContainer, cxEdit, cxTextEdit, cxMaskEdit,
   cxDropDownEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox,
   cxButtons, JvToolEdit, JvDBControls, Vcl.Imaging.pngimage, JvBaseDlg,
-  JvSelectDirectory;
+  JvSelectDirectory, ShellAPI;
 
 type
   TfrmGeraProgramaPalete = class(TfrmPadrao)
@@ -44,12 +44,12 @@ type
     YourPassword_Label: TLabel;
     Image1: TImage;
     Label7: TLabel;
-    JvDBSpinEdit1: TJvDBSpinEdit;
-    JvDBSpinEdit2: TJvDBSpinEdit;
-    JvDBSpinEdit3: TJvDBSpinEdit;
-    JvDBSpinEdit4: TJvDBSpinEdit;
-    JvDBSpinEdit5: TJvDBSpinEdit;
-    JvDBSpinEdit6: TJvDBSpinEdit;
+    dbspdComprimentoPalete: TJvDBSpinEdit;
+    dbspdLarguraPalete: TJvDBSpinEdit;
+    dbspdCamadas: TJvDBSpinEdit;
+    dbspdComprimentoCxa: TJvDBSpinEdit;
+    dbspdLarguraCxa: TJvDBSpinEdit;
+    dbspdAlturaCxa: TJvDBSpinEdit;
     qryRobo: TFDQuery;
     dsRobo: TDataSource;
     qryRoboID: TIntegerField;
@@ -140,6 +140,7 @@ type
     procedure qryProgramaAfterEdit(DataSet: TDataSet);
     procedure dblkpRoboEnter(Sender: TObject);
     procedure btnBuscarRoboClick(Sender: TObject);
+    procedure qryProgramaBeforePost(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -235,6 +236,15 @@ var
   SDIRETORIO, SNOMEARQ : STRING;
 begin
   inherited;
+  ValidaCampos(dbspdCodRobo, 'Robô');
+  ValidaCampos(dbdtpDataPrograma, 'Data do programa');
+  ValidaCampos(dbspdComprimentoPalete, 'Comprimento do palete');
+  ValidaCampos(dbspdLarguraPalete, 'Largura do palete');
+  ValidaCampos(dbspdCamadas, 'Camadas do palete');
+  ValidaCampos(dbspdComprimentoCxa, 'Comprimento da caixa');
+  ValidaCampos(dbspdLarguraCxa, 'Largura da caixa');
+  ValidaCampos(dbspdAlturaCxa, 'Altura da caixa');
+
   if(ds.State in [dsInsert])then
   begin
     Application.CreateForm(TfrmDesenharPalete, frmDesenharPalete);
@@ -254,7 +264,12 @@ begin
       qryPrograma.Post;
 
       //salvar arquivo em um local determinado pelo usuario
-      SNOMEARQ := qryProgramaID.AsString + FormatDateTime('DDMMYYYY-HHMMSS',qryProgramaDATA_PROG.AsDateTime) + qryProgramaIDROBO.AsString + '.PRL';
+      IF(qryRoboTIPO_PALETIZACAO.AsInteger = 0)THEN
+        SNOMEARQ := qryProgramaID.AsString  + 'E.PRL'
+      ELSE IF(qryRoboTIPO_PALETIZACAO.AsInteger = 1)THEN
+        SNOMEARQ := qryProgramaID.AsString  + 'D.PRL'
+      ELSE
+        SNOMEARQ := qryProgramaID.AsString  + 'A.PRL';
 
       SelectDirectory.InitialDir := ExtractFileName(Application.ExeName);
       IF(SelectDirectory.Execute)THEN
@@ -263,7 +278,8 @@ begin
 
         frmFormGerador.Memo2.Lines.SaveToFile(SDIRETORIO + SNOMEARQ);
 
-        Application.MessageBox('Arquivo ".PRL" gerado com sucesso.','Informação',MB_OK+MB_ICONINFORMATION);
+        Application.MessageBox(PCHAR('Arquivo "'+SNOMEARQ+'.PRL" gerado com sucesso, no diretorio: "' + SDIRETORIO + '"'),'Informação',MB_OK+MB_ICONINFORMATION);
+        ShellExecute(Handle, 'open', PChar(SDIRETORIO), nil, nil, SW_SHOWNORMAL);
       END;
 
     end;
@@ -292,12 +308,6 @@ begin
       Application.MessageBox('Arquivo ".PRL" gerado com sucesso.','Informação',MB_OK+MB_ICONINFORMATION);
     END;
   end;
-
-
-  qryPrograma.Close;
-  qryPrograma.Params[0].AsInteger := 0;
-  qryPrograma.Open;
-  qryPrograma.Append;
 end;
 
 procedure TfrmGeraProgramaPalete.dblkpRoboEnter(Sender: TObject);
@@ -338,4 +348,15 @@ begin
   qryProgramaSITUACAO.AsInteger := 1;
 end;
 
+procedure TfrmGeraProgramaPalete.qryProgramaBeforePost(DataSet: TDataSet);
+begin
+  inherited;
+  qryPrograma.Close;
+  qryPrograma.Params[0].AsInteger := 0;
+  qryPrograma.Open;
+  qryPrograma.Append;
+end;
+
 end.
+
+

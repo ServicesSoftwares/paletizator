@@ -61,25 +61,25 @@ begin
     PANEL_CX := TPanel.Create(frmDesenharPalete);
     with PANEL_CX do
     begin
-      Name :=  'CX' + IntToStr(NUM_CAIXA);
-      Caption := Name + ' ' + '»↑88↑«';
-      Width := comp_cp;
-      Height := larg_cp;
-      Top := 50;
-      Left := 50;
-      ParentColor := False;
+      Name             :=  'CX' + IntToStr(NUM_CAIXA);
+      Caption          := Name + ' ' + '»↑88↑«';
+      Width            := comp_cp;
+      Height           := larg_cp;
+      Top              := 50;
+      Left             := 50;
+      ParentColor      := False;
       ParentBackground := false;
-      BevelKind := bkSoft;
-      BevelOuter := bvNone;
-      StyleElements := [];
-      Color := clYellow;
+      BevelKind        := bkSoft;
+      BevelOuter       := bvNone;
+      StyleElements    := [];
+      Color            := clYellow;
 
-      Parent := frmDesenharPalete.Panel1;
+      Parent      := frmDesenharPalete.Panel1;
 
       OnMouseMove := frmDesenharPalete.ControlMouseMove;
       OnMouseDown := frmDesenharPalete.ControlMouseDown;
-      OnMouseUp := frmDesenharPalete.ControlMouseUp;
-      OnClick := frmDesenharPalete.controlClick;
+      OnMouseUp   := frmDesenharPalete.ControlMouseUp;
+      OnClick     := frmDesenharPalete.controlClick;
     end;
 
     //CAIXA VIRTUAL REFERENCIA CAMADA 2
@@ -106,8 +106,65 @@ begin
     frmDesenharPalete.Label10.Caption := IntToStr(0);
     frmDesenharPalete.ContaCaixas;
     CX_CM1 := NUM_CAIXA;
-    frmCaixas.Close;
   END;
+
+  IF(PLADO = 1)THEN //DIREITO
+  BEGIN
+    inc(DNUM_CAIXA);
+
+    TEdit(frmDesenharPalete.FindComponent('DPLW' + IntToStr(DNUM_CAIXA))).Text := '88';
+
+    //CAIXA CAMADA 1
+    PANEL_DCX := TPanel.Create(frmDesenharPalete);
+    with PANEL_DCX do
+    begin
+      Name :=  'DCX' + IntToStr(DNUM_CAIXA);
+      Caption := Name + ' ' + '»↑88↑«';
+      Width := comp_cp;
+      Height := larg_cp;
+      Top := 50;
+      Left := 50;
+      ParentColor := False;
+      ParentBackground := false;
+      BevelKind := bkSoft;
+      BevelOuter := bvNone;
+      StyleElements := [];
+      Color := clYellow;
+
+      Parent := frmDesenharPalete.Panel3;
+
+      OnMouseMove := frmDesenharPalete.ControlMouseDirMove;
+      OnMouseDown := frmDesenharPalete.ControlMouseDirDown;
+      OnMouseUp   := frmDesenharPalete.ControlMouseDirUp;
+      OnClick     := frmDesenharPalete.controlClickDir;
+    end;
+
+    //CAIXA VIRTUAL REFERENCIA CAMADA 2
+    PANEL_DCX_VR := TPanel.Create(frmDesenharPalete);
+    with PANEL_DCX_VR do
+    begin
+      Name :=  'DCX_VR' + IntToStr(DNUM_CAIXA);
+      Caption := Name + ' ' + '»↑88↑«';
+      Width := comp_cp;
+      Height := larg_cp;
+      Top := 50;
+      Left := 50;
+      ParentColor := False;
+      ParentBackground := false;
+      BevelKind := bkSoft;
+      BevelOuter := bvNone;
+      Color := $00004000;//$00333333;
+
+      Parent := frmDesenharPalete.Panel4;
+    end;
+
+    frmDesenharPalete.lblTotalCxaCam1.Caption := IntToStr(DNUM_CAIXA);
+    frmDesenharPalete.lblTotalCxaCam2.Caption := IntToStr(0);
+    frmDesenharPalete.ContaCaixasDir;
+    CX_DCM1 := DNUM_CAIXA;
+  END;
+
+  frmCaixas.Close;
 end;
 
 procedure TfrmCaixas.Button2Click(Sender: TObject);
@@ -148,13 +205,13 @@ begin
 
       OnMouseMove := frmDesenharPalete.ControlMouseMove;
       OnMouseDown := frmDesenharPalete.ControlMouseDown;
-      OnMouseUp := frmDesenharPalete.ControlMouseUp;
-      OnClick := frmDesenharPalete.controlClick;
+      OnMouseUp   := frmDesenharPalete.ControlMouseUp;
+      OnClick     := frmDesenharPalete.controlClick;
     end;
 
     //CAIXA VIRTUAL REFERENCIA CAMADA 2
-    PANEL_CX_VR := TPanel.Create(frmDesenharPalete);
-    with PANEL_CX_VR do
+    PANEL_DCX_VR := TPanel.Create(frmDesenharPalete);
+    with PANEL_DCX_VR do
     begin
       Name :=  'CX_VR' + IntToStr(NUM_CAIXA);
       Caption := Name + ' ' + '»↓268↓«';
@@ -176,6 +233,63 @@ begin
     CX_CM1 := NUM_CAIXA;
     frmDesenharPalete.ContaCaixas;
   END;
+
+  IF(PLADO = 1)THEN //DIREITO
+  BEGIN
+    inc(DNUM_CAIXA);
+
+    TEdit(frmDesenharPalete.FindComponent('DPLW' + IntToStr(DNUM_CAIXA))).Text := '268';
+
+    //CAIXA CAMADA 1
+    PANEL_DCX := TPanel.Create(frmDesenharPalete);
+    with PANEL_DCX do
+    begin
+      Name :=  'DCX' + IntToStr(DNUM_CAIXA);
+      Caption := Name + ' ' + '»↓268↓«';
+      Width := comp_cp;
+      Height := larg_cp;
+      Top := 50;
+      Left := 50;
+      ParentColor := False;
+      ParentBackground := false;
+      BevelKind := bkSoft;
+      BevelOuter := bvNone;
+      StyleElements := [];
+      Color := clYellow;
+
+      Parent := frmDesenharPalete.Panel3;
+
+      OnMouseMove := frmDesenharPalete.ControlMouseDirMove;
+      OnMouseDown := frmDesenharPalete.ControlMouseDirDown;
+      OnMouseUp   := frmDesenharPalete.ControlMouseDirUp;
+      OnClick     := frmDesenharPalete.controlClickDir;
+    end;
+
+    //CAIXA VIRTUAL REFERENCIA CAMADA 2
+    PANEL_DCX_VR := TPanel.Create(frmDesenharPalete);
+    with PANEL_DCX_VR do
+    begin
+      Name :=  'DCX_VR' + IntToStr(DNUM_CAIXA);
+      Caption := Name + ' ' + '»↓268↓«';
+      Width := comp_cp;
+      Height := larg_cp;
+      Top := 50;
+      Left := 50;
+      ParentColor := False;
+      ParentBackground := false;
+      BevelKind := bkSoft;
+      BevelOuter := bvNone;
+      Color := $00004000;//$00333333;
+
+      Parent := frmDesenharPalete.Panel4;
+    end;
+
+    frmDesenharPalete.lblTotalCxaCam1.Caption := IntToStr(DNUM_CAIXA);
+    frmDesenharPalete.lblTotalCxaCam2.Caption := IntToStr(0);
+    frmDesenharPalete.ContaCaixasDir;
+    CX_DCM1 := DNUM_CAIXA;
+  END;
+
   frmCaixas.Close;
 end;
 
@@ -217,8 +331,8 @@ begin
 
       OnMouseMove := frmDesenharPalete.ControlMouseMove;
       OnMouseDown := frmDesenharPalete.ControlMouseDown;
-      OnMouseUp := frmDesenharPalete.ControlMouseUp;
-      OnClick := frmDesenharPalete.controlClick;
+      OnMouseUp   := frmDesenharPalete.ControlMouseUp;
+      OnClick     := frmDesenharPalete.controlClick;
 
     end;
 
@@ -245,8 +359,66 @@ begin
     frmDesenharPalete.Label10.Caption := IntToStr(0);
     CX_CM1 := NUM_CAIXA;
     frmDesenharPalete.ContaCaixas;
-    frmCaixas.Close;
   END;
+
+  IF(PLADO = 1)THEN //DIREITO
+  BEGIN
+    inc(DNUM_CAIXA);
+
+    TEdit(frmDesenharPalete.FindComponent('DPLW' + IntToStr(DNUM_CAIXA))).Text := '0';
+
+    //CAIXA CAMADA 1
+    PANEL_DCX := TPanel.Create(frmDesenharPalete);
+    with PANEL_DCX do
+    begin
+      Name :=  'DCX' + IntToStr(NUM_CAIXA);
+      Caption := Name + ' ' + '»←0←«';
+      Width := larg_cp;
+      Height := comp_cp;
+      Top := 50;
+      Left := 50;
+      ParentColor := False;
+      ParentBackground := false;
+      BevelKind := bkSoft;
+      BevelOuter := bvNone;
+      StyleElements := [];
+      Color := clYellow;
+
+      Parent := frmDesenharPalete.Panel3;
+
+      OnMouseMove := frmDesenharPalete.ControlMouseDirMove;
+      OnMouseDown := frmDesenharPalete.ControlMouseDirDown;
+      OnMouseUp   := frmDesenharPalete.ControlMouseDirUp;
+      OnClick     := frmDesenharPalete.controlClickDir;
+
+    end;
+
+    //CAIXA VIRTUAL REFERENCIA CAMADA 2
+    PANEL_DCX_VR := TPanel.Create(frmDesenharPalete);
+    with PANEL_DCX_VR do
+    begin
+      Name :=  'DCX_VR' + IntToStr(DNUM_CAIXA);
+      Caption := Name + ' ' + '»←0←«';
+      Width := larg_cp;
+      Height := comp_cp;
+      Top := 50;
+      Left := 50;
+      ParentColor := False;
+      ParentBackground := false;
+      BevelKind := bkSoft;
+      BevelOuter := bvNone;
+      Color := $00004000;//$00333333;
+
+      Parent := frmDesenharPalete.Panel4;
+    end;
+
+    frmDesenharPalete.lblTotalCxaCam1.Caption := IntToStr(DNUM_CAIXA);
+    frmDesenharPalete.lblTotalCxaCam2.Caption := IntToStr(0);
+    frmDesenharPalete.ContaCaixasDir;
+    CX_DCM1 := DNUM_CAIXA;
+  END;
+
+  frmCaixas.Close;
 end;
 
 procedure TfrmCaixas.Button4Click(Sender: TObject);
@@ -288,8 +460,8 @@ begin
 
       OnMouseMove := frmDesenharPalete.ControlMouseMove;
       OnMouseDown := frmDesenharPalete.ControlMouseDown;
-      OnMouseUp := frmDesenharPalete.ControlMouseUp;
-      OnClick := frmDesenharPalete.controlClick;
+      OnMouseUp   := frmDesenharPalete.ControlMouseUp;
+      OnClick     := frmDesenharPalete.controlClick;
 
     end;
 
@@ -317,8 +489,68 @@ begin
     frmDesenharPalete.Label10.Caption := IntToStr(0);
     CX_CM1 := NUM_CAIXA;
     frmDesenharPalete.ContaCaixas;
-    frmCaixas.Close;
   END;
+
+  IF(PLADO = 1)THEN //DIREITO
+  BEGIN
+    inc(DNUM_CAIXA);
+
+    TEdit(frmDesenharPalete.FindComponent('DPLW' + IntToStr(DNUM_CAIXA))).Text := '178';
+
+    //CAIXA CAMADA 1
+    PANEL_DCX := TPanel.Create(frmDesenharPalete);
+    with PANEL_DCX do
+    begin
+
+      Name :=  'DCX' + IntToStr(DNUM_CAIXA);
+      Caption := Name + ' ' + '»→178→«';
+      Width := larg_cp;
+      Height := comp_cp;
+      Top := 50;
+      Left := 50;
+      ParentColor := False;
+      ParentBackground := false;
+      BevelKind := bkSoft;
+      BevelOuter := bvNone;
+      StyleElements := [];
+      Color := clYellow;
+
+      Parent := frmDesenharPalete.Panel3;
+
+      OnMouseMove := frmDesenharPalete.ControlMouseDirMove;
+      OnMouseDown := frmDesenharPalete.ControlMouseDirDown;
+      OnMouseUp   := frmDesenharPalete.ControlMouseDirUp;
+      OnClick     := frmDesenharPalete.controlClickDir;
+
+    end;
+
+    //CAIXA VIRTUAL REFERENCIA CAMADA 2
+    PANEL_DCX_VR := TPanel.Create(frmDesenharPalete);
+    with PANEL_DCX_VR do
+    begin
+
+      Name :=  'DCX_VR' + IntToStr(DNUM_CAIXA);
+      Caption := Name + ' ' + '»→178→«';
+      Width := larg_cp;
+      Height := comp_cp;
+      Top := 50;
+      Left := 50;
+      ParentColor := False;
+      ParentBackground := false;
+      BevelKind := bkSoft;
+      BevelOuter := bvNone;
+      Color := $00004000;//$00333333;
+
+      Parent := frmDesenharPalete.Panel4;
+    end;
+
+    frmDesenharPalete.lblTotalCxaCam1.Caption := IntToStr(DNUM_CAIXA);
+    frmDesenharPalete.lblTotalCxaCam2.Caption := IntToStr(0);
+    frmDesenharPalete.ContaCaixasDir;
+    CX_DCM1 := DNUM_CAIXA;
+  END;
+
+  frmCaixas.Close;
 end;
 
 end.
